@@ -133,13 +133,13 @@ def check_norme(file_name, path):
 
     if c_file:
         parser = c_parser.CParser()
+        tmp = path + ".tmp"
+        try:
+            os.remove(tmp)
+        except:
+            pass
 
         try:
-            tmp = path + ".tmp"
-            try:
-                os.remove(tmp)
-            except:
-                b = "ok"
             file_contentf = StringUtils.removeComments(file_content)
             f = open(tmp, "a")
             f.write(file_contentf)
@@ -150,6 +150,10 @@ def check_norme(file_name, path):
         except c_parser.ParseError:
             e = sys.exc_info()[1]
             return "Parse error:" + str(e)
+        try:
+            os.remove(tmp)
+        except:
+            pass
         v = FunctionPrinter()
         v.visit(ast)
 
