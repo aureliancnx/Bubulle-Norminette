@@ -26,12 +26,12 @@ class HeaderMissing(AbstractCheck):
 
     def check_inner(self, content, contentf):
         if not content.startswith("/*"):
-            return 0
+            return 1
         if not content.split("\n")[1].startswith("** EPITECH PROJECT,"):
-            return 0
+            return 1
         if not content.split("\n")[3].startswith("** File description:"):
-            return 0
-        return 1
+            return 1
+        return 0
 
     def check_function_calls(self, func):
         return 0
