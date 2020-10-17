@@ -65,6 +65,8 @@ def get_path():
             if complete_path in checked_paths:
                 continue
             checked_paths.append(complete_path)
+            if is_tempfile(complete_path):
+                continue
             try:
                 check_norme(name, complete_path)
             except:
@@ -90,6 +92,15 @@ def get_path():
     print("\033[1;34;40mTOTAL\033[0m          Major: {0}       Minor: {1}       Info: {2}      Note: {3}".format(majors, minors, info, note))
     print("\033[0m-------------------------------------------------------------------------------")
 
+def is_tempfile(path):
+    if path.endswith(".tmp"):
+        try:
+            os.remove(path)
+        except:
+            pass
+        return 1
+    return 0
+
 def check_norme_dir(subdir):
     for sub in subdir:
         if StringUtils.tosnake(sub) != sub:
@@ -100,8 +111,6 @@ def check_norme_dir(subdir):
 def read_file(name):
     f = open(name, 'r')
     return f.read()
-
-
 
 def check_norme(file_name, path):
     #L02
