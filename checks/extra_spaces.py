@@ -7,7 +7,7 @@ from error_handling import BuErrors
 class ExtraSpaces(AbstractCheck):
 
     def __init__(self, file_name, header_lines):
-        self.message = "Extra spaces in EOF"
+        self.message = "Extra spaces end of line"
         self.file_name = file_name
         self.header_lines = header_lines
 
@@ -15,7 +15,7 @@ class ExtraSpaces(AbstractCheck):
         return "L3"
 
     def get_check_level(self):
-        return 3
+        return 0
 
     def check_line(self, line, line_number):
         return line.rstrip() != line
