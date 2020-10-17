@@ -9,17 +9,16 @@
 
 int ok(int b, char c);
 
-
-
-char *qov(int b, char c, int c,int q, int vbobobo)
+char *qov(int b, char c, int c,int q)
 {
-    char *Deb = "Bonjor comment allez vous les gens on adore la ie je sais ";
+    char *deb = "Bonjor comment allez vous les gens on adore la ie je sais ";
     int bedo = 1;
     bedo = 1;
     if (bdo == 1) {
         return (deb);
     }
-    bedo++; bedo++;
+    bedo++;
+    bedo++;
     return ( b);
 }
 
@@ -35,7 +34,6 @@ int b()
 
 int test()
 {
-    printf("%d\n", 1);
     return (0);
 }
 

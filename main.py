@@ -73,6 +73,7 @@ def get_path():
                 check_norme(name, complete_path)
             except Exception as e:
                 traceback.print_exc()
+                print(e)
                 continue
 
     info = 0
@@ -106,7 +107,7 @@ def is_tempfile(path):
 
 def check_norme_dir(subdir):
     for sub in subdir:
-        if StringUtils.tosnake(sub) != sub:
+        if string_utils.tosnake(sub) != sub:
             BuErrors.print_error(subdir, -1, 2, "O4", "File name not in snake_case")
             return 0
 
