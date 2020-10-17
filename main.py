@@ -68,11 +68,11 @@ def get_path():
         for name in files:
             check_norme_dir(subdirs)
             complete_path = pw + '/' + name
-            checked_paths.append(complete_path)
             if is_tempfile(complete_path):
                 continue
             if complete_path in checked_paths:
                 continue
+            checked_paths.append(complete_path)
             try:
                 check_norme(name, complete_path)
             except Exception as e:

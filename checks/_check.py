@@ -31,7 +31,7 @@ class AbstractCheck(ABC):
         pass
 
     @abstractmethod
-    def check_inner(self, content, contenf):
+    def check_inner(self, content, contentf):
         pass
 
     def fill_error(self, args):

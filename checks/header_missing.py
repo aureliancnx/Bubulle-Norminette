@@ -44,6 +44,3 @@ class HeaderMissing(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0
