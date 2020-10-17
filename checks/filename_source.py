@@ -1,32 +1,24 @@
 import re
 
+import string_utils
 from checks._check import AbstractCheck
 from error_handling import BuErrors
 
-check = {".o", ".gch", ".a", ".so", ".d"}
-
-
-class FilenameUseless(AbstractCheck):
+class FilenameSource(AbstractCheck):
 
     def __init__(self, file_name, header_lines):
-        self.message = "Useless file for compilation"
+        self.message = "File name not in snake_case"
         self.file_name = file_name
         self.header_lines = header_lines
 
     def get_check_id(self):
-        return "O1"
+        return "O4"
 
     def get_check_level(self):
         return 2
 
     def check_filename(self):
-        try:
-            for c in check:
-                if self.file_name.endswith((c)):
-                    return 1
-        except Exception as e:
-            print(e)
-        return 0
+        return string_utils.tosnake(self.file_name) != self.file_name
 
     def check_line(self, line, line_number):
         return 0

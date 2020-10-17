@@ -16,14 +16,18 @@ import error_handling
 import string_utils
 from checks.column_toomuch import ColumnToomuch
 from checks.declaration_spaces import DeclarationSpaces
+from checks.empty_file import EmptyFile
 from checks.extra_spaces import ExtraSpaces
+from checks.filename_snakecase import FilenameSnakecase
 from checks.filename_unclear import FilenameUnclear
 from checks.filename_useless import FilenameUseless
 from checks.forbidden_functions import ForbiddenFunctions
 from checks.forbidden_goto import ForbiddenGoto
 from checks.function_curlybrackets import FunctionCurlybrackets
 from checks.function_snakecase import FunctionSnakecase
+from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
+from checks.header_missing import HeaderMissing
 from checks.indent_tabs import IndentTabs
 from checks.macro_constants import MacroConstant
 from checks.misplaced_pointers import MisplacedPointers
@@ -64,10 +68,10 @@ def get_path():
         for name in files:
             check_norme_dir(subdirs)
             complete_path = pw + '/' + name
-            if complete_path in checked_paths:
-                continue
             checked_paths.append(complete_path)
             if is_tempfile(complete_path):
+                continue
+            if complete_path in checked_paths:
                 continue
             try:
                 check_norme(name, complete_path)
@@ -111,7 +115,6 @@ def check_norme_dir(subdir):
             BuErrors.print_error(subdir, -1, 2, "O4", "File name not in snake_case")
             return 0
 
-
 def read_file(name):
     f = open(name, 'r')
     return f.read()
@@ -139,21 +142,24 @@ def check_norme(file_name, path):
     filename_unclear.process_filename()
     filename_useless = FilenameUseless(file_name, header_lines)
     filename_useless.process_filename()
+    filename_snakecase = FilenameSnakecase(file_name, header_lines)
+    filename_snakecase.process_filename()
 
-    if not file_name.endswith('.c') and not file_name.endswith('.h'):
-        c_file = False
-        if 'return' in file_content or 'main(' in file_content:
-            BuErrors.print_error(file_name, -1, 1, "O2", "File not ending by .c/.h")
+    # TODO - in a better way.
+    #if not file_name.endswith('.c') and not file_name.endswith('.h'):
+    #    c_file = False
+    #    if 'return' in file_content or 'main(' in file_content:
+    #        BuErrors.print_error(file_name, -1, 1, "O2", "File not ending by .c/.h")
 
     lines = ()
+    tmp = path + ".tmp"
+    try:
+        os.remove(tmp)
+    except:
+        pass
 
     if c_file:
         parser = c_parser.CParser()
-        tmp = path + ".tmp"
-        try:
-            os.remove(tmp)
-        except:
-            pass
 
         try:
             file_contentf = string_utils.removeComments(file_content)
@@ -176,24 +182,11 @@ def check_norme(file_name, path):
         FunctionPrinter.reset_visit(v)
         v.visit(ast)
 
-        if v.function_count > 5:
-            for i in range(0, v.function_count - 5):
-                BuErrors.print_error(file_name, -1, 2, "O3", "Too many functions ({0} > 5)".format(v.function_count))
+        header_missing = HeaderMissing(file_name, header_lines)
+        header_missing.process_inner(file_content, file_contentf)
 
-        if string_utils.tosnake(file_name) != file_name:
-            BuErrors.print_error(file_name, -1, 2, "O4", "File name not in snake_case")
-
-
-        if not file_content.startswith("/*"):
-            BuErrors.print_error(file_name, -1, 2, "G1", "EPITECH header missing")
-        elif not file_content.split("\n")[1].startswith("** EPITECH PROJECT,"):
-            BuErrors.print_error(file_name, -1, 2, "G1", "EPITECH header missing")
-        elif not file_content.split("\n")[3].startswith("** File description:"):
-            BuErrors.print_error(file_name, -1, 2, "G1", "EPITECH header missing")
-
-        if len(file_contentf) < 1:
-            BuErrors.print_error(file_name, -1, 2, "G1", "Empty C source file")
-            return
+        empty_file = EmptyFile(file_name, header_lines)
+        empty_file.process_inner(file_content, file_contentf)
 
         lines = file_contentf.split('\n')
         for function_line in v.function_lines:
@@ -275,6 +268,8 @@ def check_norme(file_name, path):
         function_snakecase.process_visitor_check(v, lines)
         function_curlybrackets = FunctionCurlybrackets(file_name, header_lines)
         function_curlybrackets.process_visitor_check(v, lines)
+        function_toomuch = FunctionToomuch(file_name, header_lines)
+        function_toomuch.process_visitor_check(v, lines)
 
         # CHECK functions & vars
         forbidden_functions = ForbiddenFunctions(file_name, header_lines)

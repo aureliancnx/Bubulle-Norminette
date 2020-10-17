@@ -1,31 +1,24 @@
 import re
 
+from pycparser.c_ast import FuncCall
+
 from checks._check import AbstractCheck
 from error_handling import BuErrors
 
-check = {".o", ".gch", ".a", ".so", ".d"}
-
-
-class FilenameUseless(AbstractCheck):
+class FunctionToomuch(AbstractCheck):
 
     def __init__(self, file_name, header_lines):
-        self.message = "Useless file for compilation"
+        self.message = "Too many functions ({0} > 5)"
         self.file_name = file_name
         self.header_lines = header_lines
 
     def get_check_id(self):
-        return "O1"
+        return "O3"
 
     def get_check_level(self):
         return 2
 
-    def check_filename(self):
-        try:
-            for c in check:
-                if self.file_name.endswith((c)):
-                    return 1
-        except Exception as e:
-            print(e)
+    def check_function_decl(self, visitor, func):
         return 0
 
     def check_line(self, line, line_number):
@@ -34,14 +27,11 @@ class FilenameUseless(AbstractCheck):
     def check_function_calls(self, func):
         return 0
 
-    def check_function_decl(self, visitor, func):
-        return 0
-
     def check_variable_decl(self, var):
         return 0
 
     def check_visitor(self, visitor, lines):
-        return 0
+        return visitor.function_count > 5
 
     def check_inner(self, file_content, file_contentf):
         return 0
