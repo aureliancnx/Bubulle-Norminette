@@ -236,11 +236,11 @@ def check_norme(file_name, path):
             else:
                 started_newindent = 0
 
-            if index > 0 and not len(line) <= 0:
-                spaces_diff = len(line) - len(line.lstrip())
-                if spaces_diff != 4 * index:
-                    BuErrors.print_error(file_name, i + header_lines - 1, 1, "L2", "Error in indent levels {0} != {1}".format(index * 4, spaces_diff))
-
+            #if index > 0 and not len(line) <= 0:
+            #    spaces_diff = len(line) - len(line.lstrip())
+            #    if spaces_diff != 4 * index:
+            #        BuErrors.print_error(file_name, i + header_lines - 1, 1, "L2", "Error in indent levels {0} != {1}".format(index * 4, spaces_diff))
+            #
                 #elif (index - 1) * 4 != spaces_diff and started_newindent:
                 #    print(line)
                 #    print("[{0}:{1}] L2 - Misusage of indentation level. {2} != {3}".format(file_name,
