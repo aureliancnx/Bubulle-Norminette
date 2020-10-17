@@ -45,7 +45,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_function_calls(func):
             return 0
-        if not self.args:
+        if not hasattr(self, 'args'):
             self.err("", -1, self.message)
             return 1
         self.err("", -1, self.message.format(self.args))
@@ -58,7 +58,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_function_decl(visitor, func):
             return 0
-        if not self.args:
+        if not hasattr(self, 'args'):
             self.err("", -1, self.message)
             return 1
         self.err("", -1, self.message.format(*self.args))
@@ -77,7 +77,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_variable_decl(var):
             return 0
-        if not self.args:
+        if not hasattr(self, 'args'):
             self.err("", -1, self.message)
             return 1
         self.err("", -1, self.message.format(self.args))
@@ -86,7 +86,7 @@ class AbstractCheck(ABC):
     def process_line(self, line, line_number):
         if not self.check_line(line, line_number):
             return 0
-        if not self.args:
+        if not hasattr(self, 'args'):
             self.err(line, line_number, self.message)
             return 1
         self.err(line, line_number, self.message.format(self.args))

@@ -12,23 +12,22 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-class StringUtils():
-    def tosnake(name):
+def tosnake(name):
       name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
       return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
 
-    def removeComments(string):
-        pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
-        regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
+def removeComments(string):
+    pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
+    regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
 
-        def _replacer(match):
-            if match.group(2) is not None:
-                return ""
-            else:
-                return match.group(1)
-        string = regex.sub(_replacer, string)
-        string = pyparsing.nestedExpr("/*", "*/").suppress().transformString(string)
-        return string
+    def _replacer(match):
+        if match.group(2) is not None:
+            return ""
+        else:
+            return match.group(1)
+    string = regex.sub(_replacer, string)
+    string = pyparsing.nestedExpr("/*", "*/").suppress().transformString(string)
+    return string
 
     def split_on_empty_lines(s):
         blank_line_regex = r"(?:\r?\n){2,}"

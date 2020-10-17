@@ -4,6 +4,8 @@ import glob
 import os
 import sys
 import re
+import traceback
+
 import pyparsing
 
 from pycparser import c_parser, c_ast, parse_file
@@ -11,6 +13,7 @@ from pycparser.c_ast import FuncCall
 from pycparser.plyparser import Coord
 
 import error_handling
+import string_utils
 from checks.column_toomuch import ColumnToomuch
 from checks.declaration_spaces import DeclarationSpaces
 from checks.extra_spaces import ExtraSpaces
@@ -31,7 +34,6 @@ from checks.variable_snakecase import VariableSnakecase
 from checks.variable_typedef import VariableTypedef
 from error_handling import BuErrors
 from functions_reader import FunctionPrinter
-from string_utils import StringUtils
 
 args = None
 
@@ -69,7 +71,8 @@ def get_path():
                 continue
             try:
                 check_norme(name, complete_path)
-            except:
+            except Exception as e:
+                traceback.print_exc()
                 continue
 
     info = 0
@@ -149,7 +152,7 @@ def check_norme(file_name, path):
             pass
 
         try:
-            file_contentf = StringUtils.removeComments(file_content)
+            file_contentf = string_utils.removeComments(file_content)
             f = open(tmp, "a")
             f.write(file_contentf)
             f.close()
@@ -158,19 +161,22 @@ def check_norme(file_name, path):
             os.remove(tmp)
         except c_parser.ParseError:
             e = sys.exc_info()[1]
+            print(e)
+            print("ERROR")
             return "Parse error:" + str(e)
         try:
             os.remove(tmp)
         except:
             pass
         v = FunctionPrinter()
+        FunctionPrinter.reset_visit(v)
         v.visit(ast)
 
         if v.function_count > 5:
             for i in range(0, v.function_count - 5):
                 BuErrors.print_error(file_name, -1, 2, "O3", "Too many functions ({0} > 5)".format(v.function_count))
 
-        if StringUtils.tosnake(file_name) != file_name:
+        if string_utils.tosnake(file_name) != file_name:
             BuErrors.print_error(file_name, -1, 2, "O4", "File name not in snake_case")
 
 
@@ -188,7 +194,7 @@ def check_norme(file_name, path):
         lines = file_contentf.split('\n')
         for function_line in v.function_lines:
             if lines[function_line] == '{':
-                if len(lines) - (function_line - 1) < 0 or lines[function_line - 2] != '':
+                if len(lines) - (function_line - 1) < 0 or (function_line > 2 and lines[function_line - 2] != ''):
                     BuErrors.print_error(file_name, function_line + header_lines - 1, 1, "G2", "One empty line between func")
             elif len(lines) - (function_line - 2) < 0:
                     BuErrors.print_error(file_name, function_line + header_lines - 1, 1, "G2", "One empty line between func")

@@ -2,9 +2,9 @@ import re
 
 from pycparser.c_ast import FuncCall
 
+import string_utils
 from checks._check import AbstractCheck
 from error_handling import BuErrors
-from string_utils import StringUtils
 
 
 class FunctionSnakecase(AbstractCheck):
@@ -34,7 +34,7 @@ class FunctionSnakecase(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_defs:
-            if StringUtils.tosnake(visitor.function_defs[function_line]) != visitor.function_defs[function_line]:
+            if string_utils.tosnake(visitor.function_defs[function_line]) != visitor.function_defs[function_line]:
                 self.fill_error(visitor.function_defs[function_line])
                 return 1
         return 0

@@ -13,7 +13,6 @@ def extract_funcDef(node, defList):
         else:
             extract_funcDef(item, defList)
 
-
 # Print functions
 class FunctionPrinter(c_ast.NodeVisitor):
     function_count = 0
@@ -21,6 +20,13 @@ class FunctionPrinter(c_ast.NodeVisitor):
     function_defs = {}
     function_content = {}
     func = []
+
+    def reset_visit(self):
+        self.func = []
+        self.function_content = {}
+        self.function_defs = {}
+        self.function_lines = []
+        self.function_count = 0
 
     def visit_FuncDef(self, node):
         self.func.append(node)

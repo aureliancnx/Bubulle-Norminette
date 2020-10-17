@@ -4,7 +4,6 @@ from pycparser.c_ast import FuncCall
 
 from checks._check import AbstractCheck
 from error_handling import BuErrors
-from string_utils import StringUtils
 
 
 class FunctionCurlybrackets(AbstractCheck):

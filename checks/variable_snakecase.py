@@ -1,9 +1,8 @@
 import re
 
+import string_utils
 from checks._check import AbstractCheck
 from error_handling import BuErrors
-from string_utils import StringUtils
-
 
 class VariableSnakecase(AbstractCheck):
 
@@ -20,7 +19,7 @@ class VariableSnakecase(AbstractCheck):
 
     def check_variable_decl(self, var):
         self.fill_error(var.name)
-        return StringUtils.tosnake(var.name) != var.name
+        return string_utils.tosnake(var.name) != var.name
 
     def check_line(self, line, line_number):
         return 0
