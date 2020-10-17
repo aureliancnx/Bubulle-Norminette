@@ -18,7 +18,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 
 #### Installation
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
 ```
 
 ## Utilisation
