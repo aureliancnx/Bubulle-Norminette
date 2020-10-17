@@ -26,6 +26,8 @@ def removeComments(string):
         else:
             return match.group(1)
     string = regex.sub(_replacer, string)
+    string = re.sub(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", "", string)
+    string = string.replace("#pragma once", "")
     string = pyparsing.nestedExpr("/*", "*/").suppress().transformString(string)
     return string
 

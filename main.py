@@ -119,7 +119,10 @@ def read_file(name):
 def check_norme(file_name, path):
     #L02
     c_file = True
-    file_content = read_file(path)
+    try:
+        file_content = read_file(path)
+    except:
+        return
     header_lines = 0
     header_found_end = False
     lines_with_comments = file_content.split('\n')
@@ -162,8 +165,8 @@ def check_norme(file_name, path):
             os.remove(tmp)
         except c_parser.ParseError:
             e = sys.exc_info()[1]
-            print(e)
-            print("ERROR")
+            #print(e)
+            #print("ERROR")
             return "Parse error:" + str(e)
         try:
             os.remove(tmp)
