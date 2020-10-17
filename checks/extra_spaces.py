@@ -15,7 +15,7 @@ class ExtraSpaces(AbstractCheck):
         return "L3"
 
     def get_check_level(self):
-        return 1
+        return 3
 
     def check_line(self, line, line_number):
         return line.rstrip() != line

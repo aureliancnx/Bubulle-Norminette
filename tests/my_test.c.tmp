@@ -1,9 +1,4 @@
-/*
-** EPITECH PROJECT, 2020
-** test.c
-** File description:
-** Useful things
-*/
+
 #define PI = 3.1406548948;
 
 int ok(int b, char c);

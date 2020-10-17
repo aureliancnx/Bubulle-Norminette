@@ -4,7 +4,6 @@
 ** File description:
 ** Put a string
 */
-
 void my_putchar(char c);
 
 void my_putstr(char const *str)
