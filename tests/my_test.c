@@ -14,6 +14,29 @@ char *qov(int b, char c, int c,int q)
     char *deb = "Bonjor comment allez vous les gens on adore la ie je sais ";
     int bedo = 1;
     bedo = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (bdo == 1) {
         return (deb);
     }

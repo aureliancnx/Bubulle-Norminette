@@ -29,6 +29,7 @@ from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.header_missing import HeaderMissing
 from checks.indent_tabs import IndentTabs
+from checks.lines_extra import LinesExtra
 from checks.macro_constants import MacroConstant
 from checks.misplaced_pointers import MisplacedPointers
 from checks.misplaced_spaces import MisplacedSpace
@@ -224,16 +225,16 @@ def check_norme(file_name, path):
 
         for line in lines:
             i += 1
-            if line in v.function_defs:
-                last_func = v.function_defs[line]
-            for function_line in v.function_lines:
-                if i != function_line:
-                    break
-                if index > 0:
-                    BuErrors.print_error(file_name, i + header_lines - 1, 2, "F7", "Nested function '{0}'".format(v.function_defs[function_line]))
+            #if line in v.function_defs:
+            #    last_func = v.function_defs[line]
+            #for function_line in v.function_lines:
+            #    if i != function_line:
+            #        break
+            #    if index > 0:
+            #        BuErrors.print_error(file_name, i + header_lines - 1, 2, "F7", "Nested function '{0}'".format(v.function_defs[function_line]))
 
             started_newindent = 0
-            if re.match(r'{[ \t]*', line):
+            if '{' in line:
                 started_newindent = 1
                 if index == 0:
                     line_start = i
@@ -294,6 +295,7 @@ def check_norme(file_name, path):
         column_toomuch = ColumnToomuch(file_name, header_lines)
         misplaced_spaces = MisplacedPointers(file_name, header_lines)
         indent_tabs = IndentTabs(file_name, header_lines)
+        lines_extra = LinesExtra(file_name, header_lines)
 
         line_index = 0
         for line in lines:
@@ -307,6 +309,7 @@ def check_norme(file_name, path):
             column_toomuch.process_line(line, line_index)
             misplaced_spaces.process_line(line, line_index)
             indent_tabs.process_line(line, line_index)
+            lines_extra.process_line(line, line_index)
 
 
         #print(func.body)
