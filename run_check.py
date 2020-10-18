@@ -73,10 +73,10 @@ class RunCheck:
             return 0
 
     def run(self):
-        if not self.is_validsource:
+        if not self.is_validsource():
             return
 
-        if not self.read_content:
+        if not self.read_content():
             return
 
         header_lines = 0
