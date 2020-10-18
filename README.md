@@ -26,6 +26,9 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
 
   Ecrivez simplement la commande suivante dans votre terminal, dans le dossier où se situe le code que vous souhaitez vérifier : 
  `bubulle`
+ 
+ Example de retour :
+ [<img alt="Norminette" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example1.png" width="200px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
 
 ## Options
 
