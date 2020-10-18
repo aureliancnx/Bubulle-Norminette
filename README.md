@@ -78,12 +78,12 @@ Installation manuelle sous Windows : cloner le repository.
  - Détection des assignements de variables multiples sur une seule et même ligne
  - Détection des commentaires dans les fonctions
  - Détection des nested fonctions
+ - Vérification de l'indentation complète de chaque ligne
  
 ## TODO
 
  Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être achevées :
  
- - Vérification de l'indentation complète de chaque ligne
  - G5 : Vérification des fonctions statiques à utiliser uniquement dans la compilation
  - L6 : Sépération d'une ligne entre la déclaration des variables et le reste du contenu d'une fonction
  - F1 : Cohérence des fonctions ??
@@ -94,6 +94,6 @@ Installation manuelle sous Windows : cloner le repository.
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
- - Hugo Monchablon : idée du nom & soutien moral
+ - Payne : idée du nom & soutien moral
  
  Vous souhaitez également participer au développement et à l'amélioration de la norminette ? N'hésitez pas à ouvrir une <i>issue</i> en cas de problème ou à soumettre un <i>pull request</i> pour une idée de modification.
