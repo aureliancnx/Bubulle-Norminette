@@ -131,6 +131,10 @@ def check_norme(file_name, path):
         file_content = read_file(path)
     except:
         return
+
+    if not file_name.endswith('.c') and not file_name.endswith('.h'):
+        return
+
     header_lines = 0
     header_found_end = False
     lines_with_comments = file_content.split('\n')
@@ -143,12 +147,11 @@ def check_norme(file_name, path):
     if not header_found_end:
         header_lines = 0
 
-    filename_unclear = FilenameUnclear(file_name, header_lines)
-    filename_unclear.process_filename()
-    filename_useless = FilenameUseless(file_name, header_lines)
-    filename_useless.process_filename()
-    filename_snakecase = FilenameSnakecase(file_name, header_lines)
-    filename_snakecase.process_filename()
+    classes_inner = [FilenameUnclear, FilenameUseless, FilenameSnakecase]
+
+    for clazz in classes_inner:
+        clazz = clazz(file_name=file_name, header_lines=header_lines)
+        clazz.process_filename()
 
     # TODO - in a better way.
     #if not file_name.endswith('.c') and not file_name.endswith('.h'):
