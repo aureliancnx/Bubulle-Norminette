@@ -133,6 +133,7 @@ tput setaf 2
 echo "=> Installation cleaned."
 tput init
 tput setab 2
+tput blink
 echo "=> Installation complete."
 tput init
 # ------ END INSTALL CLEAN ------
