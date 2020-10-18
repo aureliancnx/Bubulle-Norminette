@@ -102,10 +102,13 @@ class AbstractCheck(ABC):
     def process_inner(self, content, contentf):
         if not self.check_inner(content, contentf):
             return 0
+        line_n = -1
+        if hasattr(self, 'line'):
+            line_n = self.line
         if not hasattr(self, 'args'):
-            self.err("", -1, self.message)
+            self.err("", line_n, self.message)
             return 1
-        self.err("", -1, self.message.format(self.args))
+        self.err("", line_n, self.message.format(self.args))
         return 1
 
     def err(self, line, line_number, text):

@@ -21,6 +21,7 @@ from checks.extra_spaces import ExtraSpaces
 from checks.filename_snakecase import FilenameSnakecase
 from checks.filename_unclear import FilenameUnclear
 from checks.filename_useless import FilenameUseless
+from checks.for_curlybrackets import ForCurlybrackets
 from checks.forbidden_functions import ForbiddenFunctions
 from checks.forbidden_goto import ForbiddenGoto
 from checks.function_curlybrackets import FunctionCurlybrackets
@@ -28,6 +29,7 @@ from checks.function_snakecase import FunctionSnakecase
 from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.header_missing import HeaderMissing
+from checks.if_curlybrackets import IfCurlybrackets
 from checks.indent_tabs import IndentTabs
 from checks.lines_extra import LinesExtra
 from checks.macro_constants import MacroConstant
@@ -37,6 +39,7 @@ from checks.missing_spaces import MissingSpace
 from checks.multiple_assignements import MultipleAssignements
 from checks.variable_snakecase import VariableSnakecase
 from checks.variable_typedef import VariableTypedef
+from checks.while_curlybrackets import WhileCurlybrackets
 from error_handling import BuErrors
 from functions_reader import FunctionPrinter
 
@@ -188,6 +191,12 @@ def check_norme(file_name, path):
 
         empty_file = EmptyFile(file_name, header_lines)
         empty_file.process_inner(file_content, file_contentf)
+        if_curlybrackets = IfCurlybrackets(file_name, header_lines)
+        if_curlybrackets.process_inner(file_content, file_contentf)
+        for_curlybrackets = ForCurlybrackets(file_name, header_lines)
+        for_curlybrackets.process_inner(file_content, file_contentf)
+        while_curlybrackets = WhileCurlybrackets(file_name, header_lines)
+        while_curlybrackets.process_inner(file_content, file_contentf)
 
         lines = file_contentf.split('\n')
         for function_line in v.function_lines:
