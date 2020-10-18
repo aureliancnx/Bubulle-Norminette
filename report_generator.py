@@ -49,9 +49,9 @@ class Report:
 
     def check_version(self):
         if file_utils.get_version_latest() != file_utils.get_version():
-            print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u")
+            print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m")
             return
-        print("Bubulle is up to date.")
+        print("\033[0mBubulle is up to date.")
 
     def run_checks(self):
         checked_paths = []
