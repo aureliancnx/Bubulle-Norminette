@@ -33,14 +33,14 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
 
 ## Fonctionnalités
 
-# Vérification des fichiers
+### Vérification des fichiers
  - Vérification des fichiers qui ne sont pas en accord avec la convention snake_case
  - Vérification des fichiers sources qui n'ont pas pour extension .c ni .h
  - Vérification des fichiers inutiles
  - Vérification des fichiers sources vides
  - Vérification des noms de fichiers qui ne sont pas clairs (par exemple: test.c, string.c ...)
  
-# Vérification de convention de norme
+### Vérification de convention de norme
 
  - Détection des éventuelles fonctions de la libC interdites dans le sujet
  - Détection du mot clé 'goto' interdit
@@ -49,7 +49,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  - Vérification des variables ne respectant pas la convention snake_case
  - Détection de la norme du nom d'un typedef, qui doit se terminer par _t
 
-# Vérification de style du code
+### Vérification de style du code
 
  - Détection des lignes trop grandes (plus de 80 colonnes sur une seule ligne)
  - Détection des espaces manquants dans les assignations ou comparaison de variables
