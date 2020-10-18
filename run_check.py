@@ -15,45 +15,9 @@ from pycparser.plyparser import Coord
 
 import error_handling
 import string_utils
-from checks.column_toomuch import ColumnToomuch
-from checks.declaration_spaces import DeclarationSpaces
-from checks.empty_file import EmptyFile
-from checks.extra_spaces import ExtraSpaces
-from checks.filename_snakecase import FilenameSnakecase
-from checks.filename_unclear import FilenameUnclear
-from checks.filename_useless import FilenameUseless
-from checks.for_curlybrackets import ForCurlybrackets
-from checks.forbidden_functions import ForbiddenFunctions
-from checks.forbidden_goto import ForbiddenGoto
-from checks.function_curlybrackets import FunctionCurlybrackets
-from checks.function_snakecase import FunctionSnakecase
-from checks.function_toomuch import FunctionToomuch
-from checks.function_toomuchargs import FunctionTooMuchArgs
-from checks.header_missing import HeaderMissing
-from checks.if_curlybrackets import IfCurlybrackets
-from checks.indent_tabs import IndentTabs
-from checks.lines_extra import LinesExtra
-from checks.macro_constants import MacroConstant
-from checks.misplaced_pointers import MisplacedPointers
-from checks.misplaced_spaces import MisplacedSpace
-from checks.missing_spaces import MissingSpace
-from checks.multiple_assignements import MultipleAssignements
-from checks.variable_snakecase import VariableSnakecase
-from checks.variable_typedef import VariableTypedef
-from checks.while_curlybrackets import WhileCurlybrackets
 from error_handling import BuErrors
 from functions_reader import FunctionPrinter
-from utils import file_utils
-
-classes_filename = [FilenameUnclear, FilenameUseless, FilenameSnakecase]
-classes_inner = [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets]
-classes_func_decl = [FunctionTooMuchArgs]
-classes_func_call = [ForbiddenFunctions]
-classes_var_decl = [VariableSnakecase, VariableTypedef]
-classes_visitor = [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch]
-classes_line = [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,
-                DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs,
-                LinesExtra]
+from utils import file_utils, check_utils
 
 
 class RunCheck:
@@ -64,12 +28,17 @@ class RunCheck:
 
     def is_validsource(self):
         if self.file_name.endswith('.tmp'):
-            try:
-                os.remove(self.full_path)
-            except:
-                pass
-            return 0
+            self.delete_temp(already=True)
         return self.file_name.endswith('.c') or self.file_name.endswith('.h')
+
+    def delete_temp(self, already=False):
+        path = self.full_path
+        if not already:
+            path = path + '.tmp'
+        try:
+            os.remove(path)
+        except:
+            pass
 
     def read_content(self):
         try:
@@ -78,13 +47,7 @@ class RunCheck:
         except:
             return 0
 
-    def run(self):
-        if not self.is_validsource():
-            return
-
-        if not self.read_content():
-            return
-
+    def get_headerlines(self):
         header_lines = 0
         header_found_end = False
         lines_with_comments = self.file_content.split('\n')
@@ -95,53 +58,49 @@ class RunCheck:
                 break
 
         if not header_found_end:
-            header_lines = 0
+            return 0
+        return header_lines
 
-        for clazz in classes_filename:
+    def run(self):
+        self.delete_temp()
+        tmp = self.full_path + '.tmp'
+
+        if not self.is_validsource():
+            return
+
+        if not self.read_content():
+            return
+
+        header_lines = self.get_headerlines()
+        lines_with_comments = self.file_content.split('\n')
+        lines = ()
+        parser = c_parser.CParser()
+
+        for clazz in check_utils.get_filenames():
             clazz = clazz(file_name=self.file_name, header_lines=header_lines)
             clazz.process_filename()
 
-        # TODO - in a better way.
-        # if not file_name.endswith('.c') and not file_name.endswith('.h'):
-        #    c_file = False
-        #    if 'return' in file_content or 'main(' in file_content:
-        #        BuErrors.print_error(file_name, -1, 1, "O2", "File not ending by .c/.h")
-
-        lines = ()
-        tmp = self.full_path + ".tmp"
-        try:
-            os.remove(tmp)
-        except:
-            pass
-
-        parser = c_parser.CParser()
-
         try:
             file_contentf = string_utils.removeComments(self.file_content)
+            lines = file_contentf.split('\n')
             f = open(tmp, "a")
             f.write(file_contentf)
             f.close()
 
             ast = parse_file(tmp, use_cpp=True)
-            os.remove(tmp)
+            self.delete_temp()
         except c_parser.ParseError:
             e = sys.exc_info()[1]
             print(e)
-            # print("ERROR")
-            try:
-                os.remove(tmp)
-            except:
-                pass
+            self.delete_temp()
             return "Parse error:" + str(e)
-        try:
-            os.remove(tmp)
-        except:
-            pass
+
+        self.delete_temp()
         v = FunctionPrinter()
         FunctionPrinter.reset_visit(v)
         v.visit(ast)
 
-        for clazz in classes_inner:
+        for clazz in check_utils.get_inner():
             clazz = clazz(file_name=self.file_name, header_lines=header_lines)
             clazz.process_inner(self.file_content, file_contentf)
 
@@ -224,25 +183,25 @@ class RunCheck:
             #                                                                            i + header_lines - 1,
             #                                                                            index * 4, spaces_diff))
 
-        for clazz in classes_visitor:
+        for clazz in check_utils.get_visitor():
             clazz = clazz(file_name=self.file_name, header_lines=header_lines)
             clazz.process_visitor_check(v, lines)
 
         for func in v.func:
-            for clazz in classes_func_decl:
+            for clazz in check_utils.get_func_decl():
                 clazz = clazz(file_name=self.file_name, header_lines=header_lines)
                 clazz.process_function_decl(v, func)
             for var in func.body.block_items:
-                for clazz in classes_func_call:
+                for clazz in check_utils.get_func_call():
                     clazz = clazz(file_name=self.file_name, header_lines=header_lines)
                     clazz.process_function_call(var)
-                for clazz in classes_var_decl:
+                for clazz in check_utils.get_var_decl():
                     clazz = clazz(file_name=self.file_name, header_lines=header_lines)
                     clazz.process_variable_decl(var)
 
         line_index = 0
         for line in lines:
             line_index += 1
-            for clazz in classes_line:
+            for clazz in check_utils.get_line():
                 clazz = clazz(file_name=self.file_name, header_lines=header_lines)
                 clazz.process_line(line, line_index)
