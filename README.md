@@ -67,3 +67,18 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  - Détection des macros utilisées pour des constantes : elles doivent servir pour remplacer des fonctions en une ligne
  - Détection des espaces manquants entre les virgules
  - Détection des assignements de variables multiples sur une seule et même ligne
+ - Détection des commentaires dans les fonctions
+ - Détection des nested fonctions
+ 
+## TODO
+
+ Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être achevées :
+ 
+ - Vérification de l'indentation complète de chaque ligne
+ - G5 : Vérification des fonctions statiques à utiliser uniquement dans la compilation
+ - L6 : Sépération d'une ligne entre la déclaration des variables et le reste du contenu d'une fonction
+ - F1 : Cohérence des fonctions ??
+ - L6 : Vérification de la déclaration des variables en début de fonction uniquement
+ - H2 : Vérification anti double-inclusion des headers
+ - H1 : Vérification du contenu des headers (prototypes, structures et macros uniquement)
+ - Quelques INFO...
