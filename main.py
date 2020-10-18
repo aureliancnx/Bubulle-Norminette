@@ -5,6 +5,7 @@ import os
 import sys
 import re
 import traceback
+import unittest
 
 import pyparsing
 
@@ -186,17 +187,11 @@ def check_norme(file_name, path):
         FunctionPrinter.reset_visit(v)
         v.visit(ast)
 
-        header_missing = HeaderMissing(file_name, header_lines)
-        header_missing.process_inner(file_content, file_contentf)
+        classes_inner = [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets]
 
-        empty_file = EmptyFile(file_name, header_lines)
-        empty_file.process_inner(file_content, file_contentf)
-        if_curlybrackets = IfCurlybrackets(file_name, header_lines)
-        if_curlybrackets.process_inner(file_content, file_contentf)
-        for_curlybrackets = ForCurlybrackets(file_name, header_lines)
-        for_curlybrackets.process_inner(file_content, file_contentf)
-        while_curlybrackets = WhileCurlybrackets(file_name, header_lines)
-        while_curlybrackets.process_inner(file_content, file_contentf)
+        for clazz in classes_inner:
+            clazz = clazz(file_name=file_name, header_lines=header_lines)
+            clazz.process_inner(file_content, file_contentf)
 
         lines = file_contentf.split('\n')
         for function_line in v.function_lines:
@@ -273,52 +268,37 @@ def check_norme(file_name, path):
                 #                                                                            i + header_lines - 1,
                 #                                                                            index * 4, spaces_diff))
 
-        # CHECK visitor
-        function_snakecase = FunctionSnakecase(file_name, header_lines)
-        function_snakecase.process_visitor_check(v, lines)
-        function_curlybrackets = FunctionCurlybrackets(file_name, header_lines)
-        function_curlybrackets.process_visitor_check(v, lines)
-        function_toomuch = FunctionToomuch(file_name, header_lines)
-        function_toomuch.process_visitor_check(v, lines)
+        classes_visitor = [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch]
+        for clazz in classes_visitor:
+            clazz = clazz(file_name=file_name, header_lines=header_lines)
+            clazz.process_visitor_check(v, lines)
 
-        # CHECK functions & vars
-        forbidden_functions = ForbiddenFunctions(file_name, header_lines)
-        variable_typedef = VariableTypedef(file_name, header_lines)
-        variable_snakecase = VariableSnakecase(file_name, header_lines)
-        function_toomuchargs = FunctionTooMuchArgs(file_name, header_lines)
+
+        classes_func_decl = [FunctionTooMuchArgs]
+        classes_func_call = [ForbiddenFunctions]
+        classes_var_decl = [VariableSnakecase, VariableTypedef]
 
         for func in v.func:
-            function_toomuchargs.process_function_decl(v, func)
+            for clazz in classes_func_decl:
+                clazz = clazz(file_name=file_name, header_lines=header_lines)
+                clazz.process_function_decl(v, func)
             for var in func.body.block_items:
-                forbidden_functions.process_function_call(var)
-                variable_snakecase.process_variable_decl(var)
-                variable_typedef.process_variable_decl(var)
+                for clazz in classes_func_call:
+                    clazz = clazz(file_name=file_name, header_lines=header_lines)
+                    clazz.process_function_call(var)
+                for clazz in classes_var_decl:
+                    clazz = clazz(file_name=file_name, header_lines=header_lines)
+                    clazz.process_variable_decl(var)
 
-        macro_constants = MacroConstant(file_name, header_lines)
-        forbidden_goto = ForbiddenGoto(file_name, header_lines)
-        misplaced_spaces = MisplacedSpace(file_name, header_lines)
-        missing_spaces = MissingSpace(file_name, header_lines)
-        multiple_assignements = MultipleAssignements(file_name, header_lines)
-        declaration_spaces = DeclarationSpaces(file_name, header_lines)
-        extra_spaces = ExtraSpaces(file_name, header_lines)
-        column_toomuch = ColumnToomuch(file_name, header_lines)
-        misplaced_spaces = MisplacedPointers(file_name, header_lines)
-        indent_tabs = IndentTabs(file_name, header_lines)
-        lines_extra = LinesExtra(file_name, header_lines)
-
+        classes_line = [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,
+                        DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs,
+                        LinesExtra]
         line_index = 0
         for line in lines:
             line_index += 1
-            macro_constants.process_line(line, line_index)
-            forbidden_goto.process_line(line, line_index)
-            misplaced_spaces.process_line(line, line_index)
-            missing_spaces.process_line(line, line_index)
-            multiple_assignements.process_line(line, line_index)
-            extra_spaces.process_line(line, line_index)
-            column_toomuch.process_line(line, line_index)
-            misplaced_spaces.process_line(line, line_index)
-            indent_tabs.process_line(line, line_index)
-            lines_extra.process_line(line, line_index)
+            for clazz in classes_line:
+                clazz = clazz(file_name=file_name, header_lines=header_lines)
+                clazz.process_line(line, line_index)
 
         #print(func.body)
 
