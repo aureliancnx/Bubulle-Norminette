@@ -18,7 +18,7 @@ class MacroConstant(AbstractCheck):
         return 1
 
     def check_line(self, line, line_number):
-        return re.match(r'/#define [^ ]+ [0-9]+([.][0-9]+)?/', line)
+        return re.match(r'#define [^ ]+ [0-9]+([.][0-9]+)?', line)
 
     def check_function_calls(self, func):
         return 0

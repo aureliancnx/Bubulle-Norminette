@@ -40,6 +40,7 @@ class FunctionCurlybrackets(AbstractCheck):
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_lines:
             if lines[function_line] != '{' and not lines[function_line - 1].endswith(';'):
+                self.line = function_line
                 return 1
         return 0
 

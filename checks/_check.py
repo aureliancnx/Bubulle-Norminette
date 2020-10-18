@@ -71,7 +71,10 @@ class AbstractCheck(ABC):
     def process_visitor_check(self, visitor, lines):
         if not self.check_visitor(visitor, lines):
             return 0
-        self.err("", -1, self.message)
+        line_n = -1
+        if hasattr(self, 'line'):
+            line_n = self.line
+        self.err("", line_n, self.message)
         return 1
 
     def process_variable_decl(self, var):

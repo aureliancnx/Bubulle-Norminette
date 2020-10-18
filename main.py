@@ -58,7 +58,7 @@ def get_path():
         path = os.getcwd()
 
     print("\033[0m-------------------------------------------------------------------------------")
-    print("\033[1;34;40m                           \033[93mBubulle Code Norme Report")
+    print("\033[1;34;40m                          \033[93mBubulle Code Norme Report v1.1")
     print("\033[0mDirectory: \033[93m{0}".format(path))
     print("\033[0m-------------------------------------------------------------------------------")
     print("\033[1;34;40mFile                 Error   Line    Severity   Details")
@@ -168,11 +168,11 @@ def check_norme(file_name, path):
             f.write(file_contentf)
             f.close()
 
-            ast = parse_file(tmp)
+            ast = parse_file(tmp, use_cpp=True)
             os.remove(tmp)
         except c_parser.ParseError:
             e = sys.exc_info()[1]
-            #print(e)
+            print(e)
             #print("ERROR")
             return "Parse error:" + str(e)
         try:
@@ -310,7 +310,6 @@ def check_norme(file_name, path):
             misplaced_spaces.process_line(line, line_index)
             indent_tabs.process_line(line, line_index)
             lines_extra.process_line(line, line_index)
-
 
         #print(func.body)
 
