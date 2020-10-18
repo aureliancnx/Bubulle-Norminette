@@ -16,7 +16,7 @@ def get_version():
     global version
     if version != -1:
         return version
-    version = read('VERSION')
+    version = read(os.path.dirname(os.path.realpath(__file__)) + '/../VERSION')
     return version
 
 def read(name):
