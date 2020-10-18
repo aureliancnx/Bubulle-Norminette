@@ -87,6 +87,6 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
- - @ImPayne : idée du nom & soutien moral
+ - Hugo Monchablon : idée du nom & soutien moral
  
  Vous souhaitez également participer au développement et à l'amélioration de la norminette ? N'hésitez pas à ouvrir une <i>issue</i> en cas de problème ou à soumettre un <i>pull request</i> pour une idée de modification.
