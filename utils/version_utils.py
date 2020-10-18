@@ -13,6 +13,7 @@ def get_version_latest():
         data = w.read()
         return data.decode("utf-8")
     except Exception as e:
+        print(e)
         return get_version()
 
 
