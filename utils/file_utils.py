@@ -1,6 +1,17 @@
 import os
+import urllib.request
 
 version = -1
+version_url = "https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/VERSION"
+
+def get_version_latest():
+    try:
+        w = urllib.request.urlopen(version_url, timeout=1)
+        data = w.read()
+        return data.decode("utf-8")
+    except Exception as e:
+        print(e)
+        return get_version()
 
 def get_version():
     global version

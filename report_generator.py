@@ -45,6 +45,13 @@ class Report:
               format(self.get_severity_col(style_err[2]), self.get_severity_col(style_err[1]),
                      self.get_severity_col(style_err[0]), style_err[3]))
         print("\033[0m-------------------------------------------------------------------------------")
+        self.check_version()
+
+    def check_version(self):
+        if file_utils.get_version_latest() != file_utils.get_version():
+            print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u")
+            return
+        print("Bubulle is up to date.")
 
     def run_checks(self):
         checked_paths = []
