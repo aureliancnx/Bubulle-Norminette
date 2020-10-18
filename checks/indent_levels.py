@@ -1,7 +1,9 @@
 import re
 
 from checks._check import AbstractCheck
+from utils.error_handling import BuErrors
 
+matches = ["if\s*\(((?!\s).+)\)", "while\s*\(((?!\s).+)\)", "for\s*\(((?!\s).+)\)"]
 
 class IndentLevels(AbstractCheck):
 
@@ -32,9 +34,37 @@ class IndentLevels(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        reg = re.compile('\{(.|\s)*?\}')
-        statements = re.finditer(reg, file_contentf)
-        for statement in statements:
-            lineno = file_content.count('\n', 0, statement.start())
-            self.line = lineno
+        lines = file_contentf.split('\n')
+        i = 0
+        index = 0
+        new_ind = 0
+        last_dc = 0
+
+        for line in lines:
+            i += 1
+            new_ind = 0
+            dc = 0
+
+            if '{' in line:
+                index += 1
+                new_ind = 1
+            elif re.match(r'[ \t]*}[ \t]*', line):
+                index -= 1
+                if index <= 0:
+                    index = 0
+
+            if index > 0 and not len(line) <= 0:
+                spaces_diff = len(line) - len(line.lstrip())
+                self.line = i + self.header_lines - 2
+                if not new_ind:
+                    for match in matches:
+                        if len(re.findall(r'if\s*\(((?!\s).+)\)', line)) > 0:
+                            dc = 1
+                if not last_dc:
+                    tmp_indx = 4 * (index - new_ind)
+                    if spaces_diff != tmp_indx:
+                        BuErrors.print_error(self.file_name, self.line, self.get_check_level(),
+                                             self.get_check_id(), self.message)
+
+            last_dc = dc
         return 0
