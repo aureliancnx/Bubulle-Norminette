@@ -27,6 +27,8 @@ def get_version():
     return version
 
 def check_version():
+    print(get_version_latest())
+    print(get_version())
     if get_version_latest() != get_version():
         print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m")
         return
