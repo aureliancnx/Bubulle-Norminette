@@ -63,6 +63,12 @@ class RunCheck:
         self.file_content = None
 
     def is_validsource(self):
+        if self.file_name.endswith('.tmp'):
+            try:
+                os.remove(self.full_path)
+            except:
+                pass
+            return 0
         return self.file_name.endswith('.c') or self.file_name.endswith('.h')
 
     def read_content(self):
@@ -122,6 +128,10 @@ class RunCheck:
             e = sys.exc_info()[1]
             print(e)
             # print("ERROR")
+            try:
+                os.remove(tmp)
+            except:
+                pass
             return "Parse error:" + str(e)
         try:
             os.remove(tmp)
