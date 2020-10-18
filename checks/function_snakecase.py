@@ -1,10 +1,5 @@
-import re
-
-from pycparser.c_ast import FuncCall
-
-import string_utils
+from utils import string_utils
 from checks._check import AbstractCheck
-from error_handling import BuErrors
 
 
 class FunctionSnakecase(AbstractCheck):

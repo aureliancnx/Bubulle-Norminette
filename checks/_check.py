@@ -1,9 +1,8 @@
-import re
 from abc import ABC, abstractmethod, ABCMeta
 
 from pycparser.c_ast import FuncCall, Decl, FuncDecl
 
-from error_handling import BuErrors
+from utils.error_handling import BuErrors
 
 
 class AbstractCheck(ABC):

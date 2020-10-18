@@ -1,7 +1,7 @@
 import re
 
 from checks._check import AbstractCheck
-from error_handling import BuErrors
+
 
 class MissingSpace(AbstractCheck):
 

@@ -1,8 +1,4 @@
-import re
-
-import string_utils
 from checks._check import AbstractCheck
-from error_handling import BuErrors
 
 
 class EmptyFile(AbstractCheck):

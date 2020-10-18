@@ -1,6 +1,6 @@
 import re
 
-from string_utils import colors
+from utils.string_utils import colors
 
 errors = []
 args = None

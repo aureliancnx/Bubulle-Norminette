@@ -1,9 +1,5 @@
-import re
-
-from pycparser.c_ast import FuncCall
-
 from checks._check import AbstractCheck
-from error_handling import BuErrors
+
 
 class FunctionToomuch(AbstractCheck):
 

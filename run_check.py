@@ -1,23 +1,12 @@
-import argparse
-import ast
-import glob
 import os
 import sys
 import re
-import traceback
-import unittest
 
-import pyparsing
+from pycparser import c_parser, parse_file
 
-from pycparser import c_parser, c_ast, parse_file
-from pycparser.c_ast import FuncCall
-from pycparser.plyparser import Coord
-
-import error_handling
-import string_utils
-from error_handling import BuErrors
-from functions_reader import FunctionPrinter
-from utils import file_utils, check_utils
+from utils.error_handling import BuErrors
+from utils.functions_reader import FunctionPrinter
+from utils import file_utils, check_utils, string_utils
 
 
 class RunCheck:

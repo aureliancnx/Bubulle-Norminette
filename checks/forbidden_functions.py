@@ -1,9 +1,4 @@
-import re
-
-from pycparser.c_ast import FuncCall
-
 from checks._check import AbstractCheck
-from error_handling import BuErrors
 
 disallowed_functions = ('printf', 'dprintf', 'fprintf', 'vprintf', 'sprintf', 'snprintf', 'vprintf',
                                 'vfprintf', 'vsprintf', 'vsnprintf', 'asprintf', 'scanf', 'memcpy', 'memset',

@@ -1,7 +1,4 @@
-import re
-
 from checks._check import AbstractCheck
-from error_handling import BuErrors
 
 misplaced_pointers = ('int*', 'double*', 'float*', 'long*', 'char*', 'string*', 'bool*', 'short*', 'linked_list_t*')
 

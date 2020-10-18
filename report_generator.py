@@ -1,13 +1,11 @@
 import os
 import traceback
 
-import error_handling
-import string_utils
 from run_check import RunCheck
-from utils import file_utils
+from utils import file_utils, string_utils, error_handling, version_utils
 
 
-class Report:
+class Report():
     def __init__(self, path):
         self.path = path
         self.generate_report()
@@ -30,8 +28,9 @@ class Report:
             # print(func.body)
 
     def generate_report_header(self):
+        version = version_utils.get_version()
         print("\033[0m-------------------------------------------------------------------------------")
-        print("\033[1;34;40m                          \033[93mBubulle Code Norme Report v{0}".format(file_utils.get_version()))
+        print("\033[1;34;40m                          \033[93mBubulle Code Norme Report v{0}".format(version))
         print("\033[0mDirectory: \033[93m{0}".format(self.path))
         print("\033[0m-------------------------------------------------------------------------------")
         print("\033[1;34;40mFile                 Error   Line    Severity   Details")
@@ -45,13 +44,7 @@ class Report:
               format(self.get_severity_col(style_err[2]), self.get_severity_col(style_err[1]),
                      self.get_severity_col(style_err[0]), style_err[3]))
         print("\033[0m-------------------------------------------------------------------------------")
-        self.check_version()
-
-    def check_version(self):
-        if file_utils.get_version_latest() != file_utils.get_version():
-            print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m")
-            return
-        print("\033[0mBubulle is up to date.")
+        version_utils.check_version()
 
     def run_checks(self):
         checked_paths = []

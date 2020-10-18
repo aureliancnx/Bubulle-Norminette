@@ -1,7 +1,4 @@
-import re
-
 from checks._check import AbstractCheck
-from error_handling import BuErrors
 
 notclear_names = (
 'string.c', 'str.c', 'my_string.c', 'my_str.c', 'algorithm.c', 'my_algorithm.c', 'algo.c', 'my_algo.c', 'program.c',

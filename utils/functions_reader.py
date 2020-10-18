@@ -13,6 +13,7 @@ def extract_funcDef(node, defList):
         else:
             extract_funcDef(item, defList)
 
+
 # Print functions
 class FunctionPrinter(c_ast.NodeVisitor):
     function_count = 0
