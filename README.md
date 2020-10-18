@@ -29,7 +29,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  
  Example de retour :
 
-[<img alt="Norminette" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example1.png" width="450px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
+[<img alt="Norminette" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example1.png" width="570px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
 
 ## Options
 
