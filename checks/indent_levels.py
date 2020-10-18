@@ -58,7 +58,7 @@ class IndentLevels(AbstractCheck):
                 self.line = i + self.header_lines - 2
                 if not new_ind:
                     for match in matches:
-                        if len(re.findall(r'if\s*\(((?!\s).+)\)', line)) > 0:
+                        if len(re.findall(match, line)) > 0:
                             dc = 1
                 if not last_dc:
                     tmp_indx = 4 * (index - new_ind)
