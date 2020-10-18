@@ -66,6 +66,7 @@ echo "=> Cloning Bubulle source code..."
 tput init
 echo ""
 git clone https://github.com/aureliancnx/Bubulle-Norminette.git
+pip install pycparser
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1
