@@ -17,13 +17,20 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 ## bubulle
 
 ### Dépendances
-  Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x installé sur votre ordinateur.
+  Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x et pycparser installé sur votre ordinateur.
  - [Python](https://python.com)
+ - Pycparser : ```pip install pycparser``` (installé automatiquement avec le script
 
 #### Installation
+
+L'installation peut s'effectuer directement avec le script d'installation. Le script supprime l'ancienne version et télécharge la nouvelle. C'est la façon la plus facile d'installer la norminette sous Linux. Testé avec le dump Fedora d'EPITECH.
+
 ```
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
 ```
+
+Installation manuelle sous Windows : cloner le repository.
+
 ## Utilisation
 
   Ecrivez simplement la commande suivante dans votre terminal, dans le dossier où se situe le code que vous souhaitez vérifier : 
