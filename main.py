@@ -43,6 +43,8 @@ from checks.variable_typedef import VariableTypedef
 from checks.while_curlybrackets import WhileCurlybrackets
 from error_handling import BuErrors
 from functions_reader import FunctionPrinter
+from run_check import RunCheck
+from utils import file_utils
 
 args = None
 
@@ -79,7 +81,8 @@ def get_path():
                 continue
             checked_paths.append(complete_path)
             try:
-                check_norme(name, complete_path)
+                runcheck = RunCheck(name, complete_path)
+                runcheck.run()
             except Exception as e:
                 traceback.print_exc()
                 print(e)
@@ -119,189 +122,6 @@ def check_norme_dir(subdir):
         if string_utils.tosnake(sub) != sub:
             BuErrors.print_error(subdir, -1, 2, "O4", "File name not in snake_case")
             return 0
-
-def read_file(name):
-    f = open(name, 'r')
-    return f.read()
-
-def check_norme(file_name, path):
-    #L02
-    c_file = True
-    try:
-        file_content = read_file(path)
-    except:
-        return
-
-    if not file_name.endswith('.c') and not file_name.endswith('.h'):
-        return
-
-    header_lines = 0
-    header_found_end = False
-    lines_with_comments = file_content.split('\n')
-    for line in lines_with_comments:
-        header_lines += 1
-        if line.startswith("*/"):
-            header_found_end = True
-            break
-
-    if not header_found_end:
-        header_lines = 0
-
-    classes_inner = [FilenameUnclear, FilenameUseless, FilenameSnakecase]
-
-    for clazz in classes_inner:
-        clazz = clazz(file_name=file_name, header_lines=header_lines)
-        clazz.process_filename()
-
-    # TODO - in a better way.
-    #if not file_name.endswith('.c') and not file_name.endswith('.h'):
-    #    c_file = False
-    #    if 'return' in file_content or 'main(' in file_content:
-    #        BuErrors.print_error(file_name, -1, 1, "O2", "File not ending by .c/.h")
-
-    lines = ()
-    tmp = path + ".tmp"
-    try:
-        os.remove(tmp)
-    except:
-        pass
-
-    if c_file:
-        parser = c_parser.CParser()
-
-        try:
-            file_contentf = string_utils.removeComments(file_content)
-            f = open(tmp, "a")
-            f.write(file_contentf)
-            f.close()
-
-            ast = parse_file(tmp, use_cpp=True)
-            os.remove(tmp)
-        except c_parser.ParseError:
-            e = sys.exc_info()[1]
-            print(e)
-            #print("ERROR")
-            return "Parse error:" + str(e)
-        try:
-            os.remove(tmp)
-        except:
-            pass
-        v = FunctionPrinter()
-        FunctionPrinter.reset_visit(v)
-        v.visit(ast)
-
-        classes_inner = [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets]
-
-        for clazz in classes_inner:
-            clazz = clazz(file_name=file_name, header_lines=header_lines)
-            clazz.process_inner(file_content, file_contentf)
-
-        lines = file_contentf.split('\n')
-        for function_line in v.function_lines:
-            if lines[function_line] == '{':
-                if len(lines) - (function_line - 1) < 0 or (function_line > 2 and lines[function_line - 2] != ''):
-                    BuErrors.print_error(file_name, function_line + header_lines - 1, 1, "G2", "One empty line between func")
-            elif len(lines) - (function_line - 2) < 0:
-                    BuErrors.print_error(file_name, function_line + header_lines - 1, 1, "G2", "One empty line between func")
-
-        last_func = ''
-        i = 0
-        index = 0
-        line_start = -1
-
-        for line in lines_with_comments:
-            i += 1
-            base_line = line.replace("\t", "").lstrip()
-            if index > 0:
-                if base_line.startswith("//") or base_line.startswith("/*"):
-                    BuErrors.print_error(file_name, i, 1, "F6", "Comments inside a func ('{0}')".format(last_func))
-            if re.match(r'{[ \t]*', line):
-                index += 1
-                if i - 1 >= 0 and i - 1 in v.function_defs:
-                    last_func = v.function_defs[i - 1]
-            elif re.match(r'[ \t]*}[ \t]*', line):
-                index -= 1
-                if index <= 0:
-                    index = 0
-                    last_func = ''
-
-        last_func = ''
-        i = 0
-        index = 0
-        line_start = -1
-
-        for line in lines:
-            i += 1
-            #if line in v.function_defs:
-            #    last_func = v.function_defs[line]
-            #for function_line in v.function_lines:
-            #    if i != function_line:
-            #        break
-            #    if index > 0:
-            #        BuErrors.print_error(file_name, i + header_lines - 1, 2, "F7", "Nested function '{0}'".format(v.function_defs[function_line]))
-
-            started_newindent = 0
-            if '{' in line:
-                started_newindent = 1
-                if index == 0:
-                    line_start = i
-                index += 1
-                if i - 1 >= 0 and i - 1 in v.function_defs:
-                    last_func = v.function_defs[i - 1]
-            elif re.match(r'[ \t]*}[ \t]*', line):
-                started_newindent = 0
-                index -= 1
-                if index <= 0:
-                    index = 0
-                    if line_start > 0 and i - line_start - 2 > 20:
-                        BuErrors.print_error(file_name, i + header_lines - 1, 2, "F4", "Func '{0}' too long ({1} > 20)".format(last_func, (i - line_start - 2)))
-                    line_start = -1
-                    last_func = ''
-            else:
-                started_newindent = 0
-
-            #if index > 0 and not len(line) <= 0:
-            #    spaces_diff = len(line) - len(line.lstrip())
-            #    if spaces_diff != 4 * index:
-            #        BuErrors.print_error(file_name, i + header_lines - 1, 1, "L2", "Error in indent levels {0} != {1}".format(index * 4, spaces_diff))
-            #
-                #elif (index - 1) * 4 != spaces_diff and started_newindent:
-                #    print(line)
-                #    print("[{0}:{1}] L2 - Misusage of indentation level. {2} != {3}".format(file_name,
-                #                                                                            i + header_lines - 1,
-                #                                                                            index * 4, spaces_diff))
-
-        classes_visitor = [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch]
-        for clazz in classes_visitor:
-            clazz = clazz(file_name=file_name, header_lines=header_lines)
-            clazz.process_visitor_check(v, lines)
-
-
-        classes_func_decl = [FunctionTooMuchArgs]
-        classes_func_call = [ForbiddenFunctions]
-        classes_var_decl = [VariableSnakecase, VariableTypedef]
-
-        for func in v.func:
-            for clazz in classes_func_decl:
-                clazz = clazz(file_name=file_name, header_lines=header_lines)
-                clazz.process_function_decl(v, func)
-            for var in func.body.block_items:
-                for clazz in classes_func_call:
-                    clazz = clazz(file_name=file_name, header_lines=header_lines)
-                    clazz.process_function_call(var)
-                for clazz in classes_var_decl:
-                    clazz = clazz(file_name=file_name, header_lines=header_lines)
-                    clazz.process_variable_decl(var)
-
-        classes_line = [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,
-                        DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs,
-                        LinesExtra]
-        line_index = 0
-        for line in lines:
-            line_index += 1
-            for clazz in classes_line:
-                clazz = clazz(file_name=file_name, header_lines=header_lines)
-                clazz.process_line(line, line_index)
 
         #print(func.body)
 
