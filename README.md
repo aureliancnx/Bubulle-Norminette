@@ -10,7 +10,9 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
   * [Installation de la norminette](#installation)
   * [Utilisation](#utilisation)
 * __[Options](#options)__
-* __[Fonctionnalités](#features)__
+* __[Fonctionnalités](#fonctionnalités)__
+* __[TODO](#todo)__
+* __[Contributeurs](#contributeurs)__
 
 ## bubulle
 
@@ -82,3 +84,9 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  - H2 : Vérification anti double-inclusion des headers
  - H1 : Vérification du contenu des headers (prototypes, structures et macros uniquement)
  - Quelques INFO...
+
+# Contributeurs
+ - aureliancnx : Développeur de la Bubulle
+ - @ImPayne : idée du nom & soutien moral
+ 
+ Vous souhaitez également participer au développement et à l'amélioration de la norminette ? N'hésitez pas à ouvrir une <i>issue</i> en cas de problème ou à soumettre un <i>pull request</i> pour une idée de modification.
