@@ -8,12 +8,16 @@ from checks.filename_useless import FilenameUseless
 from checks.for_curlybrackets import ForCurlybrackets
 from checks.forbidden_functions import ForbiddenFunctions
 from checks.forbidden_goto import ForbiddenGoto
+from checks.function_comments import FunctionComments
 from checks.function_curlybrackets import FunctionCurlybrackets
+from checks.function_nested import FunctionNested
+from checks.function_separator import FunctionSeparator
 from checks.function_snakecase import FunctionSnakecase
 from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.header_missing import HeaderMissing
 from checks.if_curlybrackets import IfCurlybrackets
+from checks.indent_levels import IndentLevels
 from checks.indent_tabs import IndentTabs
 from checks.lines_extra import LinesExtra
 from checks.macro_constants import MacroConstant
@@ -31,7 +35,8 @@ def get_filenames():
 
 
 def get_inner():
-    return [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets]
+    return [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
+            IndentLevels, FunctionComments, FunctionNested]
 
 
 def get_func_decl():
@@ -47,7 +52,8 @@ def get_var_decl():
 
 
 def get_visitor():
-    return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch]
+    return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
+            FunctionComments, FunctionNested]
 
 
 def get_line():
