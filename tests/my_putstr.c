@@ -10,7 +10,7 @@ void my_putstr(char const *str)
 {
     int pos = 0;
 
-    while (str[pos]) { 
+    while (str[pos]) {
         my_putchar(str[pos]);
         pos += 1;
     }

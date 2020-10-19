@@ -13,6 +13,7 @@ from checks.function_curlybrackets import FunctionCurlybrackets
 from checks.function_nested import FunctionNested
 from checks.function_separator import FunctionSeparator
 from checks.function_snakecase import FunctionSnakecase
+from checks.function_toolong import FunctionTooLong
 from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.header_missing import HeaderMissing
@@ -36,7 +37,7 @@ def get_filenames():
 
 def get_inner():
     return [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
-            IndentLevels, FunctionComments, FunctionNested]
+            IndentLevels, FunctionComments, FunctionNested, FunctionTooLong]
 
 
 def get_func_decl():
@@ -53,7 +54,7 @@ def get_var_decl():
 
 def get_visitor():
     return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
-            FunctionComments, FunctionNested]
+            FunctionComments, FunctionNested, FunctionTooLong]
 
 
 def get_line():
