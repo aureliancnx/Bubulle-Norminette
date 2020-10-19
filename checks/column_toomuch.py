@@ -17,7 +17,7 @@ class ColumnToomuch(AbstractCheck):
     def check_line(self, line, line_number):
         length = len(line.replace("\t", "    "))
 
-        if length < 80:
+        if length <= 80:
             return 0
         self.fill_error(length)
         return 1
