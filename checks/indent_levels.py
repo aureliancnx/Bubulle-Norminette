@@ -63,7 +63,7 @@ class IndentLevels(AbstractCheck):
                 if not last_dc:
                     tmp_indx = 4 * (index - new_ind)
                     if spaces_diff != tmp_indx:
-
+                        print("spaces: {0} / {1}".format(spaces_diff, tmp_indx))
                         BuErrors.print_error(self.file_name, self.line, self.get_check_level(),
                                              self.get_check_id(), self.message)
                     if index >= 4:

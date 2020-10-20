@@ -111,7 +111,7 @@ class AbstractCheck(ABC):
         return 1
 
     def err(self, line, line_number, text):
-        line_number += self.header_lines - 1 if line_number != -1 else 0
+        line_number += self.header_lines if line_number != -1 else 0
         BuErrors.print_error(self.file_name, line_number, self.get_check_level(), self.get_check_id(), text)
 
     def get_check_id(self):

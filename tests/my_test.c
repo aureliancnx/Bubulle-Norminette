@@ -9,14 +9,17 @@ char *qov(int b, char c, int c,int q)
     bedo = 1;
 
     if (bedo) {
+    }
+
+    if (bedo) {
         if (bedo == 2) {
             return (1);
         }
     }
     for (; bdo == 1; ) {
-         return (deb);
+        return (deb);
     }
-     bedo++; bedo++;
+    bedo++; bedo++;
 
 
 
