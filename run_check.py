@@ -80,14 +80,14 @@ class RunCheck:
             f.close()
 
             ast = parse_file(tmp, use_cpp=True)
-            #self.delete_temp()
+            self.delete_temp()
         except c_parser.ParseError:
             e = sys.exc_info()[1]
             print(e)
             self.delete_temp()
             return "Parse error:" + str(e)
 
-        #self.delete_temp()
+        self.delete_temp()
         v = FunctionPrinter()
         FunctionPrinter.reset_visit(v)
         v.visit(ast)
