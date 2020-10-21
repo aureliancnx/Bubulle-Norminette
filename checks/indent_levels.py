@@ -55,7 +55,7 @@ class IndentLevels(AbstractCheck):
 
             if index > 0 and not len(line) <= 0:
                 spaces_diff = len(line) - len(line.lstrip())
-                self.line = i + self.header_lines - 2
+                self.line = i + self.header_lines
                 if not new_ind:
                     for match in matches:
                         if len(re.findall(match, line)) > 0:

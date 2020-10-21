@@ -49,8 +49,8 @@ class FunctionComments(AbstractCheck):
                     BuErrors.print_error(self.file_name, i, 1, "F6", "Comments inside a func ('{0}')".format(last_func))
             if re.match(r'{[ \t]*', line):
                 index += 1
-                if i - 1 >= 0 and i - 1 in cache_visitor.function_defs:
-                    last_func = cache_visitor.function_defs[i - 1]
+                if i - 1 >= 0 and i - self.header_lines - 1 in cache_visitor.function_defs:
+                    last_func = cache_visitor.function_defs[i - self.header_lines - 1]
             elif re.match(r'[ \t]*}[ \t]*', line):
                 index -= 1
                 if index <= 0:

@@ -17,6 +17,19 @@ def tosnake(name):
       return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
 
 def removeComments(string):
+    split = string.split('\n')
+    final = ''
+    b = 0
+
+    for li in split:
+        if b:
+            final = final + '\n'
+        if not re.match(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", li):
+            final = final + li
+            b = 1
+        else:
+            final = final + '\n'
+
     pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
     regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
 
@@ -25,16 +38,9 @@ def removeComments(string):
             return ""
         else:
             return match.group(1)
-    string = regex.sub(_replacer, string)
-    string = re.sub(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", "", string)
-    split = string.split('\n')
-    final = ''
+    final = regex.sub(_replacer, final)
 
-    for li in split:
-        if not re.match(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", li):
-            final = final + li + '\n'
-
-    final = final.replace("#pragma once", "")
+    final = final.replace("#pragma once", "\n")
     final = pyparsing.nestedExpr("/*", "*/").suppress().transformString(final)
     return final
 

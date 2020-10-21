@@ -41,7 +41,7 @@ class FunctionTooLong(AbstractCheck):
         i = 0
         index = 0
         line_start = -1
-        lines = file_content.split('\n')
+        lines = file_contentf.split('\n')
 
         for line in lines:
             i += 1
@@ -62,7 +62,7 @@ class FunctionTooLong(AbstractCheck):
                 if index <= 0:
                     index = 0
                     if line_start > 0 and i - line_start - 2 > 20:
-                        BuErrors.print_error(self.file_name, i + self.header_lines - 1, 2, "F4",
+                        BuErrors.print_error(self.file_name, i + self.header_lines, 2, "F4",
                                              "Func '{0}' too long ({1} > 20)".format(last_func,
                                                                                      (i - line_start - 2)))
                     line_start = -1

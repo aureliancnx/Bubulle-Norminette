@@ -1,12 +1,9 @@
-/*
-** EPITECH, PROJECT 2020
-** my_test.c
-** File description:
-** testo
-*/
 
-#include <stdbool.h>
-#include <stdlib.h>
+
+
+
+
+
 
 #define PI 3.1406548948;
 
@@ -74,6 +71,6 @@ int test()
 int bo()
 {
    int deb;
-//ok
+
     return (3);
 }
