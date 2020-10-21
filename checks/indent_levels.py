@@ -59,16 +59,19 @@ class IndentLevels(AbstractCheck):
                 if not new_ind:
                     for match in matches:
                         if len(re.findall(match, line)) > 0:
-                            dc = 1
-                if not last_dc:
-                    tmp_indx = 4 * (index - new_ind)
+                            last_dc = 2
+                if last_dc <= 1:
+                    ind_t = index
+                    if last_dc == 1:
+                        ind_t += 1
+                    tmp_indx = 4 * (ind_t - new_ind)
                     if spaces_diff != tmp_indx:
-                        print("spaces: {0} / {1}".format(spaces_diff, tmp_indx))
                         BuErrors.print_error(self.file_name, self.line, self.get_check_level(),
                                              self.get_check_id(), self.message)
                     if index >= 4:
                         BuErrors.print_error(self.file_name, self.line, 1,
                                              "C1", "3 or more conditionnal blocks.")
 
-            last_dc = dc
+            if last_dc > 0:
+                last_dc -= 1
         return 0

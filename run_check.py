@@ -97,17 +97,6 @@ class RunCheck:
             clazz = clazz(file_name=self.file_name, header_lines=header_lines)
             clazz.process_inner(self.file_content, file_contentf)
 
-            # if index > 0 and not len(line) <= 0:
-            #    spaces_diff = len(line) - len(line.lstrip())
-            #    if spaces_diff != 4 * index:
-            #        BuErrors.print_error(file_name, i + header_lines - 1, 1, "L2", "Error in indent levels {0} != {1}".format(index * 4, spaces_diff))
-            #
-            # elif (index - 1) * 4 != spaces_diff and started_newindent:
-            #    print(line)
-            #    print("[{0}:{1}] L2 - Misusage of indentation level. {2} != {3}".format(file_name,
-            #                                                                            i + header_lines - 1,
-            #                                                                            index * 4, spaces_diff))
-
         for func in v.func:
             for clazz in check_utils.get_func_decl():
                 clazz = clazz(file_name=self.file_name, header_lines=header_lines)

@@ -15,6 +15,8 @@ class MultipleAssignements(AbstractCheck):
         return 1
 
     def check_line(self, line, line_number):
+        if ';;' in line:
+            return 0
         return line.count(';') > 1 and not ('for (' in line or 'for(' in line)
 
     def check_function_calls(self, func):

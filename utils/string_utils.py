@@ -27,9 +27,16 @@ def removeComments(string):
             return match.group(1)
     string = regex.sub(_replacer, string)
     string = re.sub(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", "", string)
-    string = string.replace("#pragma once", "")
-    string = pyparsing.nestedExpr("/*", "*/").suppress().transformString(string)
-    return string
+    split = string.split('\n')
+    final = ''
+
+    for li in split:
+        if not re.match(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", li):
+            final = final + li + '\n'
+
+    final = final.replace("#pragma once", "")
+    final = pyparsing.nestedExpr("/*", "*/").suppress().transformString(final)
+    return final
 
     def split_on_empty_lines(s):
         blank_line_regex = r"(?:\r?\n){2,}"
