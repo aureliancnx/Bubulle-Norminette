@@ -1,6 +1,6 @@
 from checks._check import AbstractCheck
 
-check = {".o", ".gch", ".a", ".so", ".d"}
+check = {".o", ".gch", ".a", ".so", ".d", ".gdca", ".gcno"}
 
 
 class FilenameUseless(AbstractCheck):

@@ -54,6 +54,10 @@ class RunCheck:
         self.delete_temp()
         tmp = self.full_path + '.tmp'
 
+        for clazz in check_utils.get_filenames():
+            clazz = clazz(file_name=self.file_name, header_lines=0)
+            clazz.process_filename()
+
         if not self.is_validsource():
             return
 
@@ -64,10 +68,6 @@ class RunCheck:
         lines_with_comments = self.file_content.split('\n')
         lines = ()
         parser = c_parser.CParser()
-
-        for clazz in check_utils.get_filenames():
-            clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-            clazz.process_filename()
 
         try:
             file_contentf = string_utils.removeComments(self.file_content)
