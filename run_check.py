@@ -83,7 +83,7 @@ class RunCheck:
             self.delete_temp()
         except c_parser.ParseError:
             e = sys.exc_info()[1]
-            print(e)
+            BuErrors.print_error(self.file_name, -1, 2, "0?", "Unable to compile the file")
             self.delete_temp()
             return "Parse error:" + str(e)
 
