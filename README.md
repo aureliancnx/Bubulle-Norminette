@@ -52,7 +52,8 @@ Installation manuelle sous Windows : cloner le repository.
  - Vérification des fichiers inutiles
  - Vérification des fichiers sources vides
  - Vérification des noms de fichiers qui ne sont pas clairs (par exemple: test.c, string.c ...)
- 
+ - Verification des erreurs de compilation des fichiers sources, afin de s'en rendre compte avant d'avoir un 0.
+
 ### Vérification de convention de norme
 
  - Détection des éventuelles fonctions de la libC interdites dans le sujet
