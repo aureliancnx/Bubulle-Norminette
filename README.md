@@ -19,7 +19,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 ### Dépendances
   Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x et pycparser installé sur votre ordinateur.
  - [Python](https://python.com)
- - Pycparser : ```pip install pycparser``` (installé automatiquement avec le script
+ - Pycparser : ```pip install pycparser pyparsing --user``` (installé automatiquement avec le script
 
 #### Installation
 
