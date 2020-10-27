@@ -1,6 +1,7 @@
 from checks._check import AbstractCheck
 
-check = {".o", ".gch", ".a", ".so", ".d", ".gdca", ".gcno"}
+check_end = {".o", ".gch", ".a", ".so", ".d", ".gdca", ".gcno", "~"}
+check_presuffix = {"#"}
 
 
 class FilenameUseless(AbstractCheck):
@@ -18,8 +19,11 @@ class FilenameUseless(AbstractCheck):
 
     def check_filename(self):
         try:
-            for c in check:
+            for c in check_end:
                 if self.file_name.endswith((c)):
+                    return 1
+            for c in check_presuffix:
+                if self.file_name.startswith((c)) and self.file_name.endswith((c)):
                     return 1
         except Exception as e:
             print(e)
