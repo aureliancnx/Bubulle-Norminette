@@ -83,15 +83,12 @@ Installation manuelle sous Windows : cloner le repository.
  
 ## TODO
 
- Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être achevées :
- 
- - G5 : Vérification des fonctions statiques à utiliser uniquement dans la compilation
- - L6 : Sépération d'une ligne entre la déclaration des variables et le reste du contenu d'une fonction
- - F1 : Cohérence des fonctions ??
- - L6 : Vérification de la déclaration des variables en début de fonction uniquement
- - H2 : Vérification anti double-inclusion des headers
+ Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être 
+
  - H1 : Vérification du contenu des headers (prototypes, structures et macros uniquement)
  - Quelques INFO...
+
+ Quelques tests peuvent ne pas fonctionner correctement (ex: Wrong indentation level). Un correctif sera apporté prochainement afin de supprimer les détections qui ne sont pas effectués par la norminette officielle. 
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
