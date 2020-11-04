@@ -28,6 +28,7 @@ from checks.missing_spaces import MissingSpace
 from checks.multiple_assignements import MultipleAssignements
 from checks.variable_snakecase import VariableSnakecase
 from checks.variable_typedef import VariableTypedef
+from checks.variable_unclear import VariableUnclear
 from checks.while_curlybrackets import WhileCurlybrackets
 
 
@@ -49,7 +50,7 @@ def get_func_call():
 
 
 def get_var_decl():
-    return [VariableSnakecase, VariableTypedef]
+    return [VariableSnakecase, VariableTypedef, VariableUnclear]
 
 
 def get_visitor():
