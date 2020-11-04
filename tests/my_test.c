@@ -27,7 +27,7 @@ char *qov(int b, char c, int c,int q)
     if (bedo) {
         if (bedo == 2) {
             return (1);
-        }else{
+        } else {
             if (bedo == 4) {
                 bedo = 3;
             }else if (bedo == 5) {
