@@ -2,7 +2,7 @@
 ** EPITECH, PROJECT 2020
 ** my_test.c
 ** File description:
-** testo
+** Ce fichier n'a aucun sens. Simple tests de faute de normes.
 */
 
 #include <stdbool.h>
@@ -19,6 +19,8 @@ char *qov(int b, char c, int c,int q)
     bedo = 1;
 
     if (bedo) {
+    } else {
+        bedo = 0;
     }
 
     if (bedo) {
