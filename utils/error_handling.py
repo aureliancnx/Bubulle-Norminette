@@ -49,7 +49,8 @@ class BuError():
                 level_st = level_st + "\x1b[0;30;41m MAJOR " + colors.ENDC
             for i in range(1, line_spaces):
                 line_st = " " + line_st
-            details_spaces = 7 - len(str(self.line))
+            level_space = 8 if self.level == 0 else 7
+            details_spaces = level_space - len(str(self.line))
             color = '\033[37m' if len(errors) % 2 == 1 else '\033[0m'
             message = color + self.message
             details_st = message

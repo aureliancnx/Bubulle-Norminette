@@ -25,8 +25,6 @@ class Report():
                 error_handling.BuErrors.print_error(subdir, -1, 2, "O4", "File name not in snake_case")
                 return 0
 
-            # print(func.body)
-
     def generate_report_header(self):
         version = version_utils.get_version()
         print("\033[0m-------------------------------------------------------------------------------")

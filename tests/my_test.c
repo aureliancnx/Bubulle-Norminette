@@ -14,7 +14,7 @@ int ok(int b, char c);
 
 char *qov(int b, char c, int c,int q)
 {
-    char* deb = "Bonjor comment allez vous les gens on adore la ie je sais "b;
+    char* deb = "Bonjor comment allez vous les gens on adore la ie je sais ";
     int bedo = 1;
     bedo = 1;
 
@@ -30,7 +30,7 @@ char *qov(int b, char c, int c,int q)
         } else {
             if (bedo == 4) {
                 bedo = 3;
-            }else if (bedo == 5) {
+            } else if (bedo == 5) {
                 bedo = 2;
             }
         }
@@ -72,11 +72,13 @@ int c()
 
 int b()
 {
+    char o;
     return (1);
 }
 
 int test()
 {
+    int l;
     return (0);
 }
 
