@@ -67,7 +67,7 @@ tput init
 echo ""
 git clone https://github.com/aureliancnx/Bubulle-Norminette.git
 pip install pyparsing --user
-pip3 install pyparsing --user
+pip install pycparser --user
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1

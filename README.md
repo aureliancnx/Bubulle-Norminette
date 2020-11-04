@@ -19,7 +19,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 ### Dépendances
   Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x et pycparser installé sur votre ordinateur.
  - [Python](https://python.com)
- - Pycparser : ```pip install pycparser``` (installé automatiquement avec le script
+ - Pycparser : ```pip install pycparser pyparsing --user``` (installé automatiquement avec le script
 
 #### Installation
 
@@ -52,7 +52,8 @@ Installation manuelle sous Windows : cloner le repository.
  - Vérification des fichiers inutiles
  - Vérification des fichiers sources vides
  - Vérification des noms de fichiers qui ne sont pas clairs (par exemple: test.c, string.c ...)
- 
+ - Verification des erreurs de compilation des fichiers sources, afin de s'en rendre compte avant d'avoir un 0.
+
 ### Vérification de convention de norme
 
  - Détection des éventuelles fonctions de la libC interdites dans le sujet
@@ -82,18 +83,16 @@ Installation manuelle sous Windows : cloner le repository.
  
 ## TODO
 
- Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être achevées :
- 
- - G5 : Vérification des fonctions statiques à utiliser uniquement dans la compilation
- - L6 : Sépération d'une ligne entre la déclaration des variables et le reste du contenu d'une fonction
- - F1 : Cohérence des fonctions ??
- - L6 : Vérification de la déclaration des variables en début de fonction uniquement
- - H2 : Vérification anti double-inclusion des headers
+ Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être achevées/modifiées : 
+
  - H1 : Vérification du contenu des headers (prototypes, structures et macros uniquement)
  - Quelques INFO...
+
+ Quelques tests peuvent ne pas fonctionner correctement (ex: Wrong indentation level). Un correctif sera apporté prochainement afin de supprimer les détections qui ne sont pas effectués par la norminette officielle. 
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
  - Payne : idée du nom & soutien moral
+ - toutes les personnes qui testent la norminette et qui me donnent un feedback pour améliorer Bubulle. <3
  
  Vous souhaitez également participer au développement et à l'amélioration de la norminette ? N'hésitez pas à ouvrir une <i>issue</i> en cas de problème ou à soumettre un <i>pull request</i> pour une idée de modification.
