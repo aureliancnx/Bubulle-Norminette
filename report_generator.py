@@ -52,6 +52,8 @@ class Report():
             for name in files:
                 self.check_norme_dir(subdirs)
                 complete_path = pw + '/' + name
+                if '.git' in complete_path:
+                    continue
                 if file_utils.is_tempfile(complete_path):
                     continue
                 if complete_path in checked_paths:

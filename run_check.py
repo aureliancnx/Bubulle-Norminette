@@ -16,8 +16,6 @@ class RunCheck:
         self.file_content = None
 
     def is_validsource(self):
-        if '.git' in self.full_path:
-            return 0
         if self.file_name.endswith('.tmp'):
             self.delete_temp(already=True)
         return self.file_name.endswith('.c') or self.file_name.endswith('.h')

@@ -37,6 +37,8 @@ class FunctionNested(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
+        if cache_visitor is None:
+            return 0
         lines = file_contentf.split('\n')
         last_func = ''
         i = 0

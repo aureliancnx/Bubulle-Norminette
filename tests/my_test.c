@@ -20,8 +20,6 @@ char *qov(int b, char c, int c,int q)
 
     if (bedo) {
         bedo = 1;
-    } else {
-        bedo = 0;
     }
 
     if (bedo) {

@@ -12,6 +12,7 @@ class FunctionTooLong(AbstractCheck):
         self.message = "Func '{0}' too long ('{1}' > 20)"
         self.file_name = file_name
         self.header_lines = header_lines
+        self.v = None
 
     def get_check_id(self):
         return "F4"
@@ -33,10 +34,11 @@ class FunctionTooLong(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         global v
-        v = visitor
+        self.v = visitor
         return 0
 
     def check_inner(self, file_content, file_contentf):
+        global v
         last_func = ''
         i = 0
         index = 0
@@ -45,7 +47,7 @@ class FunctionTooLong(AbstractCheck):
 
         for line in lines:
             i += 1
-            if line in v.function_defs:
+            if self.v is not None and self.v.function_defs is not None and line in self.v.function_defs:
                 last_func = v.function_defs[line]
 
             started_newindent = 0
@@ -54,8 +56,8 @@ class FunctionTooLong(AbstractCheck):
                 if index == 0:
                     line_start = i
                 index += 1
-                if i - 1 >= 0 and i - 1 in v.function_defs:
-                    last_func = v.function_defs[i - 1]
+                if i - 1 >= 0 and self.v is not None and i - 1 in self.v.function_defs:
+                    last_func = self.v.function_defs[i - 1]
             elif re.match(r'[ \t]*}[ \t]*', line):
                 started_newindent = 0
                 index -= 1
