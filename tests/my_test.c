@@ -19,6 +19,7 @@ char *qov(int b, char c, int c,int q)
     bedo = 1;
 
     if (bedo) {
+        bedo = 1;
     } else {
         bedo = 0;
     }

@@ -16,6 +16,8 @@ class RunCheck:
         self.file_content = None
 
     def is_validsource(self):
+        if '.git' in self.full_path:
+            return 0
         if self.file_name.endswith('.tmp'):
             self.delete_temp(already=True)
         return self.file_name.endswith('.c') or self.file_name.endswith('.h')
@@ -69,12 +71,24 @@ class RunCheck:
         lines = ()
         parser = c_parser.CParser()
 
+        file_contentf = string_utils.removeComments(self.file_content)
+        lines = file_contentf.split('\n')
+        header_lines = len(lines_with_comments) - len(lines)
+        if header_lines < 0:
+            header_lines = 0
+
+        line_index = 0
+        for line in lines:
+            line_index += 1
+            for clazz in check_utils.get_line():
+                clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                clazz.process_line(line, line_index)
+
+        for clazz in check_utils.get_inner():
+            clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+            clazz.process_inner(self.file_content, file_contentf)
+
         try:
-            file_contentf = string_utils.removeComments(self.file_content)
-            lines = file_contentf.split('\n')
-            header_lines = len(lines_with_comments) - len(lines)
-            if header_lines < 0:
-                header_lines = 0
             f = open(tmp, "a")
             f.write(file_contentf)
             f.close()
@@ -96,10 +110,6 @@ class RunCheck:
             clazz = clazz(file_name=self.file_name, header_lines=header_lines)
             clazz.process_visitor_check(v, lines)
 
-        for clazz in check_utils.get_inner():
-            clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-            clazz.process_inner(self.file_content, file_contentf)
-
         for func in v.func:
             for clazz in check_utils.get_func_decl():
                 clazz = clazz(file_name=self.file_name, header_lines=header_lines)
@@ -111,10 +121,3 @@ class RunCheck:
                 for clazz in check_utils.get_var_decl():
                     clazz = clazz(file_name=self.file_name, header_lines=header_lines)
                     clazz.process_variable_decl(var)
-
-        line_index = 0
-        for line in lines:
-            line_index += 1
-            for clazz in check_utils.get_line():
-                clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-                clazz.process_line(line, line_index)
