@@ -20,11 +20,19 @@ char *qov(int b, char c, int c,int q)
 
     if (bedo) {
         bedo = 1;
+    }else{
+        bedo = 4;
     }
 
     if (bedo) {
         if (bedo == 2) {
             return (1);
+        }else{
+            if (bedo == 4) {
+                bedo = 3;
+            }else if (bedo == 5) {
+                bedo = 2;
+            }
         }
     }
     for (; bdo == 1; ) {
@@ -74,7 +82,6 @@ int test()
 
 int bo()
 {
-   int deb;
-//ok
+    int deb;
     return (3);
 }

@@ -39,13 +39,17 @@ class IndentLevels(AbstractCheck):
         index = 0
         new_ind = 0
         last_dc = 0
+        last = ''
 
         for line in lines:
             i += 1
             new_ind = 0
             dc = 0
+            tmp_enclosing = 0
 
-            if '{' in line:
+            if re.match(r'[ \t]*}[ \t]*', line) and '{' in line:
+                tmp_enclosing = 1
+            elif '{' in line:
                 index += 1
                 new_ind = 1
             elif re.match(r'[ \t]*}[ \t]*', line):
@@ -58,13 +62,13 @@ class IndentLevels(AbstractCheck):
                 self.line = i + self.header_lines
                 if not new_ind:
                     for match in matches:
-                        if len(re.findall(match, line)) > 0:
-                            last_dc = 2
+                        if len(re.findall(match, line)) > 0 and not '{' in line:
+                            last_dc = 2 if len(re.findall(match, last)) > 0 else last_dc + 2
                 if last_dc <= 1:
                     ind_t = index
                     if last_dc == 1:
                         ind_t += 1
-                    tmp_indx = 4 * (ind_t - new_ind)
+                    tmp_indx = 4 * (ind_t - new_ind - tmp_enclosing)
                     if spaces_diff != tmp_indx:
                         BuErrors.print_error(self.file_name, self.line, self.get_check_level(),
                                              self.get_check_id(), self.message)
@@ -74,4 +78,5 @@ class IndentLevels(AbstractCheck):
 
             if last_dc > 0:
                 last_dc -= 1
+            last = line
         return 0
