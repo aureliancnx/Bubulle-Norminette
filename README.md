@@ -1,7 +1,7 @@
 [<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/logo.png" width="200px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
 
 Norminette EPITECH développé avec les fonctionnalités de la dernière mise à jour de la norme d'EPITECH pour la promotion 2025. Disponible pour tous les étudiants.
-La norminette cherche les erreurs de norme d'Epitech dans le code source des fichiers.
+La norminette cherche les erreurs de norme d'Epitech dans le code source des fichiers. La norminette est la plus complète à ce jour et a un système de versioning, permettant les mises à jour régulières.
 
 ## Menu
 
@@ -43,6 +43,7 @@ Installation manuelle sous Windows : cloner le repository.
 ## Options
 
  - `-p` ou `--path`: lancer la norminette dans un dossier précis
+ - `-u` ou `--update`: mettre à jour la norminette Bubulle
 
 ## Fonctionnalités
 
