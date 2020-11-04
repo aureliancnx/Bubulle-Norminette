@@ -75,6 +75,42 @@ class RunCheck:
         if header_lines < 0:
             header_lines = 0
 
+        parsed = False
+        try:
+            f = open(tmp, "a")
+            f.write(file_contentf)
+            f.close()
+
+            ast = parse_file(tmp, use_cpp=True)
+            self.delete_temp()
+            parsed = True
+        except c_parser.ParseError:
+            e = sys.exc_info()[1]
+            BuErrors.print_error(self.file_name, -1, 2, "0?", "Unable to compile the file")
+            self.delete_temp()
+
+        self.delete_temp()
+        if parsed:
+            v = FunctionPrinter()
+            FunctionPrinter.reset_visit(v)
+            v.visit(ast)
+
+            for clazz in check_utils.get_visitor():
+                clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                clazz.process_visitor_check(v, lines)
+
+            for func in v.func:
+                for clazz in check_utils.get_func_decl():
+                    clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                    clazz.process_function_decl(v, func)
+                for var in func.body.block_items:
+                    for clazz in check_utils.get_func_call():
+                        clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                        clazz.process_function_call(var)
+                    for clazz in check_utils.get_var_decl():
+                        clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                        clazz.process_variable_decl(var)
+
         line_index = 0
         for line in lines:
             line_index += 1
@@ -85,37 +121,3 @@ class RunCheck:
         for clazz in check_utils.get_inner():
             clazz = clazz(file_name=self.file_name, header_lines=header_lines)
             clazz.process_inner(self.file_content, file_contentf)
-
-        try:
-            f = open(tmp, "a")
-            f.write(file_contentf)
-            f.close()
-
-            ast = parse_file(tmp, use_cpp=True)
-            self.delete_temp()
-        except c_parser.ParseError:
-            e = sys.exc_info()[1]
-            BuErrors.print_error(self.file_name, -1, 2, "0?", "Unable to compile the file")
-            self.delete_temp()
-            return "Parse error:" + str(e)
-
-        self.delete_temp()
-        v = FunctionPrinter()
-        FunctionPrinter.reset_visit(v)
-        v.visit(ast)
-
-        for clazz in check_utils.get_visitor():
-            clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-            clazz.process_visitor_check(v, lines)
-
-        for func in v.func:
-            for clazz in check_utils.get_func_decl():
-                clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-                clazz.process_function_decl(v, func)
-            for var in func.body.block_items:
-                for clazz in check_utils.get_func_call():
-                    clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-                    clazz.process_function_call(var)
-                for clazz in check_utils.get_var_decl():
-                    clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-                    clazz.process_variable_decl(var)

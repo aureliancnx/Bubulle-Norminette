@@ -3,10 +3,9 @@ import re
 from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
+v = None
 
 class FunctionTooLong(AbstractCheck):
-
-    v = None
 
     def __init__(self, file_name, header_lines):
         self.message = "Func '{0}' too long ('{1}' > 20)"
@@ -34,7 +33,7 @@ class FunctionTooLong(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         global v
-        self.v = visitor
+        v = visitor
         return 0
 
     def check_inner(self, file_content, file_contentf):
@@ -47,7 +46,7 @@ class FunctionTooLong(AbstractCheck):
 
         for line in lines:
             i += 1
-            if self.v is not None and self.v.function_defs is not None and line in self.v.function_defs:
+            if v is not None and line in v.function_defs:
                 last_func = v.function_defs[line]
 
             started_newindent = 0
@@ -56,8 +55,8 @@ class FunctionTooLong(AbstractCheck):
                 if index == 0:
                     line_start = i
                 index += 1
-                if i - 1 >= 0 and self.v is not None and i - 1 in self.v.function_defs:
-                    last_func = self.v.function_defs[i - 1]
+                if i - 1 >= 0 and v is not None and i - 1 in v.function_defs:
+                    last_func = v.function_defs[i - 1]
             elif re.match(r'[ \t]*}[ \t]*', line):
                 started_newindent = 0
                 index -= 1
