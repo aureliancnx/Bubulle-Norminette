@@ -1,0 +1,18 @@
+[master b34df7f] Added F5: no argument passed = to version 1.10
+ Committer: root <root@localhost.localdomain>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 43 insertions(+), 6 deletions(-)
+ create mode 100644 Moved
+ create mode 100644 checks/function_voidmissing.py
+Branch 'master' set up to track remote branch 'master' from 'origin'.
