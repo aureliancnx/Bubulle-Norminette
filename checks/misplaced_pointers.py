@@ -19,6 +19,7 @@ class MisplacedPointers(AbstractCheck):
     def check_line(self, line, line_number):
         for pointer in misplaced_pointers:
             if pointer in line:
+                self.args = pointer
                 return 1
         return 0
 
