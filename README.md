@@ -85,12 +85,7 @@ Installation manuelle sous Windows : cloner le repository.
  
 ## TODO
 
- Certaines vérifications/détections ne sont pas encore totalement terminées ou doivent être sujettes à des modifications. Bubulle est une norminette pour EPITECH mise à niveau et à jour avec le dernier Coding Style. C'est la plus complète à ce jour, mais certaines vérifications doivent être achevées/modifiées : 
-
- - H1 : Vérification du contenu des headers (prototypes, structures et macros uniquement)
- - Quelques INFO...
-
- Quelques tests peuvent ne pas fonctionner correctement (ex: Wrong indentation level). Un correctif sera apporté prochainement afin de supprimer les détections qui ne sont pas effectués par la norminette officielle. 
+ Pour l'instant, rien.
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
