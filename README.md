@@ -72,6 +72,7 @@ Installation manuelle sous Windows : cloner le repository.
  - Détection des accolades ouvrantes mal positionnées pour les mots clés for, while, if
  - Détection des fonctions avec trop de lignes à l'intérieur de celles-ci (plus de 20 lignes)
  - Détection des déclarations de fonctions possédant plus de 4 paramètres
+ - Détection des fonctions qui ne possèdent pas de paramètre (ni de "void" par convention)
  - Vérification de l'indentation : les tabs sont interdits, ils doivent être remplacés par quatre espaces.
  - Détection des lignes en trop (deux lignes ou plus vides par exemple)
  - Détection des macros utilisées pour des constantes : elles doivent servir pour remplacer des fonctions en une ligne
