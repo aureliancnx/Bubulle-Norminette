@@ -1,10 +1,10 @@
 from checks._check import AbstractCheck
 
 
-class FunctionTooMuchArgs(AbstractCheck):
+class FunctionVoidMissing(AbstractCheck):
 
     def __init__(self, file_name, header_lines):
-        self.message = "Func '{0}' has too much args. ({1} > 4)"
+        self.message = "Missing void parameter in func '{0}'"
         self.file_name = file_name
         self.header_lines = header_lines
 
@@ -15,15 +15,9 @@ class FunctionTooMuchArgs(AbstractCheck):
         return 2
 
     def check_function_decl(self, visitor, func):
-        if not func.decl.type.args:
+        if func.decl.type and func.decl.type.args:
             return 0
-        params = len(func.decl.type.args.params)
-        if params <= 4:
-            return 0
-        func_name = ''
-        if func.decl.coord.line in visitor.function_defs:
-            func_name = visitor.function_defs[func.decl.coord.line]
-        self.fill_error((visitor.function_defs[func.decl.coord.line], params))
+        self.fill_error(func.decl.name)
         return 1
 
     def check_line(self, line, line_number):

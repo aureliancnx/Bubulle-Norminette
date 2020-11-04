@@ -65,12 +65,12 @@ char *qov(int b, char c, int c,int q)
     return ( b);
 }
 
-int c()
+int c(void)
 {
     return 1;
 }
 
-int b()
+int b(int bob)
 {
     char o;
     return (1);

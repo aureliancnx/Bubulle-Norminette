@@ -16,6 +16,7 @@ from checks.function_snakecase import FunctionSnakecase
 from checks.function_toolong import FunctionTooLong
 from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
+from checks.function_voidmissing import FunctionVoidMissing
 from checks.header_missing import HeaderMissing
 from checks.if_curlybrackets import IfCurlybrackets
 from checks.indent_levels import IndentLevels
@@ -42,7 +43,7 @@ def get_inner():
 
 
 def get_func_decl():
-    return [FunctionTooMuchArgs]
+    return [FunctionTooMuchArgs, FunctionVoidMissing]
 
 
 def get_func_call():

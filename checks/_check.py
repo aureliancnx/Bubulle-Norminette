@@ -55,8 +55,6 @@ class AbstractCheck(ABC):
         return 1
 
     def process_function_decl(self, visitor, func):
-        if not func.decl.type.args:
-            return 0
         if type(func.decl.type) is not FuncDecl:
             return 0
         if not self.check_function_decl(visitor, func):
