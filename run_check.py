@@ -88,6 +88,7 @@ class RunCheck:
             e = sys.exc_info()[1]
             BuErrors.print_error(self.file_name, -1, 2, "0?", "Unable to compile the file")
             self.delete_temp()
+            print(e)
 
         self.delete_temp()
         if parsed:
@@ -103,13 +104,14 @@ class RunCheck:
                 for clazz in check_utils.get_func_decl():
                     clazz = clazz(file_name=self.file_name, header_lines=header_lines)
                     clazz.process_function_decl(v, func)
-                for var in func.body.block_items:
-                    for clazz in check_utils.get_func_call():
-                        clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-                        clazz.process_function_call(var)
-                    for clazz in check_utils.get_var_decl():
-                        clazz = clazz(file_name=self.file_name, header_lines=header_lines)
-                        clazz.process_variable_decl(var)
+                if func.body.block_items is not None:
+                    for var in func.body.block_items:
+                        for clazz in check_utils.get_func_call():
+                            clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                            clazz.process_function_call(var)
+                        for clazz in check_utils.get_var_decl():
+                            clazz = clazz(file_name=self.file_name, header_lines=header_lines)
+                            clazz.process_variable_decl(var)
 
         line_index = 0
         for line in lines:
