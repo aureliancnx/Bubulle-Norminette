@@ -1,8 +1,14 @@
 import argparse
+import time
 
 from utils import version_utils
 
 ignored_tests = []
+time_start = 0
+
+def set_time_start(time):
+    global time_start
+    time_start = time
 
 def parse_args():
     # Parse args
