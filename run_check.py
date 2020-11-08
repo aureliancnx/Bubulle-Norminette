@@ -6,7 +6,7 @@ from pycparser import c_parser, parse_file
 
 from utils.error_handling import BuErrors
 from utils.functions_reader import FunctionPrinter
-from utils import file_utils, check_utils, string_utils
+from utils import file_utils, check_utils, string_utils, error_handling
 
 
 class RunCheck:
@@ -86,9 +86,11 @@ class RunCheck:
             parsed = True
         except c_parser.ParseError:
             e = sys.exc_info()[1]
-            BuErrors.print_error(self.file_name, -1, 2, "0?", "Unable to compile the file")
+            if not error_handling.args.ignore_compilation:
+                BuErrors.print_error(self.file_name, -1, 2, "0?", "Unable to compile the file")
             self.delete_temp()
-            print(e)
+            if error_handling.args.verbose:
+                print(e)
 
         self.delete_temp()
         if parsed:

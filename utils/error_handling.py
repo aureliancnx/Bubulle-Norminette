@@ -1,5 +1,6 @@
 import re
 
+import args_handler
 from utils.string_utils import colors
 
 errors = []
@@ -68,6 +69,8 @@ class BuErrors:
         return re.split(blank_line_regex, s.strip())
 
     def print_error(file_name, line, level, errid, message):
+        if errid.lower() in args_handler.ignored_tests:
+            return
         error = BuError(file_name, errid, level, line, message)
         errors.append(error)
         error.print_error()
