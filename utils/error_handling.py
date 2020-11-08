@@ -69,14 +69,14 @@ class BuErrors:
         return re.split(blank_line_regex, s.strip())
 
     def print_error(file_name, line, level, errid, message):
-        if not can_print_error(file_name, line, level, errid, message):
+        if not can_print_error(level, errid):
             return
         error = BuError(file_name, errid, level, line, message)
         errors.append(error)
         error.print_error()
 
 
-def can_print_error(file_name, line, level, errid, message):
+def can_print_error(level, errid):
     if errid.lower() in args_handler.ignored_tests:
         return 0
     if level == 0 and args.ignore_info:
