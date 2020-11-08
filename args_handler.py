@@ -15,6 +15,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--p", default=".",
                         help="path to the desired folder")
+    parser.add_argument("-e", "--exclude", default=None,
+                        help="exclude a path from being checked")
     parser.add_argument("-ic", "--ignore-compilation", help="ignore compilation errors",
                         action='store_true')
     parser.add_argument("-i", "--ignore", help="ignore specific tests. (e.g: -i l2,f5)",

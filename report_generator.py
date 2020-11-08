@@ -69,6 +69,9 @@ class Report():
                 complete_path = pw + '/' + name
                 if '.git' in complete_path:
                     continue
+                if error_handling.args.exclude is not None\
+                        and complete_path.replace("//", "/").startswith((error_handling.args.exclude)):
+                    continue
                 if file_utils.is_tempfile(complete_path):
                     continue
                 if complete_path in checked_paths:
