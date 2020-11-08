@@ -17,9 +17,12 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 ## bubulle
 
 ### Dépendances
-  Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x et pycparser installé sur votre ordinateur.
+  Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x et pycparser installé sur votre ordinateur.<br>
+  <i>Le script d'installation installe automatiquement les dépendances.</i>
  - [Python](https://python.com)
- - Pycparser : ```pip install pycparser pyparsing --user``` (installé automatiquement avec le script
+ - Pycparser : ```pip install pycparser pyparsing --user```<br>
+ 
+La norminette Bubulle utilise un préprocesseur C écrit en Python permettant le fonctionnement de plusieurs tests de norme.
 
 #### Installation
 
@@ -42,8 +45,16 @@ Installation manuelle sous Windows : cloner le repository.
 
 ## Options
 
- - `-p` ou `--path`: lancer la norminette dans un dossier précis
+ - `-h` ou `--help`: obtenir des informations sur Bubulle (arguments)
+ - `-p` ou `--path`: lancer la norminette dans un dossier ou fichier précis
  - `-u` ou `--update`: mettre à jour la norminette Bubulle
+ - `-v` ou `--verbose`: verbose, afficher les erreurs de compilation <b>précises</b> 
+ - `-ic` ou `--ignore-compilation` : ignorer les erreurs de compilation du préprocesseur
+ - `-i` ou `--ignore`: ignorer des erreurs de norme précises (séparés par une virgule)<br>
+Exemple: <b>l1,l2</b> permet d'ignorer le test L1 et L2
+ - `-ii` ou `--ignore-info`: ignorer les problèmes de norme INFO
+ - `-imin` ou `--ignore-minor`: ignorer les problèmes de norme MINOR
+ - `-imaj` ou `--ignore-major`: ignorer les problèmes de norme MAJOR
 
 ## Fonctionnalités
 
@@ -82,10 +93,6 @@ Installation manuelle sous Windows : cloner le repository.
  - Détection des commentaires dans les fonctions
  - Détection des nested fonctions
  - Vérification de l'indentation complète de chaque ligne
- 
-## TODO
-
- Pour l'instant, rien.
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
