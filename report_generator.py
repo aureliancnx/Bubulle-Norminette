@@ -1,5 +1,7 @@
 import os
 import traceback
+import os.path
+from os import path
 
 from run_check import RunCheck
 from utils import file_utils, string_utils, error_handling, version_utils
@@ -8,7 +10,13 @@ from utils import file_utils, string_utils, error_handling, version_utils
 class Report():
     def __init__(self, path):
         self.path = path
+        self.check_path()
         self.generate_report()
+
+    def check_path(self):
+        if not path.exists(self.path):
+            print("Unknown path '{0}'.".format(self.path))
+            exit(0)
 
     def get_severity_col(self, n):
         if n > 5:
@@ -29,7 +37,7 @@ class Report():
         version = version_utils.get_version()
         print("\033[0m-------------------------------------------------------------------------------")
         print("\033[1;34;40m                          \033[93mBubulle Code Norme Report v{0}".format(version))
-        print("\033[0mDirectory: \033[93m{0}".format(self.path))
+        print("\033[0mPath: \033[93m{0}".format(self.path))
         print("\033[0m-------------------------------------------------------------------------------")
         print("\033[1;34;40mFile                 Error   Line    Severity   Details")
 
@@ -46,6 +54,15 @@ class Report():
 
     def run_checks(self):
         checked_paths = []
+        if path.isfile(self.path):
+            try:
+                runcheck = RunCheck(self.path, self.path)
+                runcheck.run()
+            except Exception as e:
+                traceback.print_exc()
+                print(e)
+                return
+
         for pw, subdirs, files in os.walk(self.path):
             for name in files:
                 self.check_norme_dir(subdirs)
