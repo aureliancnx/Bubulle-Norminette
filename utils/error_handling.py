@@ -69,8 +69,20 @@ class BuErrors:
         return re.split(blank_line_regex, s.strip())
 
     def print_error(file_name, line, level, errid, message):
-        if errid.lower() in args_handler.ignored_tests:
+        if not can_print_error(file_name, line, level, errid, message):
             return
         error = BuError(file_name, errid, level, line, message)
         errors.append(error)
         error.print_error()
+
+
+def can_print_error(file_name, line, level, errid, message):
+    if errid.lower() in args_handler.ignored_tests:
+        return 0
+    if level == 0 and args.ignore_info:
+        return 0
+    if level == 1 and args.ignore_minor:
+        return 0
+    if level == 2 and args.ignore_major:
+        return 0
+    return 1
