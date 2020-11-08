@@ -6,9 +6,11 @@ from utils import version_utils
 ignored_tests = []
 time_start = 0
 
+
 def set_time_start(time):
     global time_start
     time_start = time
+
 
 def parse_args():
     # Parse args
@@ -32,12 +34,14 @@ def parse_args():
     parser.add_argument("-u", "--update", action='store_true')
     return parser.parse_args()
 
+
 def handle_ignored_tests(args):
     global ignored_tests
     if args.ignore == '':
         return
     ignored_tests = args.ignore.split(',')
     ignored_tests = [x.lower() for x in ignored_tests]
+
 
 def handle_update(args):
     # Update
