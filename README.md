@@ -10,6 +10,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
   * [Installation de la norminette](#installation)
   * [Utilisation](#utilisation)
 * __[Options](#options)__
+* __[Rapports HTML](#rapports html)__
 * __[Fonctionnalités](#fonctionnalités)__
 * __[TODO](#todo)__
 * __[Contributeurs](#contributeurs)__
