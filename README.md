@@ -47,6 +47,7 @@ Installation manuelle sous Windows : cloner le repository.
 
  - `-h` ou `--help`: obtenir des informations sur Bubulle (arguments)
  - `-p` ou `--path`: lancer la norminette dans un dossier ou fichier précis
+ - `-r` ou `--report`: générer un rapport au format HTML
  - `-e` ou `--exclude`: ignorer un fichier/dossier
  - `-u` ou `--update`: mettre à jour la norminette Bubulle
  - `-v` ou `--verbose`: verbose, afficher les erreurs de compilation <b>précises</b> 
@@ -56,6 +57,15 @@ Exemple: <b>l1,l2</b> permet d'ignorer le test L1 et L2
  - `-ii` ou `--ignore-info`: ignorer les problèmes de norme INFO
  - `-imin` ou `--ignore-minor`: ignorer les problèmes de norme MINOR
  - `-imaj` ou `--ignore-major`: ignorer les problèmes de norme MAJOR
+ 
+## Rapports HTML
+
+Bubulle permet de générer un rapport au format HTML (avec `-r` ou `--report`) avec des informations visuelles sur le code et les erreurs de norme directement depuis votre navigateur Internet (ne fonctionne pas en TTy).
+
+<img alt="Rapport HTML" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report1.png" width="300px"/>
+<br>
+<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report2.png" width="300px"/>
+ 
 ## Fonctionnalités
 
 ### Vérification des fichiers
