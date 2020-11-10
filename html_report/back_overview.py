@@ -99,9 +99,14 @@ class HtmlReportOverview:
         content = fill_variable(content, 'mark_pctstatus', str(self.get_severity_pct(mark_pct)))
         content = fill_variable(content, 'mark_pctunder', str(5 * round(mark_pct / 5)))
         content = fill_variable(content, 'path', p)
-        file = open(os.path.abspath(os.getcwd()) + '/' + file_name, 'r')
-        source = file.read()
-        file.close()
+        try:
+            file = open(os.path.abspath(os.getcwd()) + '/' + file_name, 'r')
+            source = file.read()
+            file.close()
+        except:
+            # Not able to parse the file. Maybe a binary file or something weird
+            # happened. If so, please open an issue. (permissions?)
+            source = ""
         HtmlReportDetail(self.report, p, file_name, info, minor, major, source, errors)
         cards += content
 
