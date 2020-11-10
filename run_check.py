@@ -12,7 +12,7 @@ from utils import file_utils, check_utils, string_utils, error_handling
 class RunCheck:
     def __init__(self, file_name, full_path):
         self.file_name = file_name
-        self.full_path = full_path.replace("\\\\", "\\").replace("//", "/").replace(os.path.abspath(os.getcwd()), "")
+        self.full_path = full_path.replace("\\\\", "\\").replace("//", "/")
         self.file_content = None
 
     def is_validsource(self):
