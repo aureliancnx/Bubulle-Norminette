@@ -121,7 +121,7 @@ class HtmlReportOverview:
         file_p.close()
         for folder in folders:
             s = dir_base
-            s = fill_variable(s, 'directory', folder)
+            s = fill_variable(s, 'directory', '/' if len(folder) < 1 else folder)
             ss = ""
             for file in folders[folder]:
                 s2 = file_base
