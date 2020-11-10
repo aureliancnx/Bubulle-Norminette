@@ -5,9 +5,10 @@ from checks._check import AbstractCheck
 
 class MacroConstant(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "Macros shouldn't be used for constants"
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
 
     def get_check_id(self):

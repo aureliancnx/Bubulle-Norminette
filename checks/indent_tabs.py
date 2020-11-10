@@ -3,9 +3,10 @@ from checks._check import AbstractCheck
 
 class IndentTabs(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "No tabs should replace indentation."
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
 
     def get_check_id(self):

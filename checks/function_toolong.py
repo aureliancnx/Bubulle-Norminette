@@ -7,9 +7,10 @@ v = None
 
 class FunctionTooLong(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "Func '{0}' too long ('{1}' > 20)"
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
         self.v = None
 
@@ -63,7 +64,7 @@ class FunctionTooLong(AbstractCheck):
                 if index <= 0:
                     index = 0
                     if line_start > 0 and i - line_start - 2 > 20:
-                        BuErrors.print_error(self.file_name, i + self.header_lines, 2, "F4",
+                        BuErrors.print_error(self.path, self.file_name, i + self.header_lines, 2, "F4",
                                              "Func '{0}' too long ({1} > 20)".format(last_func,
                                                                                      (i - line_start - 2)))
                     line_start = -1

@@ -3,6 +3,7 @@ import traceback
 import os.path
 from os import path
 
+from html_report.html_report import HtmlReport
 from run_check import RunCheck
 from utils import file_utils, string_utils, error_handling, version_utils
 
@@ -30,7 +31,7 @@ class Report():
     def check_norme_dir(self, subdir):
         for sub in subdir:
             if string_utils.tosnake(sub) != sub:
-                error_handling.BuErrors.print_error(subdir, -1, 2, "O4", "File name not in snake_case")
+                error_handling.BuErrors.print_error(subdir, subdir, -1, 2, "O4", "File name not in snake_case")
                 return 0
 
     def generate_report_header(self):
@@ -51,6 +52,8 @@ class Report():
                      self.get_severity_col(style_err[0]), style_err[3]))
         print("\033[0m-------------------------------------------------------------------------------")
         version_utils.check_version()
+        if error_handling.args.report:
+            HtmlReport(style_err)
 
     def run_checks(self):
         checked_paths = []

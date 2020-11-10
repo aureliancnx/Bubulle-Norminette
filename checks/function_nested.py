@@ -8,9 +8,10 @@ cache_visitor = None
 
 class FunctionNested(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "Nested function '{0}'"
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
 
     def get_check_id(self):

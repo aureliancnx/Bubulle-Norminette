@@ -4,9 +4,10 @@ from checks._check import AbstractCheck
 
 class VariableSnakecase(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "Variable '{0}' not in snake_case format."
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
 
     def get_check_id(self):

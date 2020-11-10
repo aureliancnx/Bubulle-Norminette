@@ -1,0 +1,11 @@
+<tr>
+    <th scope="row"><div class="mg-t-30">{{file_path}}</div></th>
+    <td><div class="progress mg-t-30">
+        <div class="progress-bar progress-bar-striped bg-{{mark_pctstatus}} wd-{{mark_pctunder}}p"
+             role="progressbar" aria-valuenow="{{mark_pct}}" aria-valuemin="0" aria-valuemax="100">{{mark_pct}}%</div>
+        </div></td>
+    <td><div class="mg-t-15"><div class="alert alert-{{major_status}}" role="alert">{{major}}</div></div></td>
+    <td><div class="mg-t-15"><div class="alert alert-{{minor_status}}" role="alert">{{minor}}</div></div></td>
+    <td><div class="mg-t-15"><div class="alert alert-{{info_status}}" role="alert">{{info}}</div></div></td>
+    <td><a href="{{path}}.html" class="btn btn-dark btn-block mg-t-20">Details</a></td>
+</tr>

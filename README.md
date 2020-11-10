@@ -47,6 +47,7 @@ Installation manuelle sous Windows : cloner le repository.
 
  - `-h` ou `--help`: obtenir des informations sur Bubulle (arguments)
  - `-p` ou `--path`: lancer la norminette dans un dossier ou fichier précis
+ - `-e` ou `--exclude`: ignorer un fichier/dossier
  - `-u` ou `--update`: mettre à jour la norminette Bubulle
  - `-v` ou `--verbose`: verbose, afficher les erreurs de compilation <b>précises</b> 
  - `-ic` ou `--ignore-compilation` : ignorer les erreurs de compilation du préprocesseur
@@ -55,7 +56,6 @@ Exemple: <b>l1,l2</b> permet d'ignorer le test L1 et L2
  - `-ii` ou `--ignore-info`: ignorer les problèmes de norme INFO
  - `-imin` ou `--ignore-minor`: ignorer les problèmes de norme MINOR
  - `-imaj` ou `--ignore-major`: ignorer les problèmes de norme MAJOR
-
 ## Fonctionnalités
 
 ### Vérification des fichiers

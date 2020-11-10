@@ -7,9 +7,10 @@ from utils.error_handling import BuErrors
 
 class FunctionSeparator(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "One empty line between func"
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
 
     def get_check_id(self):

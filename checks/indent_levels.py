@@ -7,9 +7,10 @@ matches = ["if\s*\(((?!\s).+)\)", "while\s*\(((?!\s).+)\)", "for\s*\(((?!\s).+)\
 
 class IndentLevels(AbstractCheck):
 
-    def __init__(self, file_name, header_lines):
+    def __init__(self, file_name, path, header_lines):
         self.message = "Wrong indentation level"
         self.file_name = file_name
+        self.path = path
         self.header_lines = header_lines
 
     def get_check_id(self):
@@ -70,10 +71,10 @@ class IndentLevels(AbstractCheck):
                         ind_t += 1
                     tmp_indx = 4 * (ind_t - new_ind - tmp_enclosing)
                     if spaces_diff != tmp_indx:
-                        BuErrors.print_error(self.file_name, self.line, self.get_check_level(),
+                        BuErrors.print_error(self.path, self.file_name, self.line, self.get_check_level(),
                                              self.get_check_id(), self.message)
                     if index >= 4:
-                        BuErrors.print_error(self.file_name, self.line, 1,
+                        BuErrors.print_error(self.path, self.file_name, self.line, 1,
                                              "C1", "3 or more conditionnal blocks.")
 
             if last_dc > 0:

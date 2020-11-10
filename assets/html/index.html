@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bubulle Code Norme Report</title>
+    <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="../lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
+    <link href="../lib/codemirror/codemirror.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/eclipse.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/dracula.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/base16-light.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/lesser-dark.css" rel="stylesheet">
+    <link href="../lib/codemirror/addon/scroll/simplescrollbars.css" rel="stylesheet">
+    <link href="../lib/chartist/chartist.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="br-logo"><a href="index.html"><span>Bubulle</span></a></div>
+    <div class="br-sideleft overflow-y-auto">
+      <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
+      <div class="br-sideleft-menu">
+        <a href="index.html" class="br-menu-link">
+          <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Overview</span>
+          </div>
+        </a>
+        {{nav}}
+      </div>
+      <br>
+    </div>
+    <div class="br-header">
+    </div>
+    <div class="br-mainpanel">
+      <div class="pd-30">
+        <h4 class="tx-gray-800 mg-b-1">Bubulle Code Norme Report</h4>
+      </div>
+
+      <div class="br-pagebody">
+
+        <div class="row row-sm">
+          <div class="col-12">
+            <div class="card shadow-base card-body pd-25 bd-0">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="card-title tx-uppercase tx-12">Norme test result</h6>
+                  <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato"><span style="color: {{chart_color}};">{{mark}}/20</span></p>
+                  <div class="progress mg-b-10">
+                    <div class="progress-bar bg-primary progress-bar-xs wd-{{undermark}}p" role="progressbar" aria-valuenow="{{mark}}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="tx-12">Result of Bubulle's report, given as an indication.</p>
+                </div>
+                <div class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-center justify-content-center">
+                  <span class="peity-donut" data-peity='{ "fill": ["{{chart_color}}", "#E9ECEF"],  "innerRadius": 60, "radius": 90 }'>{{mark}}/100</span>
+                <div id="chartLine1" class="wd-100p ht-150" style="display: none;"></div>
+                </div>
+              </div>
+            </div>
+          <div class="br-section-wrapper mg-t-20">
+          <h6 class="tx-inverse tx-uppercase tx-bold tx-14">Files tested</h6>
+          <p class="mg-b-25 mg-lg-b-50">All the tests and errors should appear here.</p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="thead-colored thead-primary">
+                <tr>
+                  <th class="wd-45p">File path</th>
+                  <th class="wd-35p">Test result</th>
+                  <th class="wd-5p">Major</th>
+                  <th class="wd-5p">Minor</th>
+                  <th class="wd-5p">Info</th>
+                  <th class="wd-10p">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{file_list}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <footer class="br-footer">
+        <div class="footer-left">
+          <div class="mg-b-2">Rapport Bubulle.</div>
+        </div>
+      </footer>
+    </div>
+    <script src="../lib/jquery/jquery.js"></script>
+    <script src="../lib/popper.js/popper.js"></script>
+    <script src="../lib/bootstrap/bootstrap.js"></script>
+    <script src="../lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="../lib/moment/moment.js"></script>
+    <script src="../lib/jquery-ui/jquery-ui.js"></script>
+    <script src="../lib/jquery-switchbutton/jquery.switchButton.js"></script>
+    <script src="../lib/peity/jquery.peity.js"></script>
+    <script src="../lib/chartist/chartist.js"></script>
+    <script src="../lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
+    <script src="../lib/d3/d3.js"></script>
+    <script src="../lib/rickshaw/rickshaw.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/ResizeSensor.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script>
+      $(function(){
+        'use strict'
+        $(window).resize(function(){
+          minimizeMenu();
+        });
+        minimizeMenu();
+        function minimizeMenu() {
+          if(window.matchMedia('(min-width: 992px)').matches && window.matchMedia('(max-width: 1299px)').matches) {
+            $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
+            $('body').addClass('collapsed-menu');
+            $('.show-sub + .br-menu-sub').slideUp();
+          } else if(window.matchMedia('(min-width: 1300px)').matches && !$('body').hasClass('collapsed-menu')) {
+            $('.menu-item-label,.menu-item-arrow').removeClass('op-lg-0-force d-lg-none');
+            $('body').removeClass('collapsed-menu');
+            $('.show-sub + .br-menu-sub').slideDown();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

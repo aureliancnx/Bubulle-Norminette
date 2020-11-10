@@ -21,6 +21,8 @@ def parse_args():
                         help="exclude a path from being checked")
     parser.add_argument("-ic", "--ignore-compilation", help="ignore compilation errors",
                         action='store_true')
+    parser.add_argument("-r", "--report", help="generate and open a report (TODO)",
+                        action='store_true')
     parser.add_argument("-i", "--ignore", help="ignore specific tests. (e.g: -i l2,f5)",
                         default="")
     parser.add_argument("-ii", "--ignore-info", help="ignore all info tests",

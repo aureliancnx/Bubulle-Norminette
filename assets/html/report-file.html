@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{file_path}} ::Bubulle Code Norme Report</title>
+    <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="../lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../lib/jquery-switchbutton/jquery.switchButton.css" rel="stylesheet">
+    <link href="../lib/codemirror/codemirror.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/eclipse.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/dracula.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/base16-light.css" rel="stylesheet">
+    <link href="../lib/codemirror/theme/lesser-dark.css" rel="stylesheet">
+    <link href="../lib/codemirror/addon/scroll/simplescrollbars.css" rel="stylesheet">
+    <link href="../lib/chartist/chartist.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div class="br-logo"><a href="index.html"><span>Bubulle</span></a></div>
+    <div class="br-sideleft overflow-y-auto">
+      <label class="sidebar-label pd-x-15 mg-t-20">Navigation</label>
+      <div class="br-sideleft-menu">
+        <a href="index.html" class="br-menu-link">
+          <div class="br-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Overview</span>
+          </div>
+        </a>
+        {{nav}}
+      </div>
+      <br>
+    </div>
+    <div class="br-header">
+    </div>
+    <div class="br-mainpanel">
+      <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+        <h4 class="tx-gray-800 mg-b-5">{{file_path}}</h4>
+        <p class="mg-b-0">Source code</p>
+      </div>
+      <div class="br-pagebody">
+          <div class="card bd-0 rounded-0">
+            <div class="card-header bg-white pd-0 bd bd-b-0 rounded-0 d-flex align-items-center">
+              <div class="wd-100 ht-100p tx-center bd-r d-flex align-items-center justify-content-center">
+                <div>
+                  <span class="peity-donut" data-peity='{ "fill": ["rgb(52, 152, 219)","rgb(230, 126, 34)","rgb(231, 76, 60)"], "height": 70, "width": 200 }'>{{info}},{{minor}},{{major}}</span>
+                </div>
+              </div>
+              <div class="pd-25">
+                <h5 class="tx-inverse">{{major}} MAJOR | {{minor}} MINOR | {{info}} INFO</h5>
+                <p class="tx-13 mg-b-0">
+                  Generated code with details
+                </p>
+              </div>
+            </div>
+            <div id="code2" class="card-body pd-0"></div>
+          </div>
+      </div>
+    </div>
+    <script src="../lib/jquery/jquery.js"></script>
+    <script src="../lib/popper.js/popper.js"></script>
+    <script src="../lib/bootstrap/bootstrap.js"></script>
+    <script src="../lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="../lib/moment/moment.js"></script>
+    <script src="../lib/jquery-ui/jquery-ui.js"></script>
+    <script src="../lib/jquery-switchbutton/jquery.switchButton.js"></script>
+    <script src="../lib/peity/jquery.peity.js"></script>
+    <script src="../lib/codemirror/codemirror.js"></script>
+    <script src="../lib/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../lib/codemirror/mode/clike/clike.js"></script>
+    <script src="../lib/codemirror/addon/scroll/simplescrollbars.js"></script>
+    <script src="../lib/peity/jquery.peity.js"></script>
+    <script src="../js/chart.peity.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      $(function(){
+        'use strict';
+
+        var initValue = '{{file_content}}';
+
+        var myCodeMirror2 = CodeMirror(document.getElementById('code2'), {
+          lineNumbers: true,
+          theme: 'dracula',
+          readOnly: true,
+          mode: "text/x-csrc",
+          value: initValue,
+          scrollbarStyle: 'overlay'
+        });
+        myCodeMirror2.setSize(null, 600);
+        {{mistakes}}
+      });
+    </script>
+    <style>
+      .CodeMirror {
+        font-size: 18px;
+      }
+      .info {
+        background-color: rgb(52, 152, 219, .3);
+      }
+      .minor {
+        background-color: rgb(230, 126, 34, .5);
+      }
+      .major {
+        background-color: rgb(231, 76, 60, .6);
+      }
+    </style>
+  </body>
+</html>

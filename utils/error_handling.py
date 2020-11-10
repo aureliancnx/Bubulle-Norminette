@@ -7,7 +7,8 @@ errors = []
 args = None
 
 class BuError():
-    def __init__(self, file_name, errid, level, line, message):
+    def __init__(self, path, file_name, errid, level, line, message):
+        self.path = path
         self.file_name = file_name
         self.errid = errid
         self.level = level
@@ -68,10 +69,10 @@ class BuErrors:
         blank_line_regex = r"(?:\r?\n){2,}"
         return re.split(blank_line_regex, s.strip())
 
-    def print_error(file_name, line, level, errid, message):
+    def print_error(path, file_name, line, level, errid, message):
         if not can_print_error(level, errid):
             return
-        error = BuError(file_name, errid, level, line, message)
+        error = BuError(path, file_name, errid, level, line, message)
         errors.append(error)
         error.print_error()
 
