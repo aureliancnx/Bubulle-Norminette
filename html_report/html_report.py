@@ -29,6 +29,7 @@ class HtmlReport:
         files = {}
         # Generate files
         for err in error_handling.errors:
+            err.path = err.path.replace(os.path.abspath(os.getcwd()), "")
             if not err.path in files:
                 files[err.path] = {
                     'errors': [err.__dict__],
