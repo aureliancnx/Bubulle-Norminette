@@ -12,6 +12,9 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 * __[Options](#options)__
 * __[Rapports HTML](#rapports-html)__
 * __[Fonctionnalités](#fonctionnalités)__
+  * [Vérification des fichiers](#vérification-des-fichiers)
+  * [Vérification de convention de norme](#vérification-de-convention-de-norme)
+  * [Vérification de style du code](#vérification-de-style-du-code)
 * __[TODO](#todo)__
 * __[Contributeurs](#contributeurs)__
 
