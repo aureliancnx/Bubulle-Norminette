@@ -62,9 +62,9 @@ Exemple: <b>l1,l2</b> permet d'ignorer le test L1 et L2
 
 Bubulle permet de générer un rapport au format HTML (avec `-r` ou `--report`) avec des informations visuelles sur le code et les erreurs de norme directement depuis votre navigateur Internet (ne fonctionne pas en TTy).
 
-<img alt="Rapport HTML" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report1.png" width="300px"/>
+<img alt="Rapport HTML" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report1.png" style="width: 100%"/>
 <br>
-<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report2.png" width="300px"/>
+<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report2.png" style="width: 100%"/>
  
 ## Fonctionnalités
 
