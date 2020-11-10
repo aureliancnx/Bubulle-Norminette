@@ -1,2 +1,3 @@
 assets/js/* linguist-vendored
+assets/lib/* linguist-vendored
 jquery.js -linguist-vendored
