@@ -73,7 +73,7 @@ class HtmlReport:
         return content.replace("{{" + variable + "}}", value)
 
     def copy_files(self):
-        copy_tree(os.path.dirname(os.path.realpath(__file__)) + "../assets/", self.folder)
+        copy_tree(os.path.dirname(os.path.realpath(__file__)) + "/../assets/", self.folder)
 
     def prepare_overview(self):
         HtmlReportOverview(self).prepare()

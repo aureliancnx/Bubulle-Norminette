@@ -28,7 +28,7 @@ class HtmlReportOverview:
     def init_card(self):
         global card_data
         global cards
-        file = open(os.path.dirname(os.path.realpath(__file__)) + '../assets/cards/overview_card.html', 'r')
+        file = open(os.path.dirname(os.path.realpath(__file__)) + '/../assets/cards/overview_card.html', 'r')
         card_data = file.read()
         cards = ""
 
@@ -113,10 +113,10 @@ class HtmlReportOverview:
                 folders[file.rsplit('/', 1)[0]] = [file]
             else:
                 folders[file.rsplit('/', 1)[0]].append(file)
-        dir_p = open(os.path.dirname(os.path.realpath(__file__)) + '../assets/cards/nav_menu.html', 'r')
+        dir_p = open(os.path.dirname(os.path.realpath(__file__)) + '/../assets/cards/nav_menu.html', 'r')
         dir_base = dir_p.read()
         dir_p.close()
-        file_p = open(os.path.dirname(os.path.realpath(__file__)) + '../assets/cards/nav_file.html', 'r')
+        file_p = open(os.path.dirname(os.path.realpath(__file__)) + '/../assets/cards/nav_file.html', 'r')
         file_base = file_p.read()
         file_p.close()
         for folder in folders:
