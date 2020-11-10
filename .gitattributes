@@ -1,4 +1,1 @@
-assets/lib/ linguist-vendored=false
-assets/js/ linguist-vendored=false
-assets/css/ linguist-vendored=false
-*.css linguist-vendored=false
+assets/ linguist-vendored=false
