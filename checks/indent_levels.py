@@ -28,7 +28,8 @@ import re
 from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
-matches = ["if\s*\(((?!\s).+)\)", "while\s*\(((?!\s).+)\)", "for\s*\(((?!\s).+)\)"]
+matches = ["if\s*\(((?!\s).+)\)", "while\s*\(((?!\s).+)\)", "for\s*\(((?!\s).+)\)"
+           , "else\s"]
 
 class IndentLevels(AbstractCheck):
 
@@ -82,7 +83,7 @@ class IndentLevels(AbstractCheck):
             elif '{' in line:
                 index += 1
                 new_ind = 1
-            elif re.match(r'[ \t]*}[ \t]*', line) or 'else' in line:
+            elif re.match(r'[ \t]*}[ \t]*', line):
                 index -= 1
                 if index <= 0:
                     index = 0
