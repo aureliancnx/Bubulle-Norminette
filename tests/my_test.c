@@ -31,11 +31,24 @@
 
 int ok(int b, char c);
 
-char *qov(int b, char c, int c,int q)
-b{
-    char* deb = "Bonjor comment allez vous les gens on adore la ie je sais ";
+char *fonctiontroplongue(int b, char c, int c,int q)
+{
+    char* deb = "Je suis un pointeur mal positionné.";
+    char *deb2 = "Je suis une ligne beaucoup trop longue et qui va me causer une faute de norme. :(";
+
     int bedo = 1;
-    bedo = 1;
+    int jedeclaremal=1;
+
+    int  tropespaces = 0;
+    for (int bracketsmalmis = -12; bracketsmalmis < 0;)
+    {
+        ++bracketsmalmis;
+    }
+
+    printf("j'utilise une fonction interdite\n");
+
+    // Je fais un commentaire dans une fonction, ce qui est interdit
+
 
     if (bedo) {
         bedo = 1;
@@ -95,14 +108,37 @@ int b(int bob)
     return (1);
 }
 
-int test()
+int test(int trop, int arguments, int dans, int cette, int fonction)
 {
-    int l;
     return (0);
 }
 
-int bo()
+int fonctionsansargsetsansvoid()
 {
-    int deb;
-    return (3);
+    int ifmalplace = 1;
+    if (ifmalplace==1)
+    {
+        ifmalplace = 0;
+    }
+  int indentationprobleme = 0;
+        int indentationprobleme = 2;
+    char *VARIABLE_pas_En_Snake_Case = "booh";
+
+    return(3);
+}
+
+char *fonctionentropavecdescurlybracketsmalplacees(void) {
+    return ("ok");
+}
+
+int variable_degueu()
+{
+    int o = 4;
+    int l = 6;
+    return (l + o);
+}
+
+void FonCtionPasEnSnake_CaSE(void)
+{
+    int b = 42;
 }
