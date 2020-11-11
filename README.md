@@ -3,6 +3,8 @@
 Norminette EPITECH développé avec les fonctionnalités de la dernière mise à jour de la norme d'EPITECH pour la promotion 2025. Disponible pour tous les étudiants.
 La norminette cherche les erreurs de norme d'Epitech dans le code source des fichiers. La norminette est la plus complète à ce jour et a un système de versioning, permettant les mises à jour régulières.
 
+L'objectif est de garder une norminette complète en moins de 3000 lignes (assets/ exclus).
+
 ## Menu
 
 * __[Installation et utilisation](#bubulle)__
@@ -10,7 +12,11 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
   * [Installation de la norminette](#installation)
   * [Utilisation](#utilisation)
 * __[Options](#options)__
+* __[Rapports HTML](#rapports-html)__
 * __[Fonctionnalités](#fonctionnalités)__
+  * [Vérification des fichiers](#vérification-des-fichiers)
+  * [Vérification de convention de norme](#vérification-de-convention-de-norme)
+  * [Vérification de style du code](#vérification-de-style-du-code)
 * __[TODO](#todo)__
 * __[Contributeurs](#contributeurs)__
 
