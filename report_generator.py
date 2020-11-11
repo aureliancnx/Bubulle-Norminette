@@ -30,7 +30,7 @@ from os import path
 
 from html_report.html_report import HtmlReport
 from run_check import RunCheck
-from utils import file_utils, string_utils, error_handling, version_utils
+from utils import file_utils, string_utils, error_handling, version_utils, config_utils
 
 
 class Report():
@@ -97,13 +97,19 @@ class Report():
 
         for pw, subdirs, files in os.walk(self.path):
             for name in files:
-                self.check_norme_dir(subdirs)
                 complete_path = pw + '/' + name
-                if '/.' in complete_path or '.git' in complete_path or '.idea' in complete_path:
+                relative = complete_path.replace("//", "/")\
+                        .replace(os.path.abspath(os.getcwd()) + "/", "")\
+                        .replace(os.path.abspath(os.getcwd()), "")
+                c = False
+                for excluded_path in config_utils.forbidden_paths:
+                    if relative.startswith(excluded_path):
+                        c = True
+                if c:
                     continue
-                if error_handling.args.exclude is not None\
-                        and complete_path.replace("//", "/").startswith((error_handling.args.exclude)):
+                if error_handling.args.exclude is not None and relative.startswith((error_handling.args.exclude)):
                     continue
+                self.check_norme_dir(subdirs)
                 if file_utils.is_tempfile(complete_path):
                     continue
                 if complete_path in checked_paths:

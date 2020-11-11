@@ -60,6 +60,10 @@ class IndentLevels(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
+        # workaround while we don't have a serious fix.
+        # TODO
+        if self.file_name.endswith(".h"):
+            return 0
         lines = file_contentf.split('\n')
         i = 0
         index = 0
@@ -78,7 +82,7 @@ class IndentLevels(AbstractCheck):
             elif '{' in line:
                 index += 1
                 new_ind = 1
-            elif re.match(r'[ \t]*}[ \t]*', line):
+            elif re.match(r'[ \t]*}[ \t]*', line) or 'else' in line:
                 index -= 1
                 if index <= 0:
                     index = 0
