@@ -27,11 +27,12 @@ import os
 import sys
 import re
 
+import pycparser_fake_libc
 from pycparser import c_parser, parse_file
 
 from utils.error_handling import BuErrors
 from utils.functions_reader import FunctionPrinter
-from utils import file_utils, check_utils, string_utils, error_handling
+from utils import file_utils, check_utils, string_utils, error_handling, c_utils
 
 
 class RunCheck:
@@ -103,10 +104,10 @@ class RunCheck:
         parsed = False
         try:
             f = open(tmp, "a")
-            f.write(file_contentf)
+            f.write(file_contentf.replace("bool ", "_Bool "))
             f.close()
-
-            ast = parse_file(tmp, use_cpp=True)
+            fake_libc_arg = "-I " + pycparser_fake_libc.directory + " " + c_utils.includes
+            ast = parse_file(tmp, use_cpp=True, cpp_args=fake_libc_arg)
             self.delete_temp()
             parsed = True
         except c_parser.ParseError as e:

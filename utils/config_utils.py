@@ -27,7 +27,6 @@ def read_ignoredfiles():
             forbidden_paths.remove("")
     except Exception as e:
         print(e)
-    print(forbidden_paths)
 
 def init_config():
     get_forbidden_paths()

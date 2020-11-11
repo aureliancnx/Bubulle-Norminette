@@ -30,13 +30,14 @@ from os import path
 
 from html_report.html_report import HtmlReport
 from run_check import RunCheck
-from utils import file_utils, string_utils, error_handling, version_utils, config_utils
+from utils import file_utils, string_utils, c_utils, error_handling, version_utils, config_utils
 
 
 class Report():
     def __init__(self, path):
         self.path = path
         self.check_path()
+        c_utils.generate_includes(self.path)
         self.generate_report()
 
     def check_path(self):
