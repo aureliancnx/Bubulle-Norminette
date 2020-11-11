@@ -145,7 +145,6 @@ echo "=> Cleaning installation..."
 tput init
 rm -rf /tmp/Bubulle-Norminette
 rm -f /usr/lib/bubulle/bubulle
-tput init
 if [ $? -ne 0 ]; then
     tput setaf 1
     echo "=> Unable to clean installation."
@@ -155,6 +154,7 @@ if [ $? -ne 0 ]; then
     tput init
     exit 1
 fi
+tput init
 tput setaf 2
 echo "=> Installation cleaned."
 tput init
