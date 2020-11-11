@@ -44,7 +44,7 @@ def parse_args():
                         help="path to the desired folder")
     parser.add_argument("-e", "--exclude", default=None,
                         help="exclude a path from being checked")
-    parser.add_argument("-ic", "--ignore-compilation", help="ignore compilation errors",
+    parser.add_argument("-c", "--compilation", help="show compilation errors",
                         action='store_true')
     parser.add_argument("-r", "--report", help="generate and open a report (TODO)",
                         action='store_true')
