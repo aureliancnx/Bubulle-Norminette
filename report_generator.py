@@ -101,7 +101,7 @@ class Report():
                 complete_path = pw + '/' + name
                 relative = complete_path.replace("//", "/")\
                         .replace(os.path.abspath(os.getcwd()) + "/", "")\
-                        .replace(os.path.abspath(os.getcwd()), "")
+                        .replace(os.path.abspath(os.getcwd()), "").replace(self.path, "")
                 c = False
                 for excluded_path in config_utils.forbidden_paths:
                     if relative.startswith(excluded_path):

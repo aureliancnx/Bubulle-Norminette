@@ -28,6 +28,7 @@ from checks.declaration_spaces import DeclarationSpaces
 from checks.empty_file import EmptyFile
 from checks.extra_spaces import ExtraSpaces
 from checks.filename_snakecase import FilenameSnakecase
+from checks.filename_toolong import FilenameTooLong
 from checks.filename_unclear import FilenameUnclear
 from checks.filename_useless import FilenameUseless
 from checks.for_curlybrackets import ForCurlybrackets
@@ -59,7 +60,7 @@ from checks.while_curlybrackets import WhileCurlybrackets
 
 
 def get_filenames():
-    return [FilenameUnclear, FilenameUseless, FilenameSnakecase]
+    return [FilenameUnclear, FilenameUseless, FilenameSnakecase, FilenameTooLong]
 
 
 def get_inner():
