@@ -79,6 +79,10 @@ class Report():
         version_utils.check_version()
         if error_handling.args.report:
             HtmlReport(style_err)
+        if style_err[1] > 0 or style_err[2] > 0:
+            exit(1)
+            return
+        exit(0)
 
     def run_checks(self):
         checked_paths = []
