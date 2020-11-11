@@ -92,7 +92,8 @@ class IndentLevels(AbstractCheck):
                 self.line = i + self.header_lines
                 if not new_ind:
                     for match in matches:
-                        if len(re.findall(match, line)) > 0 and not '{' in line:
+                        if len(re.findall(match, line)) > 0 and not '{' in line \
+                                and not line.strip().endswith(';'):
                             last_dc = 2 if len(re.findall(match, last)) > 0 else last_dc + 2
                 if last_dc <= 1:
                     ind_t = index
