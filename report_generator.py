@@ -99,7 +99,7 @@ class Report():
             for name in files:
                 self.check_norme_dir(subdirs)
                 complete_path = pw + '/' + name
-                if '/.' in complete_path:
+                if '/.' in complete_path or '.git' in complete_path or '.idea' in complete_path:
                     continue
                 if error_handling.args.exclude is not None\
                         and complete_path.replace("//", "/").startswith((error_handling.args.exclude)):
