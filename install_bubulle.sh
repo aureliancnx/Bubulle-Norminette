@@ -162,4 +162,5 @@ tput setab 2
 tput blink
 echo "=> Installation complete."
 tput init
+exit 0
 # ------ END INSTALL CLEAN ------
