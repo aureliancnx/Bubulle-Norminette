@@ -31,6 +31,7 @@ from checks.filename_snakecase import FilenameSnakecase
 from checks.filename_toolong import FilenameTooLong
 from checks.filename_unclear import FilenameUnclear
 from checks.filename_useless import FilenameUseless
+from checks.filename_weirdstart import FilenameWeirdStart
 from checks.for_curlybrackets import ForCurlybrackets
 from checks.forbidden_functions import ForbiddenFunctions
 from checks.forbidden_goto import ForbiddenGoto
@@ -60,7 +61,8 @@ from checks.while_curlybrackets import WhileCurlybrackets
 
 
 def get_filenames():
-    return [FilenameUnclear, FilenameUseless, FilenameSnakecase, FilenameTooLong]
+    return [FilenameUnclear, FilenameUseless, FilenameSnakecase, FilenameTooLong,
+            FilenameWeirdStart]
 
 
 def get_inner():

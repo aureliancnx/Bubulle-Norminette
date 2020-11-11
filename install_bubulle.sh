@@ -93,6 +93,7 @@ echo ""
 git clone https://github.com/aureliancnx/Bubulle-Norminette.git
 pip install pyparsing --user
 pip install pycparser --user
+pip install pycparser-fake-libc --user
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1
