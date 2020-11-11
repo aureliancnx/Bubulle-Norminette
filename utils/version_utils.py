@@ -52,8 +52,10 @@ def get_version():
     version = file_utils.read(path)
     return version
 
-def check_version():
+def check_version(show_version=False):
     time_end = time.time() - args_handler.time_start
+    if show_version:
+        print("Version: \033[36m{0}".format(get_version()))
     if get_version_latest() != get_version():
         print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m")
         return

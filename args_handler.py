@@ -56,7 +56,9 @@ def parse_args():
                         action='store_true')
     parser.add_argument("-imaj", "--ignore-major", help="ignore all major tests",
                         action='store_true')
-    parser.add_argument("-v", "--verbose", help="verbose information",
+    parser.add_argument("-v", "--version", help="version information",
+                        action='store_true')
+    parser.add_argument("-verbose", "--verbose", help="verbose information",
                         action='store_true')
     parser.add_argument("-u", "--update", action='store_true')
     return parser.parse_args()
@@ -76,6 +78,9 @@ def handle_update(args):
         version_utils.update()
         exit(0)
 
+    if args.version:
+        version_utils.check_version(show_version=True)
+        exit(0)
 
 def handle_args(args):
     handle_update(args)
