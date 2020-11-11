@@ -123,7 +123,6 @@ echo "=> Giving run permissions..."
 tput init
 chmod -R 777 /usr/lib/bubulle
 chmod 777 /usr/bin/bubulle
-tput init
 if [ $? -ne 0 ]; then
     tput setaf 1
     echo "=> Unable to give run permissions."
@@ -133,6 +132,7 @@ if [ $? -ne 0 ]; then
     tput init
     exit 1
 fi
+tput init
 tput setaf 2
 echo "=> Permissions OK."
 tput init
