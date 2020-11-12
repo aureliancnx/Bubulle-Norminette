@@ -110,10 +110,6 @@ class IndentLevels(AbstractCheck):
                         ilvl_t -= 1
                 if s != ilvl_t * t_mul and line not in flag_lines:
                     flag_lines.append(line)
-                    print("LAST:")
-                    print(last.iffalse)
-                    print("NODE:")
-                    print(stm1)
                     BuErrors.print_error(self.path, self.file_name, line,
                                          self.get_check_level(), self.get_check_id(),
                                          self.message.format(str(ilvl_t * t_mul), str(s)) + ' [{0}]'.format(l))
