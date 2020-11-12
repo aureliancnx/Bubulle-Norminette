@@ -2,7 +2,7 @@ import os
 
 from utils import config_utils, error_handling
 
-includes = ""
+includes = ['-I/root/PycharmProjects/normicheck/fake_libc_include/']
 
 
 def generate_includes(path):
@@ -24,11 +24,7 @@ def generate_includes(path):
                 continue
             if not name.endswith(".h"):
                 continue
-            relative = pw.replace("//", "/") \
-                .replace(os.path.abspath(os.getcwd()) + "/", "") \
-                .replace(os.path.abspath(os.getcwd()), "")
-            if not relative.endswith('/'):
-                relative += '/'
-            if includes.startswith('-I ' + relative + ' ') or ' -I ' + relative + ' ' in includes:
+            relative = pw.replace(os.path.abspath(os.getcwd()) + "/", "")
+            if '-I' + relative in includes:
                 continue
-            includes += '-I ' + relative + ' '
+            includes.append('-I' + relative)

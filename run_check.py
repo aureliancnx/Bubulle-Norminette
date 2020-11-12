@@ -106,8 +106,7 @@ class RunCheck:
             f = open(tmp, "a")
             f.write(file_contentf.replace("bool ", "_Bool "))
             f.close()
-            fake_libc_arg = "-I " + pycparser_fake_libc.directory + " " + c_utils.includes
-            ast = parse_file(tmp, use_cpp=True, cpp_args=fake_libc_arg)
+            ast = parse_file(tmp, use_cpp=True, cpp_args=c_utils.includes)
             self.delete_temp()
             parsed = True
         except c_parser.ParseError as e:

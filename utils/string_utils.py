@@ -38,6 +38,7 @@ class colors:
     UNDERLINE = '\033[4m'
 
 
+
 def tosnake(name):
       name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
       return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
@@ -49,13 +50,7 @@ def removeComments(string):
     b = 0
 
     for li in split:
-        if b:
-            final = final + '\n'
-        if not re.match(r"^\s*\#include\s+[\"<]([^\">]+)*[\">]", li):
-            final = final + li
-            b = 1
-        else:
-            final = final + '\n'
+        final += li + '\n'
 
     pattern = r"(\".*?\"|\'.*?\')|(/\*.*?\*/|//[^\r\n]*$)"
     regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
