@@ -1,41 +1,70 @@
 -------------------------------------------------------------------------------
-                          Bubulle Code Norme Report v1.16b
+                          Bubulle Code Norme Report v1.17b
 Path: c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
 -------------------------------------------------------------------------------
-test_valist.c        F5       4       MAJOR      Missing void parameter in func 'main'
-test_valist.c        G1               MAJOR     EPITECH header misplaced/missing
-test.h               G1               MAJOR     EPITECH header misplaced/missing
-my_test.c            F2               MAJOR     Func 'FonCtionPasEnSnake_CaSE' not in snake_case
-my_test.c            L4       129     MINOR    Misplaced curly brackets
-my_test.c            O3               MAJOR     Too many functions (8 > 5)
-my_test.c            -42?             MAJOR     Forbidden function 'printf'?
-my_test.c            T010             INFO      Unclear variable name: 'o'
-my_test.c            F5       110     MAJOR    Func 'test' has too many args
-my_test.c            F5       115     MAJOR    Missing void parameter in func 'fonctionsansargsetsansvoid'
-my_test.c            V1               MAJOR     Variable 'VARIABLE_pas_En_Snake_Case' not in snake_case format.
-my_test.c            F5       133     MAJOR    Missing void parameter in func 'variable_degueu'
-my_test.c            T010             INFO      Unclear variable name: 'o'
-my_test.c            T010             INFO      Unclear variable name: 'l'
-my_test.c            H3       29      MINOR     Macros shouldn't be used for constants
-my_test.c            V3       35      MINOR     Pointer misplaced: 'char*'
-my_test.c            F3       36      MAJOR     Too much chars in line (101 > 80)
-my_test.c            L3       39      MINOR     Missing spaces in operator '='
-my_test.c            L3       49      INFO      Extra spaces end of line
-my_test.c            L1       72      MINOR     Multiple assignements on same line
-my_test.c            L3       118     MINOR    Missing spaces in operator '=='
-my_test.c            L3       126     MINOR    Missing space after keyword
-my_test.c            G1               MAJOR     EPITECH header misplaced/missing
+test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
+test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
+test.h               G1       1       MAJOR     EPITECH header misplaced/missing
+my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
+my_test.c            V3       36      MINOR     Pointer misplaced: 'char*'
+my_test.c            F3       37      MAJOR     Line too long (101 > 80 chars)
+my_test.c            L3       40      MINOR     Missing spaces in operator '='
+my_test.c            L3       48      INFO      Extra spaces end of line
+my_test.c            L1       73      MINOR     Multiple assignements on same line
+my_test.c            L3       119     MINOR     Missing spaces in operator '=='
+my_test.c            L3       127     MINOR     Missing space after keyword
+my_test.c            G1       24      MAJOR     EPITECH header misplaced/missing
 my_test.c            L4       46      MINOR     Misplaced curly brackets
-my_test.c            L4       33      MINOR     Misplaced curly brackets
-my_test.c            L2       122     MINOR    Wrong indentation level
-my_putstr.c          G1               MAJOR     EPITECH header misplaced/missing
+my_test.c            L2       123     MINOR     Wrong indentation level
+my_test.c            L6       51      MINOR     Extra lines
+my_test.c            L6       52      MINOR     Extra lines
+my_test.c            L6       75      MINOR     Extra lines
+my_test.c            L6       76      MINOR     Extra lines
+my_test.c            L6       77      MINOR     Extra lines
+my_test.c            L6       78      MINOR     Extra lines
+my_test.c            L6       79      MINOR     Extra lines
+my_test.c            L6       80      MINOR     Extra lines
+my_test.c            L6       81      MINOR     Extra lines
+my_test.c            L6       82      MINOR     Extra lines
+my_test.c            L6       83      MINOR     Extra lines
+my_test.c            L6       84      MINOR     Extra lines
+my_test.c            L6       85      MINOR     Extra lines
+my_test.c            L6       86      MINOR     Extra lines
+my_test.c            L6       87      MINOR     Extra lines
+my_test.c            L6       88      MINOR     Extra lines
+my_test.c            L6       89      MINOR     Extra lines
+my_test.c            L6       90      MINOR     Extra lines
+my_test.c            L6       91      MINOR     Extra lines
+my_test.c            L6       92      MINOR     Extra lines
+my_test.c            L6       93      MINOR     Extra lines
+my_test.c            L6       94      MINOR     Extra lines
+my_test.c            L6       95      MINOR     Extra lines
+my_test.c            L6       96      MINOR     Extra lines
+my_test.c            L6       146     MINOR     Extra lines
+my_test.c            L6       147     MINOR     Extra lines
+my_test.c            F2       141     MAJOR     Func 'FonCtionPasEnSnake_CaSE' not in snake_case
+my_test.c            L4       130     MINOR     Misplaced curly brackets
+my_test.c            O3       130     MAJOR     Too many functions (8 > 5)
+my_test.c            O3       134     MAJOR     Too many functions (8 > 5)
+my_test.c            O3       141     MAJOR     Too many functions (8 > 5)
+my_test.c            L4       43      MINOR     Misplaced brackets of 'for' keyword
+my_test.c            -42?     49      MAJOR     Forbidden function 'printf'?
+my_test.c            T010     107     INFO      Unclear variable name: 'o'
+my_test.c            F5       111     MAJOR     Func 'test' has too many args
+my_test.c            F5       116     MAJOR     Missing void parameter in func 'fonctionsansargsetsansvoid'
+my_test.c            L2       124     MINOR     Indentation must be 4 spaces but it's 8
+my_test.c            V1       125     MAJOR     Variable 'VARIABLE_pas_En_Snake_Case' not in snake_case format.
+my_test.c            F5       134     MAJOR     Missing void parameter in func 'variable_degueu'
+my_test.c            T010     136     INFO      Unclear variable name: 'o'
+my_test.c            T010     137     INFO      Unclear variable name: 'l'
+my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
 test.h.gch           O1               MAJOR     Useless file for compilation
 test.gcno            O1               MAJOR     Useless file for compilation
-frofro.c             F5       26      MAJOR     Missing void parameter in func 'main'
-frofro.c             V3       28      MINOR     Pointer misplaced: 'char*'
-frofro.c             G1               MAJOR     EPITECH header misplaced/missing
+frofro.c             V3       29      MINOR     Pointer misplaced: 'char*'
+frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
+frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
 -------------------------------------------------------------------------------
-TOTAL          Major: 17       Minor: 11       Info: 4      Note: -62
+TOTAL          Major: 19       Minor: 38       Info: 4      Note: -95
 -------------------------------------------------------------------------------
