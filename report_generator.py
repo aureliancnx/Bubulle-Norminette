@@ -37,7 +37,7 @@ class Report():
     def __init__(self, path):
         self.path = path
         self.check_path()
-        c_utils.generate_includes(self.path)
+        c_utils.generate_includes(self.path, os.path.dirname(os.path.realpath(__file__)) + '/fake_libc_include')
         self.generate_report()
 
     def check_path(self):

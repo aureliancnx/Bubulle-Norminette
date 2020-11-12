@@ -4,6 +4,9 @@ Path: c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
 -------------------------------------------------------------------------------
+test_valist.c        F5       4       MAJOR      Missing void parameter in func 'main'
+test_valist.c        G1               MAJOR     EPITECH header misplaced/missing
+test.h               G1               MAJOR     EPITECH header misplaced/missing
 my_test.c            F2               MAJOR     Func 'FonCtionPasEnSnake_CaSE' not in snake_case
 my_test.c            L4       129     MINOR    Misplaced curly brackets
 my_test.c            O3               MAJOR     Too many functions (8 > 5)
@@ -34,5 +37,5 @@ frofro.c             F5       26      MAJOR     Missing void parameter in func '
 frofro.c             V3       28      MINOR     Pointer misplaced: 'char*'
 frofro.c             G1               MAJOR     EPITECH header misplaced/missing
 -------------------------------------------------------------------------------
-TOTAL          Major: 14       Minor: 11       Info: 4      Note: -53
+TOTAL          Major: 17       Minor: 11       Info: 4      Note: -62
 -------------------------------------------------------------------------------

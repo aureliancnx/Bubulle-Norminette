@@ -2,11 +2,12 @@ import os
 
 from utils import config_utils, error_handling
 
-includes = ['-I/root/PycharmProjects/normicheck/fake_libc_include/']
+includes = []
 
 
-def generate_includes(path):
+def generate_includes(path, fakelibc):
     global includes
+    includes.append('-I' + fakelibc)
     h_files = []
     for pw, subdirs, files in os.walk(path):
         for name in files:
