@@ -4,6 +4,8 @@
 [0m-------------------------------------------------------------------------------
 [1;34;40mFile                 Error   Line    Severity   Details
 [0m-------------------------------------------------------------------------------[1;34;00m
+[0mtest.gcno[0m            O1[0m          [0m    [0;30;41m MAJOR [0m    [0mUseless file for compilation
+[37mmy_putstr.c[37m          G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
 [37mtest_valist.c[37m        G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
 [0mmy_test.c[0m            F2[0m          [0m    [0;30;41m MAJOR [0m    [0mFunc 'FonCtionPasEnSnake_CaSE' not in snake_case
 [37mmy_test.c[37m            L4[37m      [0;30;43m 130 [0m   [0;30;43m MINOR [0m   [37mMisplaced curly brackets
@@ -28,8 +30,6 @@
 [0mmy_test.c[0m            L4[0m      [0;30;43m 44 [0m    [0;30;43m MINOR [0m    [0mMisplaced curly brackets
 [37mmy_test.c[37m            L4[37m      [0;30;43m 32 [0m    [0;30;43m MINOR [0m    [37mMisplaced curly brackets
 [0mmy_test.c[0m            L2[0m      [0;30;43m 123 [0m   [0;30;43m MINOR [0m   [0mWrong indentation level
-[37mmy_putstr.c[37m          G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
-[0mtest.gcno[0m            O1[0m          [0m    [0;30;41m MAJOR [0m    [0mUseless file for compilation
 [37mfrofro.c[37m             F5[37m      [0;30;41m 27 [0m    [0;30;41m MAJOR [0m    [37mMissing void parameter in func 'main'
 [0mfrofro.c[0m             V3[0m      [0;30;43m 29 [0m    [0;30;43m MINOR [0m    [0mPointer misplaced: 'char*'
 [37mfrofro.c[37m             G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
