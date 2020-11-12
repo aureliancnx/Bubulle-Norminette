@@ -79,15 +79,14 @@ class HtmlReportOverview:
 
     def prepare_mark(self, content):
         mark = max(1, 20 - abs(self.report.style_err[3]))
-        undermark = mark * 5
         undermark = 5 * round(mark / 5)
         content = fill_variable(content, 'mark', str(mark))
-        content = fill_variable(content, 'undermark', str(undermark))
+        content = fill_variable(content, 'undermark', str(undermark * 5))
         chart_color = "#dc3545"
         if mark == 20:
             chart_color = "#2ecc71"
-        elif mark > 15:
-            chart_color = "#e74c3c"
+        elif mark >= 10:
+            chart_color = "#f39c12"
         content = fill_variable(content, 'chart_color', chart_color)
         return content
 
