@@ -32,6 +32,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: ls -lah
     - run: python main.py -p c_tests/ > test/generated_output_wf.txt
     - run: diff test/generated_output_wf.txt test/expected_output_wf.txt
