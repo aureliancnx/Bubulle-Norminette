@@ -34,4 +34,6 @@ jobs:
     - uses: actions/checkout@v2
     - run: pip3 install -r requirements.txt --user
     - run: $(python3 main.py -p c_tests/ | head -n -1 > test/generated_output_wf.txt) | cat -e
+    - run: cat test/generated_output_wf.txt
+    - run: cat test/expected_output_wf.txt
     - run: diff <(sort test/generated_output_wf.txt) <(sort test/expected_output_wf.txt)
