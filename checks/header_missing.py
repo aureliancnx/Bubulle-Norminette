@@ -47,6 +47,7 @@ class HeaderMissing(AbstractCheck):
         return 0
 
     def check_inner(self, content, contentf):
+        self.line = 1
         if not content.startswith("/*"):
             return 1
         if not content.split("\n")[1].startswith("** EPITECH PROJECT,"):
