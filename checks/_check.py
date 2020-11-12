@@ -73,10 +73,11 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_function_calls(func):
             return 0
+        line = self.line if hasattr(self, 'line') else -1
         if not hasattr(self, 'args'):
-            self.err("", -1, self.message)
+            self.err("", line, self.message)
             return 1
-        self.err("", -1, self.message.format(self.args))
+        self.err("", line, self.message.format(self.args))
         return 1
 
     def process_function_decl(self, visitor, func):
@@ -108,19 +109,20 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_variable_decl(var):
             return 0
+        line = -1 if not hasattr(self, 'line') else self.line
         if not hasattr(self, 'args'):
-            self.err("", -1, self.message)
+            self.err("", line, self.message)
             return 1
-        self.err("", -1, self.message.format(self.args))
+        self.err("", line, self.message.format(self.args))
         return 1
 
     def process_line(self, line, line_number):
         if not self.check_line(line, line_number):
             return 0
         if not hasattr(self, 'args'):
-            self.err(line, line_number, self.message)
+            self.err(line, line_number + 1, self.message)
             return 1
-        self.err(line, line_number, self.message.format(self.args))
+        self.err(line, line_number + 1, self.message.format(self.args))
         return 1
 
     def process_inner(self, content, contentf):
