@@ -1,38 +1,38 @@
-[0m-------------------------------------------------------------------------------
-[1;34;40m                          [93mBubulle Code Norme Report v1.15b
-[0mPath: [93mc_tests/
-[0m-------------------------------------------------------------------------------
-[1;34;40mFile                 Error   Line    Severity   Details
-[0m-------------------------------------------------------------------------------[1;34;00m
-[0mtest.gcno[0m            O1[0m          [0m    [0;30;41m MAJOR [0m    [0mUseless file for compilation
-[37mmy_putstr.c[37m          G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
-[37mtest_valist.c[37m        G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
-[0mmy_test.c[0m            F2[0m          [0m    [0;30;41m MAJOR [0m    [0mFunc 'FonCtionPasEnSnake_CaSE' not in snake_case
-[37mmy_test.c[37m            L4[37m      [0;30;43m 130 [0m   [0;30;43m MINOR [0m   [37mMisplaced curly brackets
-[0mmy_test.c[0m            O3[0m          [0m    [0;30;41m MAJOR [0m    [0mToo many functions (8 > 5)
-[37mmy_test.c[37m            -42?[37m        [0m    [0;30;41m MAJOR [0m    [37mForbidden function 'printf'?
-[0mmy_test.c[0m            T010[0m        [0m    [44m INFO [0m     [0mUnclear variable name: 'o'
-[37mmy_test.c[37m            F5[37m      [0;30;41m 111 [0m   [0;30;41m MAJOR [0m   [37mFunc 'test' has too many args
-[0mmy_test.c[0m            F5[0m      [0;30;41m 116 [0m   [0;30;41m MAJOR [0m   [0mMissing void parameter in func 'fonctionsansargsetsansvoid'
-[37mmy_test.c[37m            V1[37m          [0m    [0;30;41m MAJOR [0m    [37mVariable 'VARIABLE_pas_En_Snake_Case' not in snake_case format.
-[0mmy_test.c[0m            F5[0m      [0;30;41m 134 [0m   [0;30;41m MAJOR [0m   [0mMissing void parameter in func 'variable_degueu'
-[37mmy_test.c[37m            T010[37m        [0m    [44m INFO [0m     [37mUnclear variable name: 'o'
-[0mmy_test.c[0m            T010[0m        [0m    [44m INFO [0m     [0mUnclear variable name: 'l'
-[37mmy_test.c[37m            H3[37m      [0;30;43m 30 [0m    [0;30;43m MINOR [0m    [37mMacros shouldn't be used for constants
-[0mmy_test.c[0m            V3[0m      [0;30;43m 36 [0m    [0;30;43m MINOR [0m    [0mPointer misplaced: 'char*'
-[37mmy_test.c[37m            F3[37m      [0;30;41m 37 [0m    [0;30;41m MAJOR [0m    [37mToo much chars in line (101 > 80)
-[0mmy_test.c[0m            L3[0m      [0;30;43m 40 [0m    [0;30;43m MINOR [0m    [0mMissing spaces in operator '='
-[37mmy_test.c[37m            L3[37m      [44m 50 [0m    [44m INFO [0m     [37mExtra spaces end of line
-[0mmy_test.c[0m            L1[0m      [0;30;43m 73 [0m    [0;30;43m MINOR [0m    [0mMultiple assignements on same line
-[37mmy_test.c[37m            L3[37m      [0;30;43m 119 [0m   [0;30;43m MINOR [0m   [37mMissing spaces in operator '=='
-[0mmy_test.c[0m            L3[0m      [0;30;43m 127 [0m   [0;30;43m MINOR [0m   [0mMissing space after keyword
-[37mmy_test.c[37m            G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
-[0mmy_test.c[0m            L4[0m      [0;30;43m 44 [0m    [0;30;43m MINOR [0m    [0mMisplaced curly brackets
-[37mmy_test.c[37m            L4[37m      [0;30;43m 32 [0m    [0;30;43m MINOR [0m    [37mMisplaced curly brackets
-[0mmy_test.c[0m            L2[0m      [0;30;43m 123 [0m   [0;30;43m MINOR [0m   [0mWrong indentation level
-[37mfrofro.c[37m             F5[37m      [0;30;41m 27 [0m    [0;30;41m MAJOR [0m    [37mMissing void parameter in func 'main'
-[0mfrofro.c[0m             V3[0m      [0;30;43m 29 [0m    [0;30;43m MINOR [0m    [0mPointer misplaced: 'char*'
-[37mfrofro.c[37m             G1[37m          [0m    [0;30;41m MAJOR [0m    [37mEPITECH header misplaced/missing
-[0m-------------------------------------------------------------------------------
-[1;34;40mTOTAL[0m          Major: [31m14[0m       Minor: [31m11[0m       Info: [33m4[0m      Note: -53
-[0m-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+                          Bubulle Code Norme Report v1.15b
+Path: c_tests/
+-------------------------------------------------------------------------------
+File                 Error   Line    Severity   Details
+-------------------------------------------------------------------------------
+test_valist.c        G1               MAJOR     EPITECH header misplaced/missing
+my_test.c            F2               MAJOR     Func 'FonCtionPasEnSnake_CaSE' not in snake_case
+my_test.c            L4       130     MINOR    Misplaced curly brackets
+my_test.c            O3               MAJOR     Too many functions (8 > 5)
+my_test.c            -42?             MAJOR     Forbidden function 'printf'?
+my_test.c            T010             INFO      Unclear variable name: 'o'
+my_test.c            F5       111     MAJOR    Func 'test' has too many args
+my_test.c            F5       116     MAJOR    Missing void parameter in func 'fonctionsansargsetsansvoid'
+my_test.c            V1               MAJOR     Variable 'VARIABLE_pas_En_Snake_Case' not in snake_case format.
+my_test.c            F5       134     MAJOR    Missing void parameter in func 'variable_degueu'
+my_test.c            T010             INFO      Unclear variable name: 'o'
+my_test.c            T010             INFO      Unclear variable name: 'l'
+my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
+my_test.c            V3       36      MINOR     Pointer misplaced: 'char*'
+my_test.c            F3       37      MAJOR     Too much chars in line (101 > 80)
+my_test.c            L3       40      MINOR     Missing spaces in operator '='
+my_test.c            L3       50      INFO      Extra spaces end of line
+my_test.c            L1       73      MINOR     Multiple assignements on same line
+my_test.c            L3       119     MINOR    Missing spaces in operator '=='
+my_test.c            L3       127     MINOR    Missing space after keyword
+my_test.c            G1               MAJOR     EPITECH header misplaced/missing
+my_test.c            L4       44      MINOR     Misplaced curly brackets
+my_test.c            L4       32      MINOR     Misplaced curly brackets
+my_test.c            L2       123     MINOR    Wrong indentation level
+my_putstr.c          G1               MAJOR     EPITECH header misplaced/missing
+test.gcno            O1               MAJOR     Useless file for compilation
+frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
+frofro.c             V3       29      MINOR     Pointer misplaced: 'char*'
+frofro.c             G1               MAJOR     EPITECH header misplaced/missing
+-------------------------------------------------------------------------------
+TOTAL          Major: 14       Minor: 11       Info: 4      Note: -53
+-------------------------------------------------------------------------------
