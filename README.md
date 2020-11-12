@@ -58,7 +58,7 @@ Installation manuelle sous Windows : cloner le repository.
  - `-u` ou `--update`: mettre à jour la norminette Bubulle
  - `-verbose` ou `--verbose`: verbose, afficher les erreurs de compilation <b>précises</b> 
  - `-v` ou `--version`: afficher la version locale de Bubulle 
- - `-c` ou `--compilation` : afficher les erreurs de compilation <i>(bêta)</i>
+ - `-ic` ou `--ignore-compilation` : ignorer les erreurs de compilation
  - `-i` ou `--ignore`: ignorer des erreurs de norme précises (séparés par une virgule)<br>
 Exemple: <b>l1,l2</b> permet d'ignorer le test L1 et L2
  - `-ii` ou `--ignore-info`: ignorer les problèmes de norme INFO
