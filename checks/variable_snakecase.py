@@ -43,6 +43,7 @@ class VariableSnakecase(AbstractCheck):
 
     def check_variable_decl(self, var):
         self.fill_error(var.name)
+        self.line = var.coord.line + (1 if self.header_lines != 0 else 0)
         return string_utils.tosnake(var.name) != var.name
 
     def check_line(self, line, line_number):
