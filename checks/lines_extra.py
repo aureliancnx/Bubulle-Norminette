@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 from checks._check import AbstractCheck
+from utils.error_handling import BuErrors
 
 
 class LinesExtra(AbstractCheck):
@@ -42,13 +43,6 @@ class LinesExtra(AbstractCheck):
         return 1
 
     def check_line(self, line, line_number):
-        if len(line.strip()) == 0:
-            if self.last_empty_line == line_number - 1:
-                self.last_empty_line = line_number
-                return 1
-            self.last_empty_line = line_number
-            return 0
-        self.last_empty_line = -100
         return 0
 
     def check_function_calls(self, func):
@@ -64,4 +58,16 @@ class LinesExtra(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
+        lines = file_content.split('\n')
+        i = 0
+        last = -2
+        for l in lines:
+            i += 1
+            if len(l.lstrip().strip()) == 0 or l == ' ' * len(l):
+                if i == last + 1:
+                    line = i
+                    BuErrors.print_error(self.path, self.file_name, line,
+                                         self.get_check_level(), self.get_check_id(),
+                                         self.message)
+                last = i
         return 0
