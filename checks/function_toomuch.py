@@ -53,6 +53,7 @@ class FunctionToomuch(AbstractCheck):
         return 0
 
     def check_visitor(self, visitor, lines):
+        self.fill_error(visitor.function_count)
         return visitor.function_count > 5
 
     def check_inner(self, file_content, file_contentf):

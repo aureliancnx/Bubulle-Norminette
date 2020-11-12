@@ -44,15 +44,12 @@ class FilenameUseless(AbstractCheck):
         return 2
 
     def check_filename(self):
-        try:
-            for c in check_end:
-                if self.file_name.endswith((c)):
-                    return 1
-            for c in check_presuffix:
-                if self.file_name.startswith((c)) and self.file_name.endswith((c)):
-                    return 1
-        except Exception as e:
-            print(e)
+        for c in check_end:
+            if self.file_name.endswith((c)):
+                return 1
+        for c in check_presuffix:
+            if self.file_name.startswith((c)) and self.file_name.endswith((c)):
+                return 1
         return 0
 
     def check_line(self, line, line_number):

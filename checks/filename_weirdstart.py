@@ -23,6 +23,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
+from checks.filename_useless import FilenameUseless
 from utils import string_utils
 from checks._check import AbstractCheck
 
@@ -42,6 +43,8 @@ class FilenameWeirdStart(AbstractCheck):
         return 0
 
     def check_filename(self):
+        if FilenameUseless(self.file_name, self.path, self.header_lines).check_filename():
+           return 0
         return not self.file_name[:1].isalpha() and self.file_name[:1] != '_'
 
     def check_line(self, line, line_number):

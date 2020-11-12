@@ -44,6 +44,7 @@ class FunctionVoidMissing(AbstractCheck):
         if func.decl.type and func.decl.type.args:
             return 0
         self.fill_error(func.decl.name)
+        self.line = func.decl.coord.line
         return 1
 
     def check_line(self, line, line_number):

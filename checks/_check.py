@@ -84,19 +84,21 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_function_decl(visitor, func):
             return 0
+        line = self.line if hasattr(self, 'line') else -1
         if not hasattr(self, 'args'):
-            self.err("", -1, self.message)
+            self.err("", line, self.message)
             return 1
-        self.err("", -1, self.message.format(*self.args))
+        self.err("", line, self.message.format(self.args))
         return 1
 
     def process_visitor_check(self, visitor, lines):
         if not self.check_visitor(visitor, lines):
             return 0
-        line_n = -1
-        if hasattr(self, 'line'):
-            line_n = self.line
-        self.err("", line_n, self.message)
+        line = self.line if hasattr(self, 'line') else -1
+        if not hasattr(self, 'args'):
+            self.err("", line, self.message)
+            return 1
+        self.err("", line, self.message.format(self.args))
         return 1
 
     def process_variable_decl(self, var):
