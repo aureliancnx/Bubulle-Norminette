@@ -25,13 +25,17 @@
 # SOFTWARE.#
 import re
 
+from pycparser.c_ast import For
+
 from checks._check import AbstractCheck
+from utils.error_handling import BuErrors
 
 
 class ForCurlybrackets(AbstractCheck):
 
+    tc = None
     def __init__(self, file_name, path, header_lines):
-        self.message = "Misplaced curly brackets"
+        self.message = "Misplaced brackets of 'for' keyword"
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -42,7 +46,29 @@ class ForCurlybrackets(AbstractCheck):
     def get_check_level(self):
         return 1
 
+    def curly_process(self, dt):
+        if not re.search(r'for\s*\(((?!\s).+)\)', tc[dt.coord.line - 1]):
+            return 0
+        if re.search(r'for\s*\(((?!\s*\{).+)\)\s*{', tc[dt.coord.line - 1]):
+            return 0
+        if re.search(r'for\s*\(((?!\s*\{).+)\)\s*;', tc[dt.coord.line - 1]):
+            return 0
+        if not tc[dt.coord.line].strip().startswith('{'):
+            return 0
+        self.line = dt.coord.line + self.header_lines + (1 if self.header_lines != 0 else 0)
+        BuErrors.print_error(self.path, self.file_name, self.line, self.get_check_level(),
+                             self.get_check_id(), self.message)
+
     def check_function_decl(self, visitor, func):
+        if func.body.block_items is None:
+            return 0
+        if tc is None:
+            return 0
+        # TODO: recursive check
+        for it in func.body.block_items:
+            if not isinstance(it, For):
+                continue
+            self.curly_process(it)
         return 0
 
     def check_line(self, line, line_number):
@@ -58,11 +84,15 @@ class ForCurlybrackets(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        reg = re.compile('for\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}')
-        statements = re.finditer(reg, file_contentf)
-        for statement in statements:
-            lineno = file_content.count('\n', 0, statement.start())
-            self.line = lineno
-            if not '){' in statement.group(0).replace(" ", ""):
-                return 1
+        global tc
+        lines = file_contentf.split('\n')
+        tc = lines
         return 0
+        #reg = re.compile('for\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}')
+        #statements = re.finditer(reg, file_contentf)
+        #for statement in statements:
+        #    lineno = file_content.count('\n', 0, statement.start())
+        #    self.line = lineno
+        #    if not '){' in statement.group(0).replace(" ", ""):
+        #        return 1
+        #return 0
