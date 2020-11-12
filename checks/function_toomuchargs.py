@@ -49,7 +49,7 @@ class FunctionTooMuchArgs(AbstractCheck):
         func_name = ''
         if func.decl.coord.line in visitor.function_defs:
             func_name = visitor.function_defs[func.decl.coord.line]
-        self.line = func.decl.coord.line
+        self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
         self.fill_error(visitor.function_defs[func.decl.coord.line])
         return 1
 
