@@ -45,9 +45,9 @@ char *fonctiontroplongue(int b, char c, int c,int q)
         ++bracketsmalmis;
     }
 
+    // Commentaire dans fonction, pas autorisé ça...
     printf("j'utilise une fonction interdite\n");
 
-    // Je fais un commentaire dans une fonction, ce qui est interdit
 
 
     if (bedo) {
@@ -142,3 +142,5 @@ void FonCtionPasEnSnake_CaSE(void)
 {
     int b = 42;
 }
+
+
