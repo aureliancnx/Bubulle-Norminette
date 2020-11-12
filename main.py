@@ -44,8 +44,8 @@ if __name__ == '__main__':
     path = file_utils.get_path(args)
 
     # Worker init
-    workers.init_workers()
+    #workers.init_workers()
 
     # Make a report
     report = Report(path)
-    workers.wait()
+    #workers.wait()

@@ -72,7 +72,7 @@ class Report():
         print("\033[0m-------------------------------------------------------------------------------\033[1;34;00m")
 
     def generate_report_summary(self):
-        workers.wait()
+        #workers.wait()
         style_err = self.summary_errors()
         print("\033[0m-------------------------------------------------------------------------------")
         print("\033[1;34;40mTOTAL\033[0m          Major: {0}       Minor: {1}       Info: {2}      Note: {3}".
