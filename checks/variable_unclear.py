@@ -54,6 +54,7 @@ class VariableUnclear(AbstractCheck):
 
     def check_variable_decl(self, var):
         self.fill_error(var.name)
+        self.line = var.coord.line + (1 if self.header_lines != 0 else 0)
         return var.name == 'l' or var.name == 'o'
 
     def check_visitor(self, visitor, lines):
