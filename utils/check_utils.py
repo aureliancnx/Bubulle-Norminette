@@ -84,7 +84,7 @@ def get_var_decl():
 
 def get_visitor():
     return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
-            FunctionComments, FunctionTooLong] # FunctionNestedfix?ss
+            FunctionComments, FunctionTooLong] # FunctionNestedfix?
 
 
 def get_line():

@@ -61,54 +61,16 @@ class IndentLevels(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        # workaround while we don't have a serious fix.
-        # TODO
-        if self.file_name.endswith(".h"):
-            return 0
         lines = file_contentf.split('\n')
-        i = 0
-        index = 0
-        new_ind = 0
-        last_dc = 0
-        last = ''
+        lc = 0
+        # TODO better check
+        # workaround while we develop something better.
 
-        for line in lines:
-            i += 1
-            new_ind = 0
-            dc = 0
-            tmp_enclosing = 0
-
-            if re.match(r'[ \t]*}[ \t]*', line) and '{' in line:
-                tmp_enclosing = 1
-            elif '{' in line:
-                index += 1
-                new_ind = 1
-            elif re.match(r'[ \t]*}[ \t]*', line):
-                index -= 1
-                if index <= 0:
-                    index = 0
-
-            if index > 0 and not len(line) <= 0:
-                spaces_diff = len(line) - len(line.lstrip())
-                self.line = i + self.header_lines
-                if not new_ind:
-                    for match in matches:
-                        if len(re.findall(match, line)) > 0 and not '{' in line \
-                                and not line.strip().endswith(';'):
-                            last_dc = 2 if len(re.findall(match, last)) > 0 else last_dc + 2
-                if last_dc <= 1:
-                    ind_t = index
-                    if last_dc == 1:
-                        ind_t += 1
-                    tmp_indx = 4 * (ind_t - new_ind - tmp_enclosing)
-                    if spaces_diff != tmp_indx:
-                        BuErrors.print_error(self.path, self.file_name, self.line, self.get_check_level(),
-                                             self.get_check_id(), self.message)
-                    if index >= 4:
-                        BuErrors.print_error(self.path, self.file_name, self.line, 1,
-                                             "C1", "3 or more conditionnal blocks.")
-
-            if last_dc > 0:
-                last_dc -= 1
-            last = line
+        for l in lines:
+            lc += 1
+            s = len(l) - len(l.lstrip())
+            self.line = lc + self.header_lines
+            if s % 4 != 0:
+                BuErrors.print_error(self.path, self.file_name, self.line, self.get_check_level(),
+                                     self.get_check_id(), self.message)
         return 0
