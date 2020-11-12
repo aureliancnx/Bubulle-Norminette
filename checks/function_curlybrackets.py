@@ -41,13 +41,7 @@ class FunctionCurlybrackets(AbstractCheck):
         return 1
 
     def check_function_decl(self, visitor, func):
-        params = len(func.decl.type.args.params)
-        if params <= 4:
-            return 0
-        func_name = ''
-        if func.decl.coord.line in visitor.function_defs:
-            func_name = visitor.function_defs[func.decl.coord.line]
-        return 1
+        return 0
 
     def check_line(self, line, line_number):
         return 0
@@ -61,7 +55,7 @@ class FunctionCurlybrackets(AbstractCheck):
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_lines:
             if lines[function_line] != '{' and not lines[function_line - 1].endswith(';'):
-                self.line = function_line
+                self.line = function_line + (1 if self.header_lines != 0 else 0)
                 return 1
         return 0
 
