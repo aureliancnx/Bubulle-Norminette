@@ -136,8 +136,5 @@ class Report():
 
     def generate_report(self):
         self.generate_report_header()
-        ti = time.time()
         self.run_checks()
-        ti = time.time() - ti
-        print("%f" % ti)
         self.generate_report_summary()
