@@ -91,9 +91,7 @@ echo "=> Cloning Bubulle source code..."
 tput init
 echo ""
 git clone https://github.com/aureliancnx/Bubulle-Norminette.git
-pip install pyparsing --user
-pip install pycparser --user
-pip install pycparser-fake-libc --user
+pip install -r Bubulle-Norminette/requirements.txt --user
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1

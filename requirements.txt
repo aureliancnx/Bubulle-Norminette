@@ -1,0 +1,4 @@
+# Python C parser
+pyparsing
+pycparser
+pycparser-fake-libc
