@@ -119,6 +119,15 @@ class RunCheck:
                 print(e)
 
         self.delete_temp()
+        if parsed:
+            v = FunctionPrinter()
+            FunctionPrinter.reset_visit(v)
+            v.visit(ast)
+
+            for clazz in check_utils.get_pre_visitor():
+                clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                clazz.process_visitor_check(v, lines)
+
         line_index = 0
         for line in lines:
             line_index += 1

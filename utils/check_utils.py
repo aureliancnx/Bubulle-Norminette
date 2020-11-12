@@ -86,6 +86,9 @@ def get_visitor():
     return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
             FunctionComments, FunctionTooLong, ForCurlybrackets] # FunctionNestedfix?
 
+def get_pre_visitor():
+    return [FunctionTooLong]
+
 
 def get_line():
     return [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,

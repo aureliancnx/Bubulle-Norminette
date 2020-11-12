@@ -72,8 +72,8 @@ class FunctionTooLong(AbstractCheck):
 
         for line in lines:
             i += 1
-            if v is not None and line in v.function_defs:
-                last_func = v.function_defs[line]
+            if v is not None and i in v.function_defs:
+                last_func = v.function_defs[i]
 
             started_newindent = 0
             if '{' in line:
@@ -89,7 +89,7 @@ class FunctionTooLong(AbstractCheck):
                 if index <= 0:
                     index = 0
                     if line_start > 0 and i - line_start - 2 > 20:
-                        BuErrors.print_error(self.path, self.file_name, i + self.header_lines, 2, "F4",
+                        BuErrors.print_error(self.path, self.file_name, line_start + self.header_lines, 2, "F4",
                                              "Func '{0}' too long ({1} > 20)".format(last_func,
                                                                                      (i - line_start - 2)))
                     line_start = -1
