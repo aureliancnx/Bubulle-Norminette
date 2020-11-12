@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 from checks._check import AbstractCheck
+from utils.error_handling import BuErrors
 
 
 class FunctionToomuch(AbstractCheck):
@@ -54,7 +55,17 @@ class FunctionToomuch(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         self.fill_error(visitor.function_count)
-        return visitor.function_count > 5
+        if visitor.function_count <= 5:
+            return 0
+        i = 0
+        for func in visitor.function_defs:
+            i += 1
+            if i <= 5:
+                continue
+            line = func + self.header_lines + (1 if self.header_lines != 0 else 0)
+            BuErrors.print_error(self.path, self.file_name, line, self.get_check_level(),
+                                 self.get_check_id(), self.message.format(visitor.function_count))
+        return 0
 
     def check_inner(self, file_content, file_contentf):
         return 0
