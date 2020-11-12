@@ -77,7 +77,10 @@ class BuError():
             for i in range(1, line_spaces):
                 line_st = " " + line_st
             level_space = 8 if self.level == 0 else 7
-            details_spaces = level_space - len(str(self.line))
+            details_spaces = level_space - len(line_st)
+            if details_spaces < 0:
+                details_spaces = 0
+            details_spaces += 6 if self.level == 0 else 5
             color = '\033[37m' if len(errors) % 2 == 1 else '\033[0m'
             message = color + self.message
             details_st = message
