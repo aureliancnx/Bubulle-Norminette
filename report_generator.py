@@ -31,7 +31,7 @@ from os import path
 
 from html_report.html_report import HtmlReport
 from run_check import RunCheck
-from utils import file_utils, string_utils, c_utils, error_handling, version_utils, config_utils, workers
+from utils import file_utils, string_utils, c_utils, error_handling, version_utils, config_utils
 
 
 class Report():
