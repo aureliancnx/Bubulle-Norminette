@@ -24,13 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
+import time
 import traceback
 import os.path
 from os import path
 
 from html_report.html_report import HtmlReport
 from run_check import RunCheck
-from utils import file_utils, string_utils, c_utils, error_handling, version_utils, config_utils
+from utils import file_utils, string_utils, c_utils, error_handling, version_utils, config_utils, workers
 
 
 class Report():
@@ -71,6 +72,7 @@ class Report():
         print("\033[0m-------------------------------------------------------------------------------\033[1;34;00m")
 
     def generate_report_summary(self):
+        workers.wait()
         style_err = self.summary_errors()
         print("\033[0m-------------------------------------------------------------------------------")
         print("\033[1;34;40mTOTAL\033[0m          Major: {0}       Minor: {1}       Info: {2}      Note: {3}".
@@ -134,5 +136,8 @@ class Report():
 
     def generate_report(self):
         self.generate_report_header()
+        ti = time.time()
         self.run_checks()
+        ti = time.time() - ti
+        print("%f" % ti)
         self.generate_report_summary()

@@ -23,10 +23,10 @@ L'objectif est de garder une norminette complète en moins de 3000 lignes (asset
 ## bubulle
 
 ### Dépendances
-  Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x et pycparser installé sur votre ordinateur.<br>
+  Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x sur votre ordinateur.<br>
   <i>Le script d'installation installe automatiquement les dépendances.</i>
  - [Python](https://python.com)
- - Pycparser : ```pip install pycparser pyparsing --user```<br>
+ - Pycparser : ```python3 -m pip install pycparser pyparsing pycparser-fake-libc --user```<br>
  
 La norminette Bubulle utilise un préprocesseur C écrit en Python permettant le fonctionnement de plusieurs tests de norme.
 

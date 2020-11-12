@@ -23,29 +23,60 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-import argparse
+
+import multiprocessing
+import threading
 import time
 
-from args_handler import handle_args, parse_args, set_time_start
-from report_generator import Report
-from utils import file_utils, error_handling, version_utils, workers
-from utils.config_utils import init_config
+threads = []
+thread_count = 1
+sleeper = 0.05
+s_id = 0
 
-args = None
 
-if __name__ == '__main__':
-    set_time_start(time.time())
-    args = parse_args()
-    handle_args(args)
-    init_config()
+class BubulleWorker(threading.Thread):
+    def __init__(self, name):
+        threading.Thread.__init__(self)
+        self.name = name
+        self.w = []
+        self.wk_end = False
+        self.start()
 
-    # Path & args
-    error_handling.args = args
-    path = file_utils.get_path(args)
+    def run(self):
+        while 1:
+            if self.wk_end:
+                return
+            if len(self.w) != 0:
+                try:
+                    self.w[0]()
+                except:
+                    pass
+                del self.w[0]
+            time.sleep(sleeper)
 
-    # Worker init
-    workers.init_workers()
 
-    # Make a report
-    report = Report(path)
-    workers.wait()
+def av_work(test):
+    global s_id
+    if s_id >= len(threads) - 1:
+        s_id = 0
+    else:
+        s_id += 1
+    threads[s_id].w.append(test)
+
+
+def init_workers():
+    thread_count = multiprocessing.cpu_count()
+    for i in range(0, thread_count):
+        threads.append(BubulleWorker("BubulleWorker-{0}".format(str(i))))
+
+
+def wait():
+    while 1:
+        end = True
+        for t in threads:
+            if len(t.w) != 0:
+                end = False
+        if end:
+            for t in threads:
+                t.wk_end = True
+            break
