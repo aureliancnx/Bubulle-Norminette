@@ -67,11 +67,11 @@ def get_filenames():
 
 def get_inner():
     return [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
-            IndentLevels, FunctionComments, FunctionNested, FunctionTooLong]
+            IndentLevels, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra]
 
 
 def get_func_decl():
-    return [FunctionTooMuchArgs, FunctionVoidMissing]
+    return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, ForCurlybrackets]
 
 
 def get_func_call():
@@ -84,10 +84,9 @@ def get_var_decl():
 
 def get_visitor():
     return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
-            FunctionComments, FunctionTooLong] # FunctionNestedfix?
+            FunctionComments, FunctionTooLong, ForCurlybrackets] # FunctionNestedfix?
 
 
 def get_line():
     return [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,
-            DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs,
-            LinesExtra]
+            DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs]
