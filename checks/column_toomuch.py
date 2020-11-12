@@ -29,7 +29,7 @@ from checks._check import AbstractCheck
 class ColumnToomuch(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Too much chars in line ({0} > 80)"
+        self.message = "Line too long ({0} > 80 chars)"
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
