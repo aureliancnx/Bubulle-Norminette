@@ -34,4 +34,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2-beta
     - run: sudo npm install -g sloc
+    - run: @rm -rf c_tests/ c_tests2/
+    - run: @rm -rf fake_libc_include/
     - run: test $(sloc -exclude assets/ . | grep -i "source" | cut -d ":" -f 2 | xargs | cut -d " " -f1) -le 3000
