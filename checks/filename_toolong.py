@@ -30,19 +30,13 @@ from checks._check import AbstractCheck
 class FilenameTooLong(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "File name too long"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "F002"
-
-    def get_check_level(self):
-        return 0
-
     def check_filename(self):
-        return len(self.file_name) > 30
+        return len(self.file_name) > self.get_config()['max_length']
 
     def check_line(self, line, line_number):
         return 0

@@ -30,16 +30,10 @@ from checks._check import AbstractCheck
 class VariableSnakecase(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Variable '{0}' not in snake_case format."
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "V1"
-
-    def get_check_level(self):
-        return 2
 
     def check_variable_decl(self, var):
         self.fill_error(var.name)

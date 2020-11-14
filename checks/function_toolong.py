@@ -33,17 +33,11 @@ v = None
 class FunctionTooLong(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Func '{0}' too long ('{1}' > 20)"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
         self.v = None
-
-    def get_check_id(self):
-        return "F4"
-
-    def get_check_level(self):
-        return 2
 
     def check_function_decl(self, visitor, func):
         return 0
@@ -88,10 +82,10 @@ class FunctionTooLong(AbstractCheck):
                 index -= 1
                 if index <= 0:
                     index = 0
-                    if line_start > 0 and i - line_start - 2 > 20:
-                        BuErrors.print_error(self.path, self.file_name, line_start + self.header_lines, 2, "F4",
-                                             "Func '{0}' too long ({1} > 20)".format(last_func,
-                                                                                     (i - line_start - 2)))
+                    if line_start > 0 and i - line_start - 2 > self.get_config()['max_lines_per_function']:
+                        BuErrors.print_error(self.path, self.file_name, line_start + self.header_lines,
+                                             self.get_check_level(), self.get_check_id(),
+                                             self.get_config()['message'].format(last_func, (i - line_start - 2)))
                     line_start = -1
                     last_func = ''
             else:

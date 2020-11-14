@@ -29,7 +29,7 @@ import time
 from args_handler import handle_args, parse_args, set_time_start
 from report_generator import Report
 from utils import file_utils, error_handling, version_utils
-from utils.config_utils import init_config
+from utils.config_utils import load_config
 
 args = None
 
@@ -37,15 +37,11 @@ if __name__ == '__main__':
     set_time_start(time.time())
     args = parse_args()
     handle_args(args)
-    init_config()
+    load_config()
 
     # Path & args
     error_handling.args = args
     path = file_utils.get_path(args)
 
-    # Worker init
-    #workers.init_workers()
-
     # Make a report
     report = Report(path)
-    #workers.wait()

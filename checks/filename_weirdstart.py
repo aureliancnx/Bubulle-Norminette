@@ -31,16 +31,10 @@ from checks._check import AbstractCheck
 class FilenameWeirdStart(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "File name doesn't start with alpha/underscore"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "F002"
-
-    def get_check_level(self):
-        return 0
 
     def check_filename(self):
         if FilenameUseless(self.file_name, self.path, self.header_lines).check_filename():

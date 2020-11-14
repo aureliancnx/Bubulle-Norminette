@@ -25,25 +25,16 @@
 # SOFTWARE.#
 from checks._check import AbstractCheck
 
-misplaced_pointers = ('int*', 'double*', 'float*', 'long*', 'char*', 'string*', 'bool*', 'short*', 'linked_list_t*')
-
-
 class MisplacedPointers(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Pointer misplaced: '{0}'"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "V3"
-
-    def get_check_level(self):
-        return 1
-
     def check_line(self, line, line_number):
-        for pointer in misplaced_pointers:
+        for pointer in self.get_config()['misplaced_pointers']:
             if pointer in line:
                 self.args = pointer
                 return 1

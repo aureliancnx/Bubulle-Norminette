@@ -29,16 +29,10 @@ from checks._check import AbstractCheck
 class HeaderMissing(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "EPITECH header misplaced/missing"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "G1"
-
-    def get_check_level(self):
-        return 2
 
     def check_filename(self):
         return 0
@@ -48,11 +42,11 @@ class HeaderMissing(AbstractCheck):
 
     def check_inner(self, content, contentf):
         self.line = 1
-        if not content.startswith("/*"):
+        if not content.startswith(self.get_config()['header_start']):
             return 1
-        if not content.split("\n")[1].startswith("** EPITECH PROJECT,"):
+        if not content.split("\n")[1].startswith(self.get_config()['header_info']):
             return 1
-        if not content.split("\n")[3].startswith("** File description:"):
+        if not content.split("\n")[3].startswith(self.get_config()['header_desc']):
             return 1
         return 0
 

@@ -25,26 +25,13 @@
 # SOFTWARE.#
 from checks._check import AbstractCheck
 
-disallowed_functions = ('printf', 'dprintf', 'fprintf', 'vprintf', 'sprintf', 'snprintf', 'vprintf',
-                                'vfprintf', 'vsprintf', 'vsnprintf', 'asprintf', 'scanf', 'memcpy', 'memset',
-                                'memmove', 'strcat', 'strchar', 'strcpy', 'atoi', 'strlen', 'strstr', 'strncpy',
-                                'strcasestr', 'strncastestr', 'strcmp', 'strncmp', 'strtok', 'strnlen', 'strdup',
-                                'realloc')
-
-
 class ForbiddenFunctions(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Forbidden function '{0}'?"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "-42?"
-
-    def get_check_level(self):
-        return 2
 
     def check_function_decl(self, visitor, func):
         return 0
@@ -53,7 +40,7 @@ class ForbiddenFunctions(AbstractCheck):
         return 0
 
     def check_function_calls(self, func):
-        if func.name.name in disallowed_functions:
+        if func.name.name in self.get_config()['function_list']:
             self.line = func.coord.line + (1 if self.header_lines != 0 else 0)
             self.fill_error(func.name.name)
             return 1

@@ -29,22 +29,16 @@ from checks._check import AbstractCheck
 class ColumnToomuch(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Line too long ({0} > 80 chars)"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "F3"
-
-    def get_check_level(self):
-        return 2
-
     def check_line(self, line, line_number):
-        length = len(line.replace("\t", "    "))
-
-        if length <= 80:
+        length = len(line.replace("\t", ' ' * self.get_config()['tabs_to_spaces']))
+        if length <= self.get_config()['max_columns']:
             return 0
+
         self.fill_error(length)
         return 1
 

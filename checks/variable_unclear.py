@@ -32,16 +32,10 @@ from utils.error_handling import BuErrors
 class VariableUnclear(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Unclear variable name: '{0}'"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "T010"
-
-    def get_check_level(self):
-        return 0
 
     def check_line(self, line, line_number):
         return 0
@@ -55,7 +49,7 @@ class VariableUnclear(AbstractCheck):
     def check_variable_decl(self, var):
         self.fill_error(var.name)
         self.line = var.coord.line + (1 if self.header_lines != 0 else 0)
-        return var.name == 'l' or var.name == 'o'
+        return var.name in self.get_config()['unclear_variables']
 
     def check_visitor(self, visitor, lines):
         return 0

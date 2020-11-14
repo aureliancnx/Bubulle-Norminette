@@ -29,21 +29,15 @@ from checks._check import AbstractCheck
 class MultipleAssignements(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Multiple assignements on same line"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "L1"
-
-    def get_check_level(self):
-        return 1
-
     def check_line(self, line, line_number):
         if ';;' in line:
             return 0
-        return line.count(';') > 1 and not ('for (' in line or 'for(' in line)
+        return line.count(';') > self.get_config()['max_assignements'] and not ('for (' in line or 'for(' in line)
 
     def check_function_calls(self, func):
         return 0

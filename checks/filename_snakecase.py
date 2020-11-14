@@ -30,19 +30,13 @@ from checks._check import AbstractCheck
 class FilenameSnakecase(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "File name not in snake_case"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "O4"
-
-    def get_check_level(self):
-        return 2
-
     def check_filename(self):
-        if self.file_name == "Makefile":
+        if self.file_name in self.get_config()['excluded_files']:
             return 0
         return string_utils.tosnake(self.file_name) != self.file_name
 

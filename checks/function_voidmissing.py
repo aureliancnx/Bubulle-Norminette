@@ -29,16 +29,10 @@ from checks._check import AbstractCheck
 class FunctionVoidMissing(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Missing void parameter in func '{0}'"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "F5"
-
-    def get_check_level(self):
-        return 2
 
     def check_function_decl(self, visitor, func):
         if func.decl.type and func.decl.type.args:

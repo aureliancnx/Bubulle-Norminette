@@ -30,17 +30,11 @@ from utils.error_handling import BuErrors
 class LinesExtra(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Extra lines"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
         self.last_empty_line = -100
-
-    def get_check_id(self):
-        return "L6"
-
-    def get_check_level(self):
-        return 1
 
     def check_line(self, line, line_number):
         return 0

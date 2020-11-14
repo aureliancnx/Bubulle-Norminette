@@ -31,16 +31,10 @@ from checks._check import AbstractCheck
 class WhileCurlybrackets(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Misplaced curly brackets"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "L4"
-
-    def get_check_level(self):
-        return 1
 
     def check_function_decl(self, visitor, func):
         return 0

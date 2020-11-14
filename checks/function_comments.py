@@ -34,16 +34,10 @@ cache_visitor = None
 class FunctionComments(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Comments inside a func ('{0}')"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "F6"
-
-    def get_check_level(self):
-        return 1
 
     def check_function_decl(self, visitor, func):
         return 0
@@ -72,7 +66,8 @@ class FunctionComments(AbstractCheck):
             if index > 0:
                 if base_line.startswith("//") or base_line.startswith("/*"):
                     self.fill_error(last_func)
-                    BuErrors.print_error(self.path, self.file_name, i, 1, "F6", "Comments inside a func ('{0}')".format(last_func))
+                    BuErrors.print_error(self.path, self.file_name, i, self.get_check_level(),
+                                         self.get_check_id(), self.get_config()['message'].format(last_func))
             if re.match(r'{[ \t]*', line):
                 index += 1
                 if i - 1 >= 0 and cache_visitor is not None and i - self.header_lines - 1 in cache_visitor.function_defs:
@@ -82,5 +77,4 @@ class FunctionComments(AbstractCheck):
                 if index <= 0:
                     index = 0
                     last_func = ''
-
         return 0

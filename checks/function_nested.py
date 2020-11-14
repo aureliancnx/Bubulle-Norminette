@@ -34,16 +34,10 @@ cache_visitor = None
 class FunctionNested(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Nested function '{0}'"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "F7"
-
-    def get_check_level(self):
-        return 2
 
     def check_function_decl(self, visitor, func):
         return 0

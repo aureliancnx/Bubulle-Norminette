@@ -29,19 +29,17 @@ from checks._check import AbstractCheck
 class DeclarationSpaces(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Missing space after keyword"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "L3"
-
-    def get_check_level(self):
-        return 1
-
     def check_line(self, line, line_number):
-        return 'while(' in line or 'for(' in line or 'if(' in line or 'return(' in line or 'switch(' in line
+        for decl in self.get_config()['declaration_spaces_keywords']:
+            if decl in line:
+                self.fill_error(decl)
+                return 1
+        return 0
 
     def check_function_calls(self, func):
         return 0

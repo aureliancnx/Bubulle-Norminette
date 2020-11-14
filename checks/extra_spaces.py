@@ -29,16 +29,10 @@ from checks._check import AbstractCheck
 class ExtraSpaces(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Extra spaces end of line"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "L3"
-
-    def get_check_level(self):
-        return 0
 
     def check_line(self, line, line_number):
         return line.rstrip() != line

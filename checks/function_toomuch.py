@@ -30,16 +30,10 @@ from utils.error_handling import BuErrors
 class FunctionToomuch(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Too many functions ({0} > 5)"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "O3"
-
-    def get_check_level(self):
-        return 2
 
     def check_function_decl(self, visitor, func):
         return 0
@@ -55,7 +49,7 @@ class FunctionToomuch(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         self.fill_error(visitor.function_count)
-        if visitor.function_count <= 5:
+        if visitor.function_count <= self.get_config()['max_functions_per_file']:
             return 0
         i = 0
         for func in visitor.function_defs:

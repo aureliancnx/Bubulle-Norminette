@@ -25,29 +25,19 @@
 # SOFTWARE.#
 from checks._check import AbstractCheck
 
-check_end = {".o", ".gch", ".a", ".so", ".d", ".gdca", ".gcno", "~"}
-check_presuffix = {"#"}
-
-
 class FilenameUseless(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Useless file for compilation"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "O1"
-
-    def get_check_level(self):
-        return 2
-
     def check_filename(self):
-        for c in check_end:
+        for c in self.get_config()['end']:
             if self.file_name.endswith((c)):
                 return 1
-        for c in check_presuffix:
+        for c in self.get_config()['presuff']:
             if self.file_name.startswith((c)) and self.file_name.endswith((c)):
                 return 1
         return 0

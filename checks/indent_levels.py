@@ -31,29 +31,18 @@ from pycparser.c_ast import For, If, Switch, While
 from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
-matches = ["if\s*\(((?!\s).+)\)", "while\s*\(((?!\s).+)\)", "for\s*\(((?!\s).+)\)"
-           , "else\s"]
-
 sub_stmt = [For, If, Switch, While]
-
-t_mul = 4
 
 class IndentLevels(AbstractCheck):
 
     tc = None
     flag_lines = []
     def __init__(self, file_name, path, header_lines):
-        self.message = "Indentation must be {0} spaces but it's {1}"
-        self.base_message = "Wrong indentation level"
+        self.message = self.get_config()['message']
+        self.base_message = self.get_config()['basemessage']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "L2"
-
-    def get_check_level(self):
-        return 1
 
     def check_line(self, line, line_number):
         return 0
@@ -108,11 +97,11 @@ class IndentLevels(AbstractCheck):
                         ilvl_t -= 1
                     elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
                         ilvl_t -= 1
-                if s != ilvl_t * t_mul and line not in flag_lines:
+                if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
                     flag_lines.append(line)
                     BuErrors.print_error(self.path, self.file_name, line,
                                          self.get_check_level(), self.get_check_id(),
-                                         self.message.format(str(ilvl_t * t_mul), str(s)) + ' [{0}]'.format(l))
+                                         self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)) + ' [{0}]'.format(l))
         return 1
 
     def check_function_decl(self, visitor, func):
@@ -126,11 +115,11 @@ class IndentLevels(AbstractCheck):
             l = tc[li]
             s = len(l) - len(l.lstrip())
             line = li + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
-            if s != ilvl * t_mul and line not in flag_lines:
+            if s != ilvl * self.get_config()['spaces_per_level'] and line not in flag_lines:
                 flag_lines.append(line)
                 BuErrors.print_error(self.path, self.file_name, line,
                                      self.get_check_level(), self.get_check_id(),
-                                     self.message.format(str(ilvl * t_mul), str(s)))
+                                     self.message.format(str(ilvl * self.get_config()['spaces_per_level']), str(s)))
             self.stmt_parse(b, None, ilvl + 1, 'a')
         return 0
 

@@ -29,19 +29,13 @@ from checks._check import AbstractCheck
 class VariableTypedef(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Typedef '{0}' must ends with _t"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "V1"
-
-    def get_check_level(self):
-        return 2
-
     def check_variable_decl(self, var):
-        return 'typedef' in var.storage and not var.name.endswith('_t')
+        return 'typedef' in var.storage and not var.name.endswith(self.get_config()['typedef_suffix'])
 
     def check_line(self, line, line_number):
         return 0

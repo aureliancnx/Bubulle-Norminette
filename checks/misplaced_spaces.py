@@ -27,6 +27,7 @@ import re
 
 from checks._check import AbstractCheck
 
+# TODO: put this in config file
 regex = {
     '([^\t&|=^><+\-*%\/! ]=[^=]|[^&|=^><+\-*%\/!]=[^= \n])': '=',
     '([^\t ]==|==[^ \n])': '==',
@@ -58,16 +59,10 @@ regex = {
 class MisplacedSpace(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Missing spaces in operator '{0}'"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "L3"
-
-    def get_check_level(self):
-        return 1
 
     def check_line(self, line, line_number):
         for misplaced_space in regex:

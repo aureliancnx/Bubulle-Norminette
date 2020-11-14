@@ -31,19 +31,13 @@ from checks._check import AbstractCheck
 class MacroConstant(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Macros shouldn't be used for constants"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "H3"
-
-    def get_check_level(self):
-        return 1
-
     def check_line(self, line, line_number):
-        return re.match(r'#define [^ ]+ [0-9]+([.][0-9]+)?', line)
+        return re.match(self.get_config()['regex'], line)
 
     def check_function_calls(self, func):
         return 0

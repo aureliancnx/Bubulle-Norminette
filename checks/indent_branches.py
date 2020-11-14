@@ -32,24 +32,18 @@ from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
 sub_stmt = [For, If, Switch, While]
-max_lvl = 2
 
 
 class IndentBranches(AbstractCheck):
 
     tc = None
     flag_lines = []
+
     def __init__(self, file_name, path, header_lines):
-        self.message = "Too many conditional branches"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "C1"
-
-    def get_check_level(self):
-        return 1
 
     def check_line(self, line, line_number):
         return 0
@@ -95,7 +89,7 @@ class IndentBranches(AbstractCheck):
                         ilvl_t -= 1
                     elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
                         ilvl_t -= 1
-                if ilvl_t > max_lvl:
+                if ilvl_t > self.get_config()['max_branches']:
                     BuErrors.print_error(self.path, self.file_name, line,
                                          self.get_check_level(), self.get_check_id(),
                                          self.message)

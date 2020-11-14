@@ -2,20 +2,31 @@ import json
 import os
 from pathlib import Path
 
+config = None
 forbidden_paths = None
 
 
-def get_forbidden_paths():
-    global forbidden_paths
-    file = open(os.path.dirname(os.path.realpath(__file__)) + '/../config/excluded_paths.json', 'r')
-    content = file.read()
-    forbidden_paths = json.loads(content)
-    file.close()
-    read_ignoredfiles()
+def load_config():
+    global config
+    try:
+        file = open(os.path.dirname(os.path.realpath(__file__)) + '/../config.json', 'r')
+        content = file.read()
+        config = json.loads(content)
+        file.close()
+        load_sub()
+    except Exception as ex:
+        print(ex)
+        print("Unable to load Bubulle config file.")
+        exit(1)
 
 
-def read_ignoredfiles():
+def load_sub():
+    load_forbidden_paths()
+
+
+def load_forbidden_paths():
     global forbidden_paths
+    forbidden_paths = config['excluded_paths']
     try:
         raw = os.popen("git check-ignore $(find . -type f -print) | cut -c3-").read()
         raw = raw.split('\n')
@@ -27,6 +38,3 @@ def read_ignoredfiles():
             forbidden_paths.remove("")
     except Exception as e:
         print(e)
-
-def init_config():
-    get_forbidden_paths()

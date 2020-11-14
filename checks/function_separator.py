@@ -33,16 +33,10 @@ from utils.error_handling import BuErrors
 class FunctionSeparator(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "One empty line between func"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "G2"
-
-    def get_check_level(self):
-        return 1
 
     def check_function_decl(self, visitor, func):
         return 0

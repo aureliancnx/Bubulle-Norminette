@@ -1,0 +1,332 @@
+{
+  "checks": {
+    "column_toomuch": {
+      "enabled": true,
+      "id": "F3",
+      "level": 2,
+      "message": "Line too long ({0} > 80 chars)",
+      "max_columns": 80,
+      "tabs_to_spaces": 4
+    },
+    "declaration_spaces": {
+      "enabled": true,
+      "id": "L3",
+      "level": 1,
+      "message": "Missing space after keyword '{0}'",
+      "declaration_spaces_keywords": [
+        "for(",
+        "while(",
+        "if(",
+        "switch(",
+        "return("
+      ]
+    },
+    "empty_file": {
+      "enabled": true,
+      "id": "G1",
+      "level": 2,
+      "message": "Empty source file"
+    },
+    "extra_spaces": {
+      "enabled": true,
+      "id": "L3",
+      "level": 0,
+      "message": "Extra spaces end of line"
+    },
+    "filename_snakecase": {
+      "enabled": true,
+      "id": "O4",
+      "level": 2,
+      "message": "File name not in snake_case",
+      "excluded_files": [
+        "Makefile"
+      ]
+    },
+    "filename_toolong": {
+      "enabled": true,
+      "id": "F002",
+      "level": 0,
+      "message": "File name too long",
+      "max_length": 30
+    },
+    "filename_unclear": {
+      "enabled": true,
+      "id": "O4",
+      "level": 2,
+      "message": "File name not clear enough",
+      "unclear_names": [
+        "string.c",
+        "str.c",
+        "my_string.c",
+        "my_str.c",
+        "algorithm.c",
+        "my_algorithm.c",
+        "algo.c",
+        "my_algo.c",
+        "program.c",
+        "main.c",
+        "my_program.c",
+        "test.c",
+        "prog.c",
+        "my_prog.c"
+      ]
+    },
+    "filename_useless": {
+      "enabled": true,
+      "id": "O1",
+      "level": 2,
+      "message": "Useless file for compilation",
+      "end": [
+        ".o",
+        ".gch",
+        ".a",
+        ".so",
+        ".d",
+        ".gdca",
+        ".gcno",
+        "~"
+      ],
+      "presuff": [
+        "#"
+      ]
+    },
+    "filename_weirdstart": {
+      "enabled": true,
+      "id": "F002",
+      "level": 0,
+      "message": "File name doesn't start with alpha/underscore"
+    },
+    "for_curlybrackets": {
+      "enabled": true,
+      "id": "L4",
+      "level": 1,
+      "message": "Misplaced brackets of 'for' keyword"
+    },
+    "forbidden_functions": {
+      "enabled": true,
+      "id": "-42?",
+      "level": 2,
+      "message": "Forbidden function '{0}'?",
+      "function_list": [
+        "printf",
+        "dprintf",
+        "fprintf",
+        "vprintf",
+        "sprintf",
+        "snprintf",
+        "vprintf",
+        "vfprintf",
+        "vsprintf",
+        "vsnprintf",
+        "asprintf",
+        "scanf",
+        "memcpy",
+        "memset",
+        "memmove",
+        "strcat",
+        "strchar",
+        "strcpy",
+        "atoi",
+        "strlen",
+        "strstr",
+        "strncpy",
+        "strcasestr",
+        "strncastestr",
+        "strcmp",
+        "strncmp",
+        "strtok",
+        "strnlen",
+        "strdup",
+        "realloc"
+      ]
+    },
+    "forbidden_goto": {
+      "enabled": true,
+      "id": "-42?",
+      "level": 2,
+      "message": "Forbidden keyword 'goto'",
+      "regex": "/(^|[^0-9a-zA-Z_])(goto)[^0-9a-zA-Z]/"
+    },
+    "function_comments": {
+      "enabled": true,
+      "id": "F6",
+      "level": 1,
+      "message": "Comments inside a func ('{0}')"
+    },
+    "function_curlybrackets": {
+      "enabled": true,
+      "id": "L4",
+      "level": 1,
+      "message": "Misplaced curly brackets"
+    },
+    "function_nested": {
+      "enabled": true,
+      "id": "F7",
+      "level": 2,
+      "message": "Nested function '{0}'"
+    },
+    "function_separator": {
+      "enabled": true,
+      "id": "G2",
+      "level": 1,
+      "message": "One empty line between func"
+    },
+    "function_snakecase": {
+      "enabled": true,
+      "id": "F2",
+      "level": 2,
+      "message": "Func '{0}' not in snake_case"
+    },
+    "function_toolong": {
+      "enabled": true,
+      "id": "F4",
+      "level": 2,
+      "message": "Func '{0}' too long ('{1}' > 20)",
+      "max_lines_per_function": 20
+    },
+    "function_toomuch": {
+      "enabled": true,
+      "id": "O3",
+      "level": 2,
+      "message": "Too many functions ({0} > 5)",
+      "max_functions_per_file": 5
+    },
+    "function_toomuchargs": {
+      "enabled": true,
+      "id": "F5",
+      "level": 2,
+      "message": "Func '{0}' has too many args",
+      "max_args_per_function": 4
+    },
+    "function_voidmissing": {
+      "enabled": true,
+      "id": "F5",
+      "level": 2,
+      "message": "Missing void parameter in func '{0}'"
+    },
+    "header_missing": {
+      "enabled": true,
+      "id": "G1",
+      "level": 2,
+      "message": "EPITECH header misplaced/missing",
+      "header_start": "/*",
+      "header_info": "** EPITECH PROJECT,",
+      "header_desc": "** File description:"
+    },
+    "if_curlybrackets": {
+      "enabled": true,
+      "id": "L4",
+      "level": 1,
+      "message": "Misplaced curly brackets",
+      "regex": "if\\s*\\(((?!\\s*\\{).+)\\)\\s*\\{(.|\\s)*?\\}"
+    },
+    "indent_branches": {
+      "enabled": true,
+      "id": "C1",
+      "level": 1,
+      "message": "Too many conditional branches",
+      "max_branches": 2
+    },
+    "indent_levels": {
+      "enabled": true,
+      "id": "L2",
+      "level": 1,
+      "message": "Indentation must be {0} spaces but it's {1}",
+      "basemessage": "Wrong indentation level",
+      "spaces_per_level": 4
+    },
+    "indent_tabs": {
+      "enabled": true,
+      "id": "L2",
+      "level": 1,
+      "message": "No tabs should replace indentation.",
+      "regex": "\t"
+    },
+    "lines_extra": {
+      "enabled": true,
+      "id": "L6",
+      "level": 1,
+      "message": "Extra lines"
+    },
+    "macro_constants": {
+      "enabled": true,
+      "id": "H3",
+      "level": 1,
+      "message": "Macros shouldn't be used for constants",
+      "regex": "#define [^ ]+ [0-9]+([.][0-9]+)?"
+    },
+    "misplaced_pointers": {
+      "enabled": true,
+      "id": "V3",
+      "level": 1,
+      "message": "Misplaced pointer: '{0}'",
+      "misplaced_pointers": [
+        "int*",
+        "double*",
+        "float*",
+        "long*",
+        "char*",
+        "string*",
+        "bool*",
+        "short*",
+        "linked_list_t*"
+      ]
+    },
+    "misplaced_spaces": {
+      "enabled": true,
+      "id": "L3",
+      "level": 1,
+      "message": "Missing spaces in operator '{0}'"
+    },
+    "missing_spaces": {
+      "enabled": true,
+      "id": "L3",
+      "level": 1,
+      "message": "Missing spaces after comma",
+      "regex": "/,[^ \\n]/"
+    },
+    "multiple_assignements": {
+      "enabled": true,
+      "id": "L1",
+      "level": 1,
+      "message": "Multiple assignements on same line",
+      "max_assignements": 1
+    },
+    "variable_snakecase": {
+      "enabled": true,
+      "id": "V1",
+      "level": 2,
+      "message": "Variable '{0}' not in snake_case format."
+    },
+    "variable_typedef": {
+      "enabled": true,
+      "id": "V1",
+      "level": 2,
+      "message": "Typedef '{0}' must ends with _t",
+      "typedef_suffix": "_t"
+    },
+    "variable_unclear": {
+      "enabled": true,
+      "id": "T010",
+      "level": 0,
+      "message": "Unclear variable name: '{0}'",
+      "unclear_variables": [
+        "o",
+        "l"
+      ]
+    },
+    "while_curlybrackets": {
+      "enabled": true,
+      "id": "L4",
+      "level": 1,
+      "message": "Misplaced curly brackets"
+    }
+  },
+  "excluded_paths": [
+    ".gitignore",
+    ".idea/",
+    ".git/",
+    "tests/",
+    "codeStyles"
+  ]
+}

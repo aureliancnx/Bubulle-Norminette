@@ -35,16 +35,10 @@ class ForCurlybrackets(AbstractCheck):
 
     tc = None
     def __init__(self, file_name, path, header_lines):
-        self.message = "Misplaced brackets of 'for' keyword"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def get_check_id(self):
-        return "L4"
-
-    def get_check_level(self):
-        return 1
 
     def curly_process(self, dt):
         if not re.search(r'for\s*\(((?!\s).+)\)', tc[dt.coord.line - 1]):
@@ -88,11 +82,3 @@ class ForCurlybrackets(AbstractCheck):
         lines = file_contentf.split('\n')
         tc = lines
         return 0
-        #reg = re.compile('for\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}')
-        #statements = re.finditer(reg, file_contentf)
-        #for statement in statements:
-        #    lineno = file_content.count('\n', 0, statement.start())
-        #    self.line = lineno
-        #    if not '){' in statement.group(0).replace(" ", ""):
-        #        return 1
-        #return 0

@@ -31,19 +31,13 @@ from checks._check import AbstractCheck
 class ForbiddenGoto(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
-        self.message = "Forbidden keyword 'goto'"
+        self.message = self.get_config()['message']
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def get_check_id(self):
-        return "-42?"
-
-    def get_check_level(self):
-        return 2
-
     def check_line(self, line, line_number):
-        return re.match(r'/(^|[^0-9a-zA-Z_])(goto)[^0-9a-zA-Z]/', line)
+        return re.match(self.get_config()['regex'], line)
 
     def check_function_calls(self, func):
         return 0
