@@ -8,13 +8,13 @@ test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
 test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
 test.h               G1       1       MAJOR     EPITECH header misplaced/missing
 my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
-my_test.c            V3       36      MINOR     Pointer misplaced: 'char*'
+my_test.c            V3       36      MINOR     Misplaced pointer: 'char*'
 my_test.c            F3       37      MAJOR     Line too long (101 > 80 chars)
 my_test.c            L3       40      MINOR     Missing spaces in operator '='
 my_test.c            L3       48      INFO      Extra spaces end of line
 my_test.c            L1       73      MINOR     Multiple assignements on same line
 my_test.c            L3       119     MINOR     Missing spaces in operator '=='
-my_test.c            L3       127     MINOR     Missing space after keyword
+my_test.c            L3       127     MINOR     Missing space after keyword 'return('
 my_test.c            G1       24      MAJOR     EPITECH header misplaced/missing
 my_test.c            L4       46      MINOR     Misplaced curly brackets
 my_test.c            L2       123     MINOR     Wrong indentation level
@@ -64,7 +64,7 @@ my_test.c            T010     137     INFO      Unclear variable name: 'l'
 my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
 test.h.gch           O1               MAJOR     Useless file for compilation
 test.gcno            O1               MAJOR     Useless file for compilation
-frofro.c             V3       29      MINOR     Pointer misplaced: 'char*'
+frofro.c             V3       29      MINOR     Misplaced pointer: 'char*'
 frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
 frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
 -------------------------------------------------------------------------------
