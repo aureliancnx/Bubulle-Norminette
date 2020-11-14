@@ -101,7 +101,7 @@ class IndentLevels(AbstractCheck):
                     flag_lines.append(line)
                     BuErrors.print_error(self.path, self.file_name, line,
                                          self.get_check_level(), self.get_check_id(),
-                                         self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)) + ' [{0}]'.format(l))
+                                         self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)))
         return 1
 
     def check_function_decl(self, visitor, func):
