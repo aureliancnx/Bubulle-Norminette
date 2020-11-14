@@ -94,8 +94,10 @@ class Report():
                 runcheck = RunCheck(self.path, self.path)
                 runcheck.run()
             except Exception as e:
-                traceback.print_exc()
-                print(e)
+                print("\033[31m{0}: Unable to run all tests. -verbose for more info.\033[0m".format(self.path))
+                if error_handling.args.verbose:
+                    traceback.print_exc()
+                    print(e)
                 return
 
         for pw, subdirs, files in os.walk(self.path):
