@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                          Bubulle Code Norme Report v1.17b
+                          Bubulle Code Norme Report v1.18b
 Path: c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
@@ -49,6 +49,8 @@ my_test.c            L4       130     MINOR     Misplaced curly brackets
 my_test.c            O3       130     MAJOR     Too many functions (8 > 5)
 my_test.c            O3       134     MAJOR     Too many functions (8 > 5)
 my_test.c            O3       141     MAJOR     Too many functions (8 > 5)
+my_test.c            C1       64      MINOR     Too many conditional branches
+my_test.c            C1       66      MINOR     Too many conditional branches
 my_test.c            L4       43      MINOR     Misplaced brackets of 'for' keyword
 my_test.c            -42?     49      MAJOR     Forbidden function 'printf'?
 my_test.c            T010     107     INFO      Unclear variable name: 'o'
@@ -66,5 +68,5 @@ frofro.c             V3       29      MINOR     Pointer misplaced: 'char*'
 frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
 frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
 -------------------------------------------------------------------------------
-TOTAL          Major: 19       Minor: 38       Info: 4      Note: -95
+TOTAL          Major: 19       Minor: 40       Info: 4      Note: -97
 -------------------------------------------------------------------------------

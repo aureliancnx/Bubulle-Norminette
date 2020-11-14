@@ -46,6 +46,7 @@ from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.function_voidmissing import FunctionVoidMissing
 from checks.header_missing import HeaderMissing
 from checks.if_curlybrackets import IfCurlybrackets
+from checks.indent_branches import IndentBranches
 from checks.indent_levels import IndentLevels
 from checks.indent_tabs import IndentTabs
 from checks.lines_extra import LinesExtra
@@ -67,11 +68,11 @@ def get_filenames():
 
 def get_inner():
     return [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
-            IndentLevels, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra]
+            IndentLevels, IndentBranches, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra]
 
 
 def get_func_decl():
-    return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, ForCurlybrackets]
+    return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets]
 
 
 def get_func_call():
