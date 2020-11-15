@@ -11,16 +11,12 @@ L'objectif est de garder une norminette complète en moins de 3000 lignes (asset
   * [Dépendances](#dépendances)
   * [Installation de la norminette](#installation)
   * [Utilisation](#utilisation)
+* __[Vérifications de norme](#vérifications-de-norme)__
 * __[Options](#options)__
 * __[Rapports HTML](#rapports-html)__
-* __[Fonctionnalités](#fonctionnalités)__
-  * [Vérification des fichiers](#vérification-des-fichiers)
-  * [Vérification de convention de norme](#vérification-de-convention-de-norme)
-  * [Vérification de style du code](#vérification-de-style-du-code)
-* __[TODO](#todo)__
 * __[Contributeurs](#contributeurs)__
 
-## bubulle
+## Bubulle
 
 ### Dépendances
   Pour utiliser la norminette Bubulle, vous devez avoir Python 3.x sur votre ordinateur.<br>
@@ -48,6 +44,43 @@ Installation manuelle sous Windows : cloner le repository.
  Exemple de retour :
 
 [<img alt="Norminette" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example1.png" width="570px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
+ 
+## Vérifications de norme
+
+| ID Norme        | Description           | Géré par Bubulle  |
+| ------------- |:-------------:| :-----:|
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> O1 | Fichier inutile pour la compilation | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> O2 | Fichier source vide | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> O3 | Trop de fonctions dans un fichier (> 5 fonctions) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> O4 | Nom du fichier pas en <i>snake case</i> | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> O4 | Nom du fichier ambigü | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> G1 | Header EPITECH manquant/mal placé dans le fichier | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> G2 | Fonctions devant être séparées par une seule ligne | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F2 | Fonction pas en <i>snake case</i> | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F3 | Ligne trop longue (> 80 caractères) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F4 | Fonction trop longue (> 20 lignes) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F5 | Maximum 4 paramètres par fonction | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F5 | Paramètre 'void' manquant en cas de fonction sans arguments | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> F6 | Commentaires à l'intérieur d'une fonction | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F7 | Fonctions 'nested' | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L1 | Plusieurs assignements sur une même ligne | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L2 | Mauvaise indentation d'une ligne/partie de code | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L2 | Les TABS ne doivent pas être utilisés pour l'indentation | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L3 | Espace manquant après un mot clé | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L3 | Espaces en trop à la fin d'une ligne | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L3 | Espace manquant avant un opérateur/mot clé | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> L4 | Crochets mal positionnés | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> L6 | Lignes vides en trop | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> V1 | Nom de variable pas au format <i>snake_case</i> | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> V2 | Les typedef doivent se terminer par <i>_t</i>| <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> V3 | Pointeur mal positionné | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> C1 | Trop de niveaux de code (> 2 niveaux) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> C3 | Mot clé <i>goto</i> interdit | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> H3 | Les macros ne doivent pas être utilisées pour des constantes | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> -42 | Fonctions interdites | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/info.png" width="16" vertical-align="middle"/> T010 | Nom de variable ambigü | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/info.png" width="16" vertical-align="middle"/> F002 | Nom du fichier ou dossier trop long | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/info.png" width="16" vertical-align="middle"/> F002 | Nom du fichier ne commençant pas par une lettre | <font style="color: green; font-size: 16px;">✓</font> |
 
 ## Options
 
@@ -72,44 +105,6 @@ Bubulle permet de générer un rapport au format HTML (avec `-r` ou `--report`) 
 <img alt="Rapport HTML" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report1.png" style="width: 100%"/>
 <br>
 <img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example_html_report2.png" style="width: 100%"/>
- 
-## Fonctionnalités
-
-### Vérification des fichiers
- - Vérification des fichiers qui ne sont pas en accord avec la convention snake_case
- - Vérification des fichiers sources qui n'ont pas pour extension .c ni .h
- - Vérification des fichiers inutiles
- - Vérification des fichiers sources vides
- - Vérification des noms de fichiers qui ne sont pas clairs (par exemple: test.c, string.c ...)
- - Verification des erreurs de compilation des fichiers sources, afin de s'en rendre compte avant d'avoir un 0.
-
-### Vérification de convention de norme
-
- - Détection des éventuelles fonctions de la libC interdites dans le sujet
- - Détection du mot clé 'goto' interdit
- - Détection des fonctions mal nommées (ne respectant pas notamment la convention snake_case)
- - Vérification du header EPITECH par la norminette dans les fichiers sources
- - Vérification des variables ne respectant pas la convention snake_case
- - Détection de la norme du nom d'un typedef, qui doit se terminer par _t
-
-### Vérification de style du code
-
- - Détection des lignes trop grandes (plus de 80 colonnes sur une seule ligne)
- - Détection des espaces manquants dans les assignations ou comparaison de variables
- - Détection des espaces en trop sur une ligne et en fin de fichier
- - Détection des accolades ouvrantes mal positionnées pour les fonctions
- - Détection des accolades ouvrantes mal positionnées pour les mots clés for, while, if
- - Détection des fonctions avec trop de lignes à l'intérieur de celles-ci (plus de 20 lignes)
- - Détection des déclarations de fonctions possédant plus de 4 paramètres
- - Détection des fonctions qui ne possèdent pas de paramètre (ni de "void" par convention)
- - Vérification de l'indentation : les tabs sont interdits, ils doivent être remplacés par quatre espaces.
- - Détection des lignes en trop (deux lignes ou plus vides par exemple)
- - Détection des macros utilisées pour des constantes : elles doivent servir pour remplacer des fonctions en une ligne
- - Détection des espaces manquants entre les virgules
- - Détection des assignements de variables multiples sur une seule et même ligne
- - Détection des commentaires dans les fonctions
- - Détection des nested fonctions
- - Vérification de l'indentation complète de chaque ligne
 
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
