@@ -81,27 +81,30 @@ class IndentLevels(AbstractCheck):
             pos += 1
             if self.stmt_parse(stm1, node, ilvl + 1, stms_expr[pos]):
                 continue
-            for stm in stm1:
-                ilvl_n = ilvl
-                if self.stmt_parse(stm, node, ilvl + 1, stms_expr[pos]):
-                    continue
-                li = stm.coord.line - 1
-                l = tc[li]
-                s = len(l) - len(l.lstrip())
-                line = li + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
-                # Handle conditional branches
+            try:
+                for stm in stm1:
+                    ilvl_n = ilvl
+                    if self.stmt_parse(stm, node, ilvl + 1, stms_expr[pos]):
+                        continue
+                    li = stm.coord.line - 1
+                    l = tc[li]
+                    s = len(l) - len(l.lstrip())
+                    line = li + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
+                    # Handle conditional branches
 
-                ilvl_t = ilvl
-                if isinstance(node, If) and isinstance(last, If):
-                    if last.iffalse and hasattr(last.iffalse, 'iftrue') and stm1 == last.iffalse.iftrue:
-                        ilvl_t -= 1
-                    elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
-                        ilvl_t -= 1
-                if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
-                    flag_lines.append(line)
-                    BuErrors.print_error(self.path, self.file_name, line,
-                                         self.get_check_level(), self.get_check_id(),
-                                         self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)))
+                    ilvl_t = ilvl
+                    if isinstance(node, If) and isinstance(last, If):
+                        if last.iffalse and hasattr(last.iffalse, 'iftrue') and stm1 == last.iffalse.iftrue:
+                            ilvl_t -= 1
+                        elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
+                            ilvl_t -= 1
+                    if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
+                        flag_lines.append(line)
+                        BuErrors.print_error(self.path, self.file_name, line,
+                                             self.get_check_level(), self.get_check_id(),
+                                             self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)))
+            except:
+                pass
         return 1
 
     def check_function_decl(self, visitor, func):
