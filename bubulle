@@ -1,2 +1,25 @@
 #!/bin/bash
-python /usr/lib/bubulle/main.py $@
+function exit_pynotinstalled ()
+{
+    tput setaf 1
+    echo "Python3 is not installed on your computer. Please install it to use Bubulle."
+    tput setaf reset
+    exit 1
+    return 1
+}
+
+pyv="$(python -V 2>&1 | grep -Po '(?<=Python )(.+)' | cut -d. -f-1)"
+if [[ -z "$pyv" ]]; then
+    exit_pynotinstalled
+fi
+pycmd=""
+if [[ "$pyv" = "3" ]]; then
+    pycmd="python"
+else
+    if [[ "$(python3 -V)" =~ "Python 3" ]]; then
+        pycmd="python3"
+    else
+        exit_pynotinstalled
+    fi
+fi
+$pycmd /usr/lib/bubulle/main.py $@
