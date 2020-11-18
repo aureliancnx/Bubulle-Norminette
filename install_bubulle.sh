@@ -92,8 +92,9 @@ tput init
 echo ""
 git clone https://github.com/aureliancnx/Bubulle-Norminette.git
 pip install -r Bubulle-Norminette/requirements.txt --user
-# crap??
 pip3 install -r Bubulle-Norminette/requirements.txt --user
+# crappy fix?
+python3 -m pip install pycparser-fake-libc
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1
