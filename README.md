@@ -28,13 +28,11 @@ La norminette Bubulle utilise un préprocesseur C écrit en Python permettant le
 
 #### Installation
 
-L'installation peut s'effectuer directement avec le script d'installation. Le script supprime l'ancienne version et télécharge la nouvelle. C'est la façon la plus facile d'installer la norminette sous Linux. Testé avec le dump Fedora d'EPITECH.
+L'installation peut s'effectuer directement avec le script d'installation. Le script supprime l'ancienne version et télécharge la nouvelle. C'est la façon la plus facile d'installer la norminette sous Linux. Fonctionne également sur MacOS.
 
 ```
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
 ```
-
-Installation manuelle sous Windows : cloner le repository.
 
 ## Utilisation
 
@@ -44,7 +42,7 @@ Installation manuelle sous Windows : cloner le repository.
  Exemple de retour :
 
 [<img alt="Norminette" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/example1.png" width="570px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
- 
+
 ## Vérifications de norme
 
 | ID Norme        | Description           | Géré par Bubulle  |
