@@ -59,13 +59,13 @@ if [ -d "/tmp/Bubulle-Norminette" ]; then
 fi
 
 # Remove old version of bubulle
-if [ -d "/usr/lib/bubulle" ]; then
-    rm -rf /usr/lib/bubulle
+if [ -d "/usr/local/lib/bubulle" ]; then
+    rm -rf /usr/local/lib/bubulle
 fi
 
 # Remove old execution script of bubulle
-if [ -f "/usr/bin/bubulle" ]; then
-    rm -f /usr/bin/bubulle
+if [ -f "/usr/local/bin/bubulle" ]; then
+    rm -f /usr/local/bin/bubulle
 fi
 
 if [ $? -ne 0 ]; then
@@ -110,8 +110,8 @@ echo ""
 tput setaf 6
 echo "=> Copying source files..."
 tput init
-sudo cp -R Bubulle-Norminette /usr/lib/bubulle
-sudo cp /usr/lib/bubulle/bubulle /usr/bin/bubulle
+sudo cp -R Bubulle-Norminette /usr/local/lib/bubulle
+sudo cp /usr/local/lib/bubulle/bubulle /usr/local/bin/bubulle
 tput setaf 2
 echo "=> Copied source files."
 tput init
@@ -122,8 +122,8 @@ echo ""
 tput setaf 6
 echo "=> Giving run permissions..."
 tput init
-sudo chmod -R 777 /usr/lib/bubulle
-sudo chmod 777 /usr/bin/bubulle
+sudo chmod -R 777 /usr/local/lib/bubulle
+sudo chmod 777 /usr/local/bin/bubulle
 if [ $? -ne 0 ]; then
     tput setaf 1
     echo "=> Unable to give run permissions."
@@ -145,7 +145,7 @@ tput setaf 6
 echo "=> Cleaning installation..."
 tput init
 sudo rm -rf /tmp/Bubulle-Norminette
-sudo rm -f /usr/lib/bubulle/bubulle
+sudo rm -f /usr/local/lib/bubulle/bubulle
 if [ $? -ne 0 ]; then
     tput setaf 1
     echo "=> Unable to clean installation."
