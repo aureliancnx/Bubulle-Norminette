@@ -110,8 +110,8 @@ echo ""
 tput setaf 6
 echo "=> Copying source files..."
 tput init
-cp -R Bubulle-Norminette /usr/lib/bubulle
-cp /usr/lib/bubulle/bubulle /usr/bin/bubulle
+sudo cp -R Bubulle-Norminette /usr/lib/bubulle
+sudo cp /usr/lib/bubulle/bubulle /usr/bin/bubulle
 tput setaf 2
 echo "=> Copied source files."
 tput init
@@ -122,8 +122,8 @@ echo ""
 tput setaf 6
 echo "=> Giving run permissions..."
 tput init
-chmod -R 777 /usr/lib/bubulle
-chmod 777 /usr/bin/bubulle
+sudo chmod -R 777 /usr/lib/bubulle
+sudo chmod 777 /usr/bin/bubulle
 if [ $? -ne 0 ]; then
     tput setaf 1
     echo "=> Unable to give run permissions."
@@ -144,8 +144,8 @@ echo ""
 tput setaf 6
 echo "=> Cleaning installation..."
 tput init
-rm -rf /tmp/Bubulle-Norminette
-rm -f /usr/lib/bubulle/bubulle
+sudo rm -rf /tmp/Bubulle-Norminette
+sudo rm -f /usr/lib/bubulle/bubulle
 if [ $? -ne 0 ]; then
     tput setaf 1
     echo "=> Unable to clean installation."
