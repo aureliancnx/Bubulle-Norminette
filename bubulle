@@ -8,7 +8,7 @@ function exit_pynotinstalled ()
     return 1
 }
 
-pyv="$(python -V 2>&1 | grep -Po '(?<=Python )(.+)' | cut -d. -f-1)"
+pyv="$(python -V 2>&1 | grep -i 'Python ' | sed 's/Python //g' | cut -d. -f-1)"
 if [[ -z "$pyv" ]]; then
     exit_pynotinstalled
 fi
