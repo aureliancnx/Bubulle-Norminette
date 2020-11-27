@@ -1,6 +1,5 @@
 import json
 import os
-from pathlib import Path
 
 config = None
 forbidden_paths = None

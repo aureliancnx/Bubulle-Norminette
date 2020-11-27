@@ -34,7 +34,6 @@ from utils.error_handling import BuErrors
 
 class AbstractCheck(ABC):
     __metaclass__ = ABCMeta
-    pass
 
     @abstractmethod
     def check_line(self, line, line_number):
