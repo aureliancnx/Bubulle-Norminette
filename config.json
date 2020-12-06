@@ -210,6 +210,8 @@
       "level": 2,
       "message": "EPITECH header misplaced/missing",
       "header_start": "/*",
+      "header_comment_start": "** ",
+      "header_comment_end": "*/",
       "header_info": "** EPITECH PROJECT,",
       "header_desc": "** File description:"
     },
