@@ -46,7 +46,6 @@ class FunctionPrinter(c_ast.NodeVisitor):
     function_defs = {}
     function_content = {}
     func = []
-    var_decl = []
 
     def reset_visit(self):
         self.func = []
@@ -54,7 +53,6 @@ class FunctionPrinter(c_ast.NodeVisitor):
         self.function_defs = {}
         self.function_lines = []
         self.function_count = 0
-        self.var_decl = []
 
     def visit_FuncDef(self, node):
         self.func.append(node)
@@ -62,6 +60,3 @@ class FunctionPrinter(c_ast.NodeVisitor):
         self.function_count = self.function_count + 1
         self.function_content[node.decl.name] = node.body
         self.function_defs[node.decl.coord.line] = node.decl.name
-
-    def visit_Decl(self, dcl):
-        self.var_decl.append(dcl)

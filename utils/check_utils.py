@@ -44,7 +44,6 @@ from checks.function_toolong import FunctionTooLong
 from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.function_voidmissing import FunctionVoidMissing
-from checks.global_var import GlobalVariable
 from checks.header_missing import HeaderMissing
 from checks.if_curlybrackets import IfCurlybrackets
 from checks.indent_branches import IndentBranches
@@ -86,8 +85,7 @@ def get_var_decl():
 
 def get_visitor():
     return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
-            FunctionComments, FunctionTooLong, ForCurlybrackets, GlobalVariable] # FunctionNestedfix?
-
+            FunctionComments, FunctionTooLong, ForCurlybrackets] # FunctionNestedfix?
 
 def get_pre_visitor():
     return [FunctionTooLong]
