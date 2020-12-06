@@ -23,45 +23,36 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-import ast
-
-from pycparser import c_ast
-
-
-def extract_funcDef(node, defList):
-    if node is None:
-        return
-
-    for item in [item[1] for item in node.children()]:
-        if isinstance(item, ast.FuncDef):
-            defList.append(item)
-        else:
-            extract_funcDef(item, defList)
+from checks._check import AbstractCheck
+from utils.error_handling import BuErrors
 
 
-# Print functions
-class FunctionPrinter(c_ast.NodeVisitor):
-    function_count = 0
-    function_lines = []
-    function_defs = {}
-    function_content = {}
-    func = []
-    var_decl = []
+class GlobalVariable(AbstractCheck):
 
-    def reset_visit(self):
-        self.func = []
-        self.function_content = {}
-        self.function_defs = {}
-        self.function_lines = []
-        self.function_count = 0
-        self.var_decl = []
+    def __init__(self, file_name, path, header_lines):
+        self.message = self.get_config()['message']
+        self.file_name = file_name
+        self.path = path
+        self.header_lines = header_lines
 
-    def visit_FuncDef(self, node):
-        self.func.append(node)
-        self.function_lines.append(node.decl.coord.line)
-        self.function_count = self.function_count + 1
-        self.function_content[node.decl.name] = node.body
-        self.function_defs[node.decl.coord.line] = node.decl.name
+    def check_variable_decl(self, var):
+        return 0
 
-    def visit_Decl(self, dcl):
-        self.var_decl.append(dcl)
+    def check_line(self, line, line_number):
+        return 0
+
+    def check_function_calls(self, func):
+        return 0
+
+    def check_function_decl(self, visitor, func):
+        return 0
+
+    def check_visitor(self, visitor, lines):
+        for itr in visitor.var_decl:
+            line = itr.coord.line + self.header_lines
+            line += 1 if self.header_lines > 0 else 0
+            BuErrors.print_error(self.path, self.file_name, line, self.get_check_level(), self.get_check_id(), self.message)
+        return 0
+
+    def check_inner(self, file_content, file_contentf):
+        return 0
