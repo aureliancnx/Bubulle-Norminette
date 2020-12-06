@@ -39,7 +39,7 @@ class ColumnToomuch(AbstractCheck):
         if length <= self.get_config()['max_columns']:
             return 0
 
-        self.fill_error(length)
+        self.fill_error(length + 1)
         return 1
 
     def check_function_calls(self, func):
