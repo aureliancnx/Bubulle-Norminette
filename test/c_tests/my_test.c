@@ -35,6 +35,7 @@ char *fonctiontroplongue(int b, char c, int c,int q)
 {
     char* deb = "Je suis un pointeur mal positionné.";
     char *deb2 = "Je suis une ligne beaucoup trop longue et qui va me causer une faute de norme. :(";
+    char *deb3 = "bonjour je suis un test de 79 caracteres donc non detectabl";
 
     int bedo = 1;
     int jedeclaremal=1;
