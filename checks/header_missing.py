@@ -46,7 +46,18 @@ class HeaderMissing(AbstractCheck):
             return 1
         if not content.split("\n")[1].startswith(self.get_config()['header_info']):
             return 1
+        if not content.split("\n")[2].startswith(self.get_config()['header_comment_start']):
+            return 1
         if not content.split("\n")[3].startswith(self.get_config()['header_desc']):
+            return 1
+        end = False
+        for i in range(4, len(content.split('\n'))):
+            if content.split("\n")[i] == self.get_config()['header_comment_end']:
+                end = True
+                break
+            if not content.split("\n")[i].startswith(self.get_config()['header_comment_start']):
+                return 1
+        if not end:
             return 1
         return 0
 

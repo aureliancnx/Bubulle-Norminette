@@ -9,7 +9,7 @@ test_valist.c        F5       4       MAJOR     Missing void parameter in func '
 test.h               G1       1       MAJOR     EPITECH header misplaced/missing
 my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
 my_test.c            V3       36      MINOR     Misplaced pointer: 'char*'
-my_test.c            F3       37      MAJOR     Line too long (101 > 80 chars)
+my_test.c            F3       37      MAJOR     Line too long (102 > 80 chars)
 my_test.c            L3       40      MINOR     Missing spaces in operator '='
 my_test.c            L3       48      INFO      Extra spaces end of line
 my_test.c            L1       73      MINOR     Multiple assignements on same line
