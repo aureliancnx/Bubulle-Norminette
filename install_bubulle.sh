@@ -95,6 +95,9 @@ pip install -r Bubulle-Norminette/requirements.txt --user
 pip3 install -r Bubulle-Norminette/requirements.txt --user
 # crappy fix?
 python3 -m pip install pycparser-fake-libc
+pip install pycparser-fake-libc --user
+pip3 install pycparser-fake-libc
+pip3 install pycparser-fake-libc --user
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1
