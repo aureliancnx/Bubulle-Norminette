@@ -38,6 +38,7 @@ class DeclarationSpaces(AbstractCheck):
         for decl in self.get_config()['declaration_spaces_keywords']:
             if decl in line:
                 self.fill_error(decl)
+                print("'{0}'".format(line))
                 return 1
         return 0
 
