@@ -37,6 +37,8 @@ class MissingSpace(AbstractCheck):
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
+        if re.match(self.get_config()['regex'], line):
+            print("'{0}'".format(line))
         return re.match(self.get_config()['regex'], line)
 
     def check_function_calls(self, func):
