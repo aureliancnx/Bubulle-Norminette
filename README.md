@@ -54,6 +54,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
 | <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> O4 | Nom du fichier ambigü | <font style="color: green; font-size: 16px;">✓</font> |
 | <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> G1 | Header EPITECH manquant/mal placé dans le fichier | <font style="color: green; font-size: 16px;">✓</font> |
 | <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> G2 | Fonctions devant être séparées par une seule ligne | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/minor.png" width="16" vertical-align="middle"/> G4 | Variable modifiable en dehors d'une fonction | <font style="color: green; font-size: 16px;">✓</font> |
 | <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F2 | Fonction pas en <i>snake case</i> | <font style="color: green; font-size: 16px;">✓</font> |
 | <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F3 | Ligne trop longue (> 80 caractères) | <font style="color: green; font-size: 16px;">✓</font> |
 | <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/images/major.png" width="16" vertical-align="middle"/> F4 | Fonction trop longue (> 20 lignes) | <font style="color: green; font-size: 16px;">✓</font> |
@@ -87,6 +88,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  - `-r` ou `--report`: générer un rapport au format HTML
  - `-e` ou `--exclude`: ignorer un fichier/dossier
  - `-u` ou `--update`: mettre à jour la norminette Bubulle
+ - `-c` ou `--config`: afficher/modifier la configuration de Bubulle (expérimental)
  - `-verbose` ou `--verbose`: verbose, afficher les erreurs de compilation <b>précises</b> 
  - `-v` ou `--version`: afficher la version locale de Bubulle 
  - `-ic` ou `--ignore-compilation` : ignorer les erreurs de compilation
