@@ -37,6 +37,9 @@ class ExtraSpaces(AbstractCheck):
     def check_line(self, line, line_number):
         return line.rstrip() != line
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_calls(self, func):
         return 0
 

@@ -36,6 +36,9 @@ class ForbiddenGoto(AbstractCheck):
         self.path = path
         self.header_lines = header_lines
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return re.match(self.get_config()['regex'], line)
 

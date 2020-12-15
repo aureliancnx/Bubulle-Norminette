@@ -322,6 +322,12 @@
       "id": "L4",
       "level": 1,
       "message": "Misplaced curly brackets"
+    },
+    "global_var": {
+      "enabled": true,
+      "id": "G4",
+      "level": 1,
+      "message": "Global var must be const"
     }
   },
   "excluded_paths": [

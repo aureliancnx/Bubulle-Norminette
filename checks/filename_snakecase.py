@@ -40,6 +40,9 @@ class FilenameSnakecase(AbstractCheck):
             return 0
         return string_utils.tosnake(self.file_name) != self.file_name
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

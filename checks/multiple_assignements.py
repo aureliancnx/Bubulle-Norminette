@@ -39,6 +39,9 @@ class MultipleAssignements(AbstractCheck):
             return 0
         return line.count(';') > self.get_config()['max_assignements'] and not ('for (' in line or 'for(' in line)
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_calls(self, func):
         return 0
 

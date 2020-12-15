@@ -39,6 +39,9 @@ class FunctionTooLong(AbstractCheck):
         self.header_lines = header_lines
         self.v = None
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_decl(self, visitor, func):
         return 0
 

@@ -37,6 +37,9 @@ class VariableTypedef(AbstractCheck):
     def check_variable_decl(self, var):
         return 'typedef' in var.storage and not var.name.endswith(self.get_config()['typedef_suffix'])
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

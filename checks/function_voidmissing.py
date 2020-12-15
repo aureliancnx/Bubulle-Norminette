@@ -41,6 +41,9 @@ class FunctionVoidMissing(AbstractCheck):
         self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
         return 1
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

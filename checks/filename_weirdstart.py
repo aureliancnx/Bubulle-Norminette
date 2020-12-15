@@ -41,6 +41,9 @@ class FilenameWeirdStart(AbstractCheck):
            return 0
         return not self.file_name[:1].isalpha() and self.file_name[:1] != '_'
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

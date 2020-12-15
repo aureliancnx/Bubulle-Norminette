@@ -37,6 +37,9 @@ class EmptyFile(AbstractCheck):
     def check_filename(self):
         return 0
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

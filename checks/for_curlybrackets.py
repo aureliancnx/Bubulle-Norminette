@@ -40,6 +40,9 @@ class ForCurlybrackets(AbstractCheck):
         self.path = path
         self.header_lines = header_lines
 
+    def check_ast(self, ast):
+        return 0
+
     def curly_process(self, dt):
         if not re.search(r'for\s*\(((?!\s).+)\)', tc[dt.coord.line - 1]):
             return 0

@@ -127,8 +127,18 @@ class RunCheck:
         self.delete_temp()
         if parsed:
             v = FunctionPrinter()
-            FunctionPrinter.reset_visit(v)
+            v.reset_visit()
             v.visit(ast)
+
+            for clazz in check_utils.get_ast():
+                try:
+                    clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                    clazz.process_ast(ast)
+                except Exception as e:
+                    if error_handling.args.verbose:
+                        traceback.print_exc()
+                        print(e)
+                    print(run_err.format(self.full_path, clazz.__class__.__name__))
 
             for clazz in check_utils.get_pre_visitor():
                 try:
@@ -163,9 +173,10 @@ class RunCheck:
                     print(e)
                 print(run_err.format(self.full_path, clazz.__class__.__name__))
 
+        v = None
         if parsed:
             v = FunctionPrinter()
-            FunctionPrinter.reset_visit(v)
+            v.reset_visit()
             v.visit(ast)
 
             for clazz in check_utils.get_visitor():

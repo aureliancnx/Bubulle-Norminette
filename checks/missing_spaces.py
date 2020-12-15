@@ -39,6 +39,9 @@ class MissingSpace(AbstractCheck):
     def check_line(self, line, line_number):
         return re.match(self.get_config()['regex'], line)
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_calls(self, func):
         return 0
 

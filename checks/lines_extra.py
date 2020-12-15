@@ -36,6 +36,9 @@ class LinesExtra(AbstractCheck):
         self.header_lines = header_lines
         self.last_empty_line = -100
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

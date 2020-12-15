@@ -42,6 +42,9 @@ class FilenameUseless(AbstractCheck):
                 return 1
         return 0
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

@@ -71,6 +71,9 @@ class MisplacedSpace(AbstractCheck):
                 return 1
         return 0
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_calls(self, func):
         return 0
 

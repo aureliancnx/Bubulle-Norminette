@@ -42,6 +42,9 @@ class ColumnToomuch(AbstractCheck):
         self.fill_error(length + 1)
         return 1
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_calls(self, func):
         return 0
 

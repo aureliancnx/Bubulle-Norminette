@@ -38,6 +38,9 @@ class FilenameTooLong(AbstractCheck):
     def check_filename(self):
         return len(self.file_name) > self.get_config()['max_length']
 
+    def check_ast(self, ast):
+        return 0
+
     def check_line(self, line, line_number):
         return 0
 

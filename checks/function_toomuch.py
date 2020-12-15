@@ -35,6 +35,9 @@ class FunctionToomuch(AbstractCheck):
         self.path = path
         self.header_lines = header_lines
 
+    def check_ast(self, ast):
+        return 0
+
     def check_function_decl(self, visitor, func):
         return 0
 

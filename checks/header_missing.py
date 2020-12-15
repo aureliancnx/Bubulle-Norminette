@@ -34,6 +34,9 @@ class HeaderMissing(AbstractCheck):
         self.path = path
         self.header_lines = header_lines
 
+    def check_ast(self, ast):
+        return 0
+
     def check_filename(self):
         return 0
 

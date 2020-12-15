@@ -59,6 +59,10 @@ class AbstractCheck(ABC):
     def check_inner(self, content, contentf):
         pass
 
+    @abstractmethod
+    def check_ast(self, ast):
+        pass
+
     def get_check_name(self):
         return inspect.getfile(self.__class__).rsplit('/', 1)[-1].replace(".py", "")
 
@@ -128,6 +132,18 @@ class AbstractCheck(ABC):
         if not hasattr(var, 'name'):
             return 0
         if not self.check_variable_decl(var):
+            return 0
+        line = -1 if not hasattr(self, 'line') else self.line
+        if not hasattr(self, 'args'):
+            self.err("", line, self.message)
+            return 1
+        self.err("", line, self.message.format(self.args))
+        return 1
+
+    def process_ast(self, ast):
+        if not self.is_enabled():
+            return 0
+        if not self.check_ast(ast):
             return 0
         line = -1 if not hasattr(self, 'line') else self.line
         if not hasattr(self, 'args'):
