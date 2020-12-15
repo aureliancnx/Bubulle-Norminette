@@ -23,11 +23,12 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from pycparser.c_ast import TypeDecl, Decl
+from pycparser.c_ast import TypeDecl, Decl, PtrDecl
 
 from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
+allw = [PtrDecl, TypeDecl]
 
 class GlobalVariable(AbstractCheck):
 
@@ -44,7 +45,13 @@ class GlobalVariable(AbstractCheck):
         for p in ast:
             if not isinstance(p, Decl) or not hasattr(p, 'quals'):
                 continue
-            if not hasattr(p, 'type') or not isinstance(p.type, TypeDecl) or 'const' in p.quals:
+            if not hasattr(p, 'type') or 'const' in p.quals:
+                continue
+            btype = False
+            for altype in allw:
+                if isinstance(p.type, altype):
+                    btype = True
+            if not btype:
                 continue
             if not hasattr(p, 'coord'):
                 continue
