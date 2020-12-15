@@ -26,6 +26,7 @@
 import argparse
 
 from utils import version_utils
+from utils.config_utils import open_config_file
 
 ignored_tests = []
 time_start = 0
@@ -45,7 +46,9 @@ def parse_args():
                         help="exclude a path from being checked")
     parser.add_argument("-ic", "--ignore-compilation", help="ignore compilation errors",
                         action='store_true')
-    parser.add_argument("-r", "--report", help="generate and open a report (TODO)",
+    parser.add_argument("-r", "--report", help="generate and open a report",
+                        action='store_true')
+    parser.add_argument("-c", "--config", help="edit the configuration of Bubulle (experimental)",
                         action='store_true')
     parser.add_argument("-i", "--ignore", help="ignore specific tests. (e.g: -i l2,f5)",
                         default="")
@@ -81,6 +84,14 @@ def handle_update(args):
         version_utils.check_version(show_version=True)
         exit(0)
 
+
+def handle_config(args):
+    if args.config:
+        open_config_file()
+        exit(0)
+
+
 def handle_args(args):
     handle_update(args)
     handle_ignored_tests(args)
+    handle_config(args)
