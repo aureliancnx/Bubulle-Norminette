@@ -23,13 +23,13 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
+import re
 
-from utils import string_utils
 from checks._check import AbstractCheck
-from utils.error_handling import BuErrors
 
+cache_visitor = None
 
-class FunctionSeparator(AbstractCheck):
+class FunctionNested(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()['message']
@@ -53,13 +53,33 @@ class FunctionSeparator(AbstractCheck):
         return 0
 
     def check_visitor(self, visitor, lines):
-        for function_line in visitor.function_lines:
-            if lines[function_line] == '{':
-                if len(lines) - (function_line - 1) < 0 or (function_line > 2 and lines[function_line - 2] != ''):
-                    return 1
-            elif len(lines) - (function_line - 2) < 0:
-                return 1
+        global cache_visitor
+        cache_visitor = visitor
         return 0
 
     def check_inner(self, file_content, file_contentf):
+        if cache_visitor is None:
+            return 0
+        lines = file_contentf.split('\n')
+        last_func = ''
+        i = 0
+        index = 0
+        line_start = -1
+
+        for line in lines:
+            i += 1
+            if line in cache_visitor.function_defs:
+                last_func = cache_visitor.function_defs[line]
+            for function_line in cache_visitor.function_lines:
+                if i != function_line:
+                    break
+                if index > 0:
+                    self.fill_error(cache_visitor.function_defs[function_line])
+                    return 1
+            if '{' in line:
+                index += 1
+            elif re.match(r'[ \t]*}[ \t]*', line):
+                index -= 1
+                if index <= 0:
+                    index = 0
         return 0

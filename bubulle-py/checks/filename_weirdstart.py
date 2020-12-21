@@ -24,7 +24,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 from checks.filename_useless import FilenameUseless
-from utils import string_utils
 from checks._check import AbstractCheck
 
 
