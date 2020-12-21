@@ -25,9 +25,9 @@
 # SOFTWARE.#
 import time
 
-from args_handler import handle_args, parse_args, set_time_start
+from mrun.args_handler import handle_args, parse_args, set_time_start
 from report_generator import Report
-from utils import file_utils, error_handling, version_utils
+from utils import file_utils, error_handling
 from utils.config_utils import load_config
 
 args = None

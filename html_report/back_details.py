@@ -24,17 +24,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
-import random
-import traceback
 import os.path
-import webbrowser
-from os import path
 
 from html_report.htmlparser_utils import fill_variable
-from run_check import RunCheck
-from utils import file_utils, string_utils, error_handling, version_utils
-from datetime import datetime
-from distutils.dir_util import copy_tree
 
 
 class HtmlReportDetail:

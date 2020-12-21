@@ -22,4 +22,4 @@ else
         exit_pynotinstalled
     fi
 fi
-$pycmd /usr/local/lib/bubulle/main.py $@
+$pycmd /usr/local/lib/bubulle/mrun/bubulle.py $@

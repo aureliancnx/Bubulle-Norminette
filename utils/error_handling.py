@@ -25,7 +25,7 @@
 # SOFTWARE.#
 import re
 
-import args_handler
+from mrun import args_handler
 from utils.string_utils import colors
 
 errors = []

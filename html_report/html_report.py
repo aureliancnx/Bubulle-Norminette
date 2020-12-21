@@ -23,18 +23,13 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-import json
 import os
 import random
-import sys
-import traceback
 import os.path
 import webbrowser
-from os import path
 
 from html_report.back_overview import HtmlReportOverview
-from run_check import RunCheck
-from utils import file_utils, string_utils, error_handling, version_utils
+from utils import error_handling
 from datetime import datetime
 from distutils.dir_util import copy_tree
 
