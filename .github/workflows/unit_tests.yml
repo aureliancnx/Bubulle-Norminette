@@ -33,7 +33,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: pip3 install -r requirements.txt --user
-    - run: $(python3 bubulle.py -p test/c_tests/ | head -n -1 | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'()*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g' > test/generated_output_wf.txt) | cat -e
+    - run: $(python3 bubulle-py/bubulle.py -p test/c_tests/ | head -n -1 | sed 's/\x1B[@A-Z\\\]^_]\|\x1B\[[0-9:;<=>?]*[-!"#$%&'"'"'()*+,.\/]*[][\\@A-Z^_`a-z{|}~]//g' > test/generated_output_wf.txt) | cat -e
     - run: cat test/generated_output_wf.txt
     - run: cat test/expected_output_wf.txt
     - run: diff <(sort test/generated_output_wf.txt) <(sort test/expected_output_wf.txt)
