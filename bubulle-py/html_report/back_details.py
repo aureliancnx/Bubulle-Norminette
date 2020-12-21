@@ -59,7 +59,7 @@ class HtmlReportDetail:
         self.source = self.source.replace("\n", "\\n")
 
     def get_init_content(self):
-        file = open(os.path.dirname(os.path.realpath(__file__)) + '/../assets/html/report-file.html', 'r')
+        file = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/html/report-file.html', 'r')
         content = file.read()
         file.close()
         return content
@@ -71,7 +71,7 @@ class HtmlReportDetail:
 
     def highlight_errors(self, content):
         mistakes = ""
-        m = open(os.path.dirname(os.path.realpath(__file__)) + '/../assets/cards/mistake.js', 'r')
+        m = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/cards/mistake.js', 'r')
         base = m.read()
         m.close()
         for error in self.errors:
