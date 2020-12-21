@@ -19,7 +19,7 @@ def open_config_file():
 
 
 def get_config_path():
-    return os.path.dirname(os.path.realpath(__file__)) + '/../config.json'
+    return os.path.dirname(os.path.realpath(__file__)) + '/../../config.json'
 
 
 def load_config():

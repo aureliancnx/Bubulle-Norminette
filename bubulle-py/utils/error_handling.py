@@ -25,8 +25,8 @@
 # SOFTWARE.#
 import re
 
-from mrun import args_handler
-from utils.string_utils import colors
+import args_handler
+from .string_utils import colors
 
 errors = []
 args = None

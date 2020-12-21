@@ -27,8 +27,8 @@ import os
 import time
 import urllib.request
 
-from mrun import args_handler
-from utils import file_utils
+import args_handler
+from . import file_utils
 
 version = -1
 version_url = "https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/VERSION"
@@ -48,7 +48,7 @@ def get_version():
     if version != -1:
         return version
 
-    path = os.path.dirname(os.path.realpath(__file__)) + '/../VERSION'
+    path = os.path.dirname(os.path.realpath(__file__)) + '/../../VERSION'
     version = file_utils.read(path)
     return version
 
