@@ -131,7 +131,7 @@ The goal is to keep a complete norminette in less than 3000 lines (assets/exclud
   * [Dependencies](#dependencies)
   * [How to install Bubulle?](#installation)
   * [Usage](#use)
-* __[Norme verifications](#norme verifications)__
+* __[Norme verifications](#checks)__
 * __[Options (en)](#options)__
 * __[HTML Reports](#reports-html)__
 * __[Contributors](#contributors)__
@@ -163,7 +163,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
 
 [<img alt="Norme check" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example1.png" width="570px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
 
-## Norme verifications
+## Checks
 
 | ID Norme        | Description           | Handled by Bubulle?  |
 | ------------- |:-------------:| :-----:|
