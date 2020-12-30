@@ -38,7 +38,6 @@ class HeaderContent(AbstractCheck):
         return self.file_name.endswith(".h")
 
     def check_ast(self, ast):
-        print(ast)
         return 0
 
     def check_filename(self):
