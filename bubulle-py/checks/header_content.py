@@ -23,6 +23,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
+import re
+
 from checks._check import AbstractCheck
 
 
@@ -44,7 +46,10 @@ class HeaderContent(AbstractCheck):
         return 0
 
     def check_line(self, line, line_number):
-        return 0
+        # If a #define is present in the source file
+        if not self.is_header_file() and re.match(self.get_config()['macro_regex'], line):
+            self.message = self.get_config()['source_define']
+            return 1
 
     def check_inner(self, content, contentf):
         return 0
@@ -53,6 +58,7 @@ class HeaderContent(AbstractCheck):
         return 0
 
     def check_function_decl(self, visitor, func):
+        # Check function declaration in header file
         if self.is_header_file():
             self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
             self.message = self.get_config()['header_func_dcl']

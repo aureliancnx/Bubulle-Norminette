@@ -1,7 +1,3 @@
 
-int pop();
 
-int ok()
-{
-    return (1);
-}
+int pop();

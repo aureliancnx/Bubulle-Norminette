@@ -101,4 +101,5 @@ def get_pre_visitor():
 
 def get_line():
     return [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,
-            DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs]
+            DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs,
+            HeaderContent]
