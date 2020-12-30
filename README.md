@@ -113,3 +113,123 @@ Bubulle permet de générer un rapport au format HTML (avec `-r` ou `--report`) 
  - toutes les personnes qui testent la norminette et qui me donnent un feedback pour améliorer Bubulle. <3
  
  Vous souhaitez également participer au développement et à l'amélioration de la norminette ? N'hésitez pas à ouvrir une <i>issue</i> en cas de problème ou à soumettre un <i>pull request</i> pour une idée de modification.
+
+-------------------------------------------------------
+
+ENGLISH VERSION
+
+[<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/logo.png" width="200px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
+
+EPITECH norme check developed with the features of the latest update of the EPITECH norme for the 2025 promotion. Available for all students.
+The norminette looks for Epitech "norme" errors in the source code of the files. The norminette is the most complete to date and has a versioning system, allowing regular updates.
+
+The goal is to keep a complete norminette in less than 3000 lines (assets/excluded).
+
+## Menu
+
+* __[Install and usage](#bubble)__
+  * [Dependencies](#dependencies)
+  * [How to install Bubulle?](#installation)
+  * [Usage](#use)
+* __[Norme verifications](#norme verifications)__
+* __[Options (en)](#options)__
+* __[HTML Reports](#reports-html)__
+* __[Contributors](#contributors)__
+
+## Bubulle
+
+### Dependencies
+  In order to use Bubulle, you must have Python 3.x installed.
+  The installation script automatically installs the related dependencies.
+ - [Python](https://python.com)
+ - Pycparser : ```python3 -m pip install pycparser pyparsing pycparser-fake-libc --user```<br>
+ 
+The Bubble norme check uses a C preprocessor written in Python allowing the operation of several standard tests.
+
+#### Installation
+
+The installation can be done directly with the installation script. The script removes the old version and downloads the new one. This is the easiest way to install the norme checker under Linux. Also works on MacOS.
+
+```
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
+```
+
+## Usage
+
+  Simply type the following command in your terminal, in the folder where the code you want to check is located: 
+ `bubulle`
+ 
+ Output example:
+
+[<img alt="Norme check" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example1.png" width="570px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
+
+## Norme verifications
+
+| ID Norme        | Description           | Handled by Bubulle?  |
+| ------------- |:-------------:| :-----:|
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> O1 | Useless file for compilation | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> O2 | Empty source file | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> O3 | Too many functions in file (> 5 functions) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> O4 | File name not in <i>snake case</i> | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> O4 | Ambiguous file name | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> G1 | Missing or misplaced EPITECH header | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> G2 | Functions must be separated by a single line | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> G4 | Editable function outside a function | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> F2 | Function not in <i>snake case</i> | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> F3 | Too long line (> 80 characters) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> F4 | Too long function (> 20 lines) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> F5 | More than 4 parameters in a function | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> F5 | 'void' parameter is missing if the function is without parameters | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> F6 | Comments inside a function | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> F7 | Nested functions | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L1 | Several assignements in the same line | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L2 | Bad indentation | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L2 | Tabs shouldn't be used for indentation | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L3 | Missing space after a keyword | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L3 | Extra space in line end | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L3 | Missing space before keyword/variable | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> L4 | Misplaced brackets | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> L6 | Useless empty line | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> V1 | Variable name not in <i>snake_case</i> | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> V2 | Typedef should ends with <i>_t</i>| <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> V3 | Misplaced pointer | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> C1 | Too many codes branches (> 2 levels) | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> C3 | Forbidden <i>goto</i> keyword | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> H1 | Bad separation between header/source file | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/minor.png" width="16" vertical-align="middle"/> H3 | Macro should not be used as const | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/major.png" width="16" vertical-align="middle"/> -42 | Forbidden functions | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/info.png" width="16" vertical-align="middle"/> T010 | Ambiguous variable name | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/info.png" width="16" vertical-align="middle"/> F002 | Too long file/folder name | <font style="color: green; font-size: 16px;">✓</font> |
+| <img src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/info.png" width="16" vertical-align="middle"/> F002 | File name should starts with a letter | <font style="color: green; font-size: 16px;">✓</font> |
+
+## Options (en)
+
+ - `-h` or `--help`: get information about Bubble (arguments)
+ - `-p` or `--path`: run the norminette in a specific directory or file
+ - `-r` or `--report`: generate a report in HTML format
+ - `-e` or `--exclude`: ignore a file/folder
+ - `-u` or `--update`: update the Bubble Normette
+ - `-c` or `--config`: display/modify Bubble configuration (experimental)
+ - `-verbose` or `--verbose`: verbose, display compilation errors <b>precise</b> 
+ - `-v` or `--version`: display the local version of Bubble 
+ - `-ic` or `--ignore-compilation`: ignore compilation errors
+ - `-i` or `--ignore`: ignore specific standard errors (comma-separated)<br>
+Example: <b>l1,l2</b> ignores the L1 and L2 test.
+ - `-ii` or `--ignore-info`: ignore INFO standard problems
+ - `-imin` or `--ignore-minor`: ignore MINOR norme issues
+ - `-imaj` or `--ignore-major`: ignore MAJOR norme issues
+ 
+## HTML Reports
+
+Bubble allows you to generate a report in HTML format (with `-r` or `--report`) with visual information about the code and norme issues directly from your web browser (does not work in TTy).
+
+<img alt="Rapport HTML" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example_html_report1.png" style="width: 100%"/>
+<br>
+<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example_html_report2.png" style="width: 100%"/>
+
+# Contributors
+ - aureliancnx : Bubble developer
+ - Payne : name idea & moral support
+ - all the people who test the norminette and give me feedback to improve Bubble. <3
+ 
+ Would you also like to participate in the development and improvement of norminette? Feel free to open a <i>issue</i> in case of problem or to submit a <i>pull request</i> for a modification idea.
