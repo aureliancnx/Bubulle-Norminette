@@ -5,10 +5,9 @@ Path: test/c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
 -------------------------------------------------------------------------------
-test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
-test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
-test.h               G1       1       MAJOR     EPITECH header misplaced/missing
+test.h.gch           O1               MAJOR     Useless file for compilation
 my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
+my_test.c            H1       30      MINOR     #define shouldn't be in source file
 my_test.c            V3       36      MINOR     Misplaced pointer: 'char*'
 my_test.c            F3       37      MAJOR     Line too long (102 > 80 chars)
 my_test.c            L3       41      MINOR     Missing spaces in operator '='
@@ -62,12 +61,14 @@ my_test.c            V1       126     MAJOR     Variable 'VARIABLE_pas_En_Snake_
 my_test.c            F5       135     MAJOR     Missing void parameter in func 'variable_degueu'
 my_test.c            T010     137     INFO      Unclear variable name: 'o'
 my_test.c            T010     138     INFO      Unclear variable name: 'l'
-my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
-test.h.gch           O1               MAJOR     Useless file for compilation
 test.gcno            O1               MAJOR     Useless file for compilation
+test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
+test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
+test.h               G1       1       MAJOR     EPITECH header misplaced/missing
+my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
 frofro.c             V3       29      MINOR     Misplaced pointer: 'char*'
 frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
 frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
 -------------------------------------------------------------------------------
-TOTAL          Major: 19       Minor: 40       Info: 4      Note: -97
+TOTAL          Major: 19       Minor: 41       Info: 4      Note: -98
 -------------------------------------------------------------------------------
