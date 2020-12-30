@@ -26,6 +26,8 @@
 import re
 
 from checks._check import AbstractCheck
+from pycparser.c_ast import Decl, Struct
+from utils.error_handling import BuErrors
 
 
 class HeaderContent(AbstractCheck):
@@ -40,6 +42,16 @@ class HeaderContent(AbstractCheck):
         return self.file_name.endswith(".h")
 
     def check_ast(self, ast):
+        # Check for structures in source file
+        if not self.is_header_file():
+            for dcl in ast:
+                if not isinstance(dcl, Decl) or not hasattr(dcl, 'type'):
+                    continue
+                if not isinstance(dcl.type, Struct):
+                    continue
+                self.message = self.get_config()['source_struct']
+                BuErrors.print_error(self.path, self.file_name, -1, self.get_check_level(),
+                                     self.get_check_id(), self.message)
         return 0
 
     def check_filename(self):

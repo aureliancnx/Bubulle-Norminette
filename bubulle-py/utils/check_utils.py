@@ -87,7 +87,7 @@ def get_var_decl():
 
 
 def get_ast():
-    return [GlobalVariable]
+    return [GlobalVariable, HeaderContent]
 
 
 def get_visitor():

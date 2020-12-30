@@ -336,6 +336,7 @@
       "message": "Wrong separation between source/header file",
       "header_func_dcl": "Functions shouldn't be in header file",
       "source_define": "#define shouldn't be in source file",
+      "source_struct": "Structures shouldn't be in source file",
       "macro_regex": "#define [^ ]+ [0-9]+([.][0-9]+)?"
     }
   },
