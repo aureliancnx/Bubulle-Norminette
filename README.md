@@ -1,5 +1,8 @@
 [<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/logo.png" width="200px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
 
+* __[French](#bubulle)__
+* __[English](#english)__
+
 Norminette EPITECH développé avec les fonctionnalités de la dernière mise à jour de la norme d'EPITECH pour la promotion 2025. Disponible pour tous les étudiants.
 La norminette cherche les erreurs de norme d'Epitech dans le code source des fichiers. La norminette est la plus complète à ce jour et a un système de versioning, permettant les mises à jour régulières.
 
@@ -116,9 +119,7 @@ Bubulle permet de générer un rapport au format HTML (avec `-r` ou `--report`) 
 
 -------------------------------------------------------
 
-ENGLISH VERSION
-
-[<img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/logo.png" width="200px"/>](https://github.com/aureliancnx/Bubulle-Norminette)
+## English
 
 EPITECH norme check developed with the features of the latest update of the EPITECH norme for the 2025 promotion. Available for all students.
 The norminette looks for Epitech "norme" errors in the source code of the files. The norminette is the most complete to date and has a versioning system, allowing regular updates.
