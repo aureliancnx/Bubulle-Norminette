@@ -60,6 +60,7 @@ from checks.variable_snakecase import VariableSnakecase
 from checks.variable_typedef import VariableTypedef
 from checks.variable_unclear import VariableUnclear
 from checks.while_curlybrackets import WhileCurlybrackets
+from checks.header_content import HeaderContent
 
 
 def get_filenames():
@@ -73,7 +74,8 @@ def get_inner():
 
 
 def get_func_decl():
-    return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets]
+    return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets,
+            HeaderContent]
 
 
 def get_func_call():

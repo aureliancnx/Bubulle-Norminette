@@ -328,6 +328,13 @@
       "id": "G4",
       "level": 1,
       "message": "Global var must be const"
+    },
+    "header_content": {
+      "enabled": true,
+      "id": "H1",
+      "level": 1,
+      "message": "Wrong separation between source/header file",
+      "header_func_dcl": "Functions shouldn't be in header file"
     }
   },
   "excluded_paths": [
