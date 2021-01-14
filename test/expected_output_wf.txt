@@ -1,17 +1,9 @@
 -------------------------------------------------------------------------------
-                          Bubulle Code Norme Report v1.22
+                          Bubulle Code Norme Report v1.23
 Path: test/c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
 -------------------------------------------------------------------------------
-mysource.c           G4       1       MINOR     Global var must be const
-mysource.c           H1               MINOR     Structures shouldn't be in source file
-mysource.c           H3       4       MINOR     Macros shouldn't be used for constants
-mysource.c           H1       4       MINOR     #define shouldn't be in source file
-mysource.c           G1       1       MAJOR     EPITECH header misplaced/missing
-mysource.c           F5       14      MAJOR     Missing void parameter in func 'main'
-mysource.c           G5       14      MINOR     Missing static keyword in func declaration
-mysource.h           G1       1       MAJOR     EPITECH header misplaced/missing
 test.h.gch           O1               MAJOR     Useless file for compilation
 test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
 test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
@@ -86,6 +78,7 @@ my_test.c            G5       142     MINOR     Missing static keyword in func d
 frofro.c             V3       29      MINOR     Misplaced pointer: 'char*'
 frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
 frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
+frofro.c             G5       27      MINOR     Missing static keyword in func declaration
 -------------------------------------------------------------------------------
-TOTAL          Major: 22       Minor: 56       Info: 4      Note: -122
+TOTAL          Major: 19       Minor: 52       Info: 4      Note: -109
 -------------------------------------------------------------------------------
