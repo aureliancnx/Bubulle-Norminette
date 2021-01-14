@@ -338,6 +338,12 @@
       "source_define": "#define shouldn't be in source file",
       "source_struct": "Structures shouldn't be in source file",
       "macro_regex": "#define [^ ]+ [0-9]+([.][0-9]+)?"
+    },
+    "function_staticmissing": {
+      "enabled": true,
+      "id": "G5",
+      "level": 1,
+      "message": "Missing static keyword in func declaration"
     }
   },
   "excluded_paths": [

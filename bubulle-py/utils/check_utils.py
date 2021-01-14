@@ -38,6 +38,7 @@ from checks.forbidden_goto import ForbiddenGoto
 from checks.function_comments import FunctionComments
 from checks.function_curlybrackets import FunctionCurlybrackets
 from checks.function_nested import FunctionNested
+from checks.function_staticmissing import FunctionStaticMissing
 from checks.function_separator import FunctionSeparator
 from checks.function_snakecase import FunctionSnakecase
 from checks.function_toolong import FunctionTooLong
@@ -75,7 +76,7 @@ def get_inner():
 
 def get_func_decl():
     return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets,
-            HeaderContent]
+            HeaderContent, FunctionStaticMissing]
 
 
 def get_func_call():

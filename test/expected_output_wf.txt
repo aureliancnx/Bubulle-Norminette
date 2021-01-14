@@ -4,7 +4,22 @@ Path: test/c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
 -------------------------------------------------------------------------------
+mysource.c           G4       1       MINOR     Global var must be const
+mysource.c           H1               MINOR     Structures shouldn't be in source file
+mysource.c           H3       4       MINOR     Macros shouldn't be used for constants
+mysource.c           H1       4       MINOR     #define shouldn't be in source file
+mysource.c           G1       1       MAJOR     EPITECH header misplaced/missing
+mysource.c           F5       14      MAJOR     Missing void parameter in func 'main'
+mysource.c           G5       14      MINOR     Missing static keyword in func declaration
+mysource.h           G1       1       MAJOR     EPITECH header misplaced/missing
 test.h.gch           O1               MAJOR     Useless file for compilation
+test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
+test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
+test_valist.c        G5       4       MINOR     Missing static keyword in func declaration
+test.h               G1       1       MAJOR     EPITECH header misplaced/missing
+my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
+my_putstr.c          G5       28      MINOR     Missing static keyword in func declaration
+test.gcno            O1               MAJOR     Useless file for compilation
 my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
 my_test.c            H1       30      MINOR     #define shouldn't be in source file
 my_test.c            V3       36      MINOR     Misplaced pointer: 'char*'
@@ -51,23 +66,26 @@ my_test.c            O3       142     MAJOR     Too many functions (8 > 5)
 my_test.c            C1       65      MINOR     Too many conditional branches
 my_test.c            C1       67      MINOR     Too many conditional branches
 my_test.c            L4       44      MINOR     Misplaced brackets of 'for' keyword
+my_test.c            G5       34      MINOR     Missing static keyword in func declaration
 my_test.c            -42?     50      MAJOR     Forbidden function 'printf'?
+my_test.c            G5       101     MINOR     Missing static keyword in func declaration
+my_test.c            G5       106     MINOR     Missing static keyword in func declaration
 my_test.c            T010     108     INFO      Unclear variable name: 'o'
 my_test.c            F5       112     MAJOR     Func 'test' has too many args
+my_test.c            G5       112     MINOR     Missing static keyword in func declaration
 my_test.c            F5       117     MAJOR     Missing void parameter in func 'fonctionsansargsetsansvoid'
 my_test.c            L2       125     MINOR     Indentation must be 4 spaces but it's 8
+my_test.c            G5       117     MINOR     Missing static keyword in func declaration
 my_test.c            V1       126     MAJOR     Variable 'VARIABLE_pas_En_Snake_Case' not in snake_case format.
+my_test.c            G5       131     MINOR     Missing static keyword in func declaration
 my_test.c            F5       135     MAJOR     Missing void parameter in func 'variable_degueu'
+my_test.c            G5       135     MINOR     Missing static keyword in func declaration
 my_test.c            T010     137     INFO      Unclear variable name: 'o'
 my_test.c            T010     138     INFO      Unclear variable name: 'l'
-test.gcno            O1               MAJOR     Useless file for compilation
-test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
-test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
-test.h               G1       1       MAJOR     EPITECH header misplaced/missing
-my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
+my_test.c            G5       142     MINOR     Missing static keyword in func declaration
 frofro.c             V3       29      MINOR     Misplaced pointer: 'char*'
 frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
 frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
 -------------------------------------------------------------------------------
-TOTAL          Major: 19       Minor: 41       Info: 4      Note: -98
+TOTAL          Major: 22       Minor: 56       Info: 4      Note: -122
 -------------------------------------------------------------------------------
