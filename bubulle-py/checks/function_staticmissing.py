@@ -24,7 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 from checks._check import AbstractCheck
-
+from utils import error_handling
 
 class FunctionStaticMissing(AbstractCheck):
 
@@ -38,6 +38,9 @@ class FunctionStaticMissing(AbstractCheck):
         return 0
 
     def check_function_decl(self, visitor, func):
+        if 'aggressiveonly' in self.get_config():
+            if self.get_config()['aggressiveonly'] and not error_handling.args.aggressive:
+                return 0
         if not func.decl:
             return 0
         if not 'static' in func.decl.storage:

@@ -342,6 +342,7 @@
     "function_staticmissing": {
       "enabled": true,
       "id": "G5",
+      "aggressiveonly": true,
       "level": 1,
       "message": "Missing static keyword in func declaration"
     }

@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-                          Bubulle Code Norme Report v1.23
+                          Bubulle Code Norme Report v1.24
 Path: test/c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
