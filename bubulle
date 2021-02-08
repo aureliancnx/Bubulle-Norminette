@@ -8,18 +8,18 @@ function exit_pynotinstalled ()
     return 1
 }
 
-pyv="$(python -V 2>&1 | grep -i 'Python ' | sed 's/Python //g' | cut -d. -f-1)"
-if [[ -z "$pyv" ]]; then
-    exit_pynotinstalled
-fi
-pycmd=""
-if [[ "$pyv" = "3" ]]; then
-    pycmd="python"
+if [[ "$(python3 -V)" =~ "Python 3" ]]; then
+  pycmd="python3"
 else
-    if [[ "$(python3 -V)" =~ "Python 3" ]]; then
-        pycmd="python3"
-    else
-        exit_pynotinstalled
-    fi
+  pyv="$(python -V 2>&1 | grep -i 'Python ' | sed 's/Python //g' | cut -d. -f-1)"
+  if [[ -z "$pyv" ]]; then
+      exit_pynotinstalled
+  fi
+  pycmd=""
+  if [[ "$pyv" = "3" ]]; then
+      pycmd="python"
+  else
+      exit_pynotinstalled
+  fi
 fi
 $pycmd /usr/local/lib/bubulle/bubulle-py/bubulle.py $@
