@@ -235,6 +235,6 @@ Bubble allows you to generate a report in HTML format (with `-r` or `--report`) 
 # Contributors
  - aureliancnx : Bubble developer
  - Payne : name idea & moral support
- - all the people who test the norminette and give me feedback to improve Bubble. <3
+ - everyone who test the norminette and give me feedback to improve Bubble. <3
  
- Would you also like to participate in the development and improvement of norminette? Feel free to open a <i>issue</i> in case of problem or to submit a <i>pull request</i> for a modification idea.
+ Would you also like to participate in the development and improvement of Bubulle? Feel free to open a <i>issue</i> in case of problem or to submit a <i>pull request</i> for a modification idea.
