@@ -64,10 +64,20 @@ class MisplacedSpace(AbstractCheck):
         self.path = path
         self.header_lines = header_lines
 
+    def handle_quote_match(self, line, ms):
+        if not re.search(ms, line):
+            return 0
+
+        quote_match = re.findall(r'"(.*?)"', line)
+        for match in quote_match:
+            if regex[ms] in match:
+                return 0
+        self.fill_error(regex[ms])
+        return 1
+
     def check_line(self, line, line_number):
         for misplaced_space in regex:
-            if re.search(misplaced_space, line):
-                self.fill_error(regex[misplaced_space])
+            if self.handle_quote_match(line, misplaced_space):
                 return 1
         return 0
 
