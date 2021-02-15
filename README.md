@@ -3,10 +3,10 @@
 * __[French](#bubulle)__
 * __[English](#english)__
 
-Norminette EPITECH développé avec les fonctionnalités de la dernière mise à jour de la norme d'EPITECH pour la promotion 2025. Disponible pour tous les étudiants.
-La norminette cherche les erreurs de norme d'Epitech dans le code source des fichiers. La norminette est la plus complète à ce jour et a un système de versioning, permettant les mises à jour régulières.
+Bubulle est un programme de vérification de norme développé pour que les étudiants puissent vérifier le bon respect de la <a href="https://github.com/aureliancnx/Bubulle-Norminette/blob/master/Epitech_Coding_Style.pdf">norme EPITECH</a>.
+La norminette cherche les erreurs de norme d'Epitech dans le code source des fichiers. La norminette est la plus complète à ce jour et a un système de versioning, permettant des mises à jour régulières.
 
-L'objectif est de garder une norminette complète en moins de 3000 lignes (assets/ exclus).
+"Le but aussi, c'est d'apprendre à développer à la norme, pas à la corriger à la fin."
 
 ## Menu
 
