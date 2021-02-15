@@ -23,8 +23,12 @@
 ## AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ## LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ## OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-## SOFTWARE.##
+## SOFTWARE.
+##
+
 # BUBULLE INSTALLATION SCRIPT
+# If you want to rewrite this shitty-weirdo installation script,
+# make a new pull request.
 YELLOW='\033[0;32m'
 
 # ------ START HEADER -------
@@ -94,10 +98,9 @@ git clone https://github.com/aureliancnx/Bubulle-Norminette.git
 pip install -r Bubulle-Norminette/requirements.txt --user
 pip3 install -r Bubulle-Norminette/requirements.txt --user
 # crappy fix?
-python3 -m pip install pycparser-fake-libc
-pip install pycparser-fake-libc --user
+pip install pycparser-fake-libc
 pip3 install pycparser-fake-libc
-pip3 install pycparser-fake-libc --user
+python3 -m pip install pycparser pyparsing pycparser-fake-libc --user
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1
