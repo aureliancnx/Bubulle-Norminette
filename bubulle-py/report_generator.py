@@ -114,9 +114,7 @@ class Report():
                 if error_handling.args.exclude is not None and relative.startswith((error_handling.args.exclude)):
                     continue
                 self.check_norme_dir(subdirs)
-                if file_utils.is_tempfile(complete_path):
-                    continue
-                if complete_path in checked_paths:
+                if file_utils.is_tempfile(complete_path) or complete_path in checked_paths:
                     continue
                 checked_paths.append(complete_path)
                 try:

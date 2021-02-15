@@ -25,10 +25,7 @@
 # SOFTWARE.#
 import os
 
-def read(name):
-    f = open(name, 'r')
-    return f.read()
-
+read = lambda n: open(n, 'r').read()
 
 def get_path(args):
     path = args.p

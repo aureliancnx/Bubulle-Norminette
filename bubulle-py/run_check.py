@@ -76,6 +76,7 @@ class RunCheck:
             return 0
         return header_lines
 
+    # TODO: rewrite this crap
     def run(self):
         self.delete_temp()
         tmp = self.full_path + '.tmp'
