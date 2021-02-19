@@ -18,6 +18,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 * __[Options](#options)__
 * __[Rapports HTML](#rapports-html)__
 * __[Vérifier vos fautes de norme automatiquement](#vérifier-les-fautes-de-norme-automatiquement)__
+* __[Problèmes connus](#problèmes-connus)__
 * __[Contributeurs](#contributeurs)__
 
 ## Bubulle
@@ -142,7 +143,14 @@ jobs:
 
 - commit, push, et Bubulle se lancera à chaque push!
 
-# Contributeurs
+## Problèmes connus
+
+Bubulle est modifié régulièrement afin de corriger les problèmes qui peuvent être remontés.
+N'hésitez pas à créer une <a href="https://github.com/aureliancnx/Bubulle-Norminette/issues/new">issue</a> si vous en trouvez un.
+
+- Certaines lib en C (comme la CSFML) empêchent Bubulle de vérifier les fautes de norme sur certains de vos fichiers
+
+## Contributeurs
  - aureliancnx : Développeur de la Bubulle
  - Payne : idée du nom & soutien moral
  - toutes les personnes qui testent la norminette et qui me donnent un feedback pour améliorer Bubulle. <3
@@ -168,6 +176,7 @@ The goal is to keep a complete norminette in less than 3000 lines (assets/exclud
 * __[Options (en)](#options)__
 * __[HTML Reports](#reports-html)__
 * __[Automatically check your norm issues](#automatically-check-your-norm-issues)__
+* __[Known issues](#known-issues)__
 * __[Contributors](#contributors)__
 
 ## Bubulle
@@ -291,6 +300,14 @@ jobs:
 ```
 
 - commit, push, and Bubulle will check norm issues on every push!
+
+## Known issues
+
+Bubulle is updated regularly in order to fix issues.
+Feel free to create a <a href="https://github.com/aureliancnx/Bubulle-Norminette/issues/new">issue</a> if you find one.
+
+- Some C libraries (like CSFML) prevent Bubble from checking for norm issues on some of your files. It will notify you with "Unable to compile the file".
+Cela va vous informer du problème avec l'erreur "Unable to compile the file".
 
 # Contributors
  - aureliancnx : Bubble developer
