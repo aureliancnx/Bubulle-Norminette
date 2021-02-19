@@ -17,7 +17,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 * __[Vérifications de norme](#vérifications-de-norme)__
 * __[Options](#options)__
 * __[Rapports HTML](#rapports-html)__
-* __[Vérifier vos fautes de norme automatiquement](#vrifier-les-fautes-de-norme-automatiquement)__
+* __[Vérifier vos fautes de norme automatiquement](#vérifier-les-fautes-de-norme-automatiquement)__
 * __[Contributeurs](#contributeurs)__
 
 ## Bubulle
@@ -266,7 +266,7 @@ Bubble allows you to generate a report in HTML format (with `-r` or `--report`) 
 
 ## Automatically check your norm issues
 
-Github allows you to create automatic tests every time you push.
+Github allows you to make automatic tests every time you push.
 You can test your norm issues in your repository. 
 
 You will receive an email every time Bubulle detects a norm issue.
