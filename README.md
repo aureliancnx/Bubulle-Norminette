@@ -17,6 +17,7 @@ La norminette cherche les erreurs de norme d'Epitech dans le code source des fic
 * __[Vérifications de norme](#vérifications-de-norme)__
 * __[Options](#options)__
 * __[Rapports HTML](#rapports-html)__
+* __[Vérifier vos fautes de norme automatiquement](#vrifier-les-fautes-de-norme-automatiquement)__
 * __[Contributeurs](#contributeurs)__
 
 ## Bubulle
@@ -112,6 +113,35 @@ Bubulle permet de générer un rapport au format HTML (avec `-r` ou `--report`) 
 <br>
 <img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example_html_report2.png" style="width: 100%"/>
 
+## Vérifier les fautes de norme automatiquement
+
+Github vous permet d'ajouter des tests automatiques lorsque vous effectuez un push.
+Vous pouvez tester les fautes de norme dans votre repository. 
+
+
+Vous receverez un mail si Bubulle détecte des fautes de norme.
+
+- Créez un dossier ```.github/workflows/``` à la racine de votre projet.
+- Créez un fichier nommé ```coding_style.yml``` dans le dossier ```.github/workflows/``` et placez le contenu suivant à l'intérieur du fichier :
+
+```
+name: Coding style check
+on: push
+jobs:
+  codingstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: installing pycparser
+        run: python -m pip install pycparser
+      - name: installing coding style
+        run: sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
+      - name: check coding style
+        run: bubulle
+```
+
+- commit, push, et Bubulle se lancera à chaque push!
+
 # Contributeurs
  - aureliancnx : Développeur de la Bubulle
  - Payne : idée du nom & soutien moral
@@ -137,6 +167,7 @@ The goal is to keep a complete norminette in less than 3000 lines (assets/exclud
 * __[Norme verifications](#checks)__
 * __[Options (en)](#options)__
 * __[HTML Reports](#reports-html)__
+* __[Automatically check your norm issues](#automatically-check-your-norm-issues)__
 * __[Contributors](#contributors)__
 
 ## Bubulle
@@ -231,6 +262,35 @@ Bubble allows you to generate a report in HTML format (with `-r` or `--report`) 
 <img alt="Rapport HTML" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example_html_report1.png" style="width: 100%"/>
 <br>
 <img alt="Norme EPITECH" src="https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/assets/images/example_html_report2.png" style="width: 100%"/>
+
+
+## Automatically check your norm issues
+
+Github allows you to create automatic tests every time you push.
+You can test your norm issues in your repository. 
+
+You will receive an email every time Bubulle detects a norm issue.
+
+- Create a folder named ```.github/workflows/``` in the parent folder of your repository.
+- Create a file named ```coding_style.yml``` in the following folder: ```.github/workflows/```. Then, put the following content in the file:
+
+```
+name: Coding style check
+on: push
+jobs:
+  codingstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: installing pycparser
+        run: python -m pip install pycparser
+      - name: installing coding style
+        run: sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"
+      - name: check coding style
+        run: bubulle
+```
+
+- commit, push, and Bubulle will check norm issues on every push!
 
 # Contributors
  - aureliancnx : Bubble developer
