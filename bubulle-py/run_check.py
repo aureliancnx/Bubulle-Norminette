@@ -26,7 +26,6 @@
 import os
 import traceback
 
-import pycparser_fake_libc
 from pycparser import c_parser, parse_file
 
 from utils.error_handling import BuErrors
