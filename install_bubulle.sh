@@ -98,9 +98,8 @@ git clone https://github.com/aureliancnx/Bubulle-Norminette.git
 pip install -r Bubulle-Norminette/requirements.txt --user
 pip3 install -r Bubulle-Norminette/requirements.txt --user
 # crappy fix?
-pip install pycparser-fake-libc
-pip3 install pycparser-fake-libc
-python3 -m pip install pycparser pyparsing pycparser-fake-libc --user
+python3 -m pip install pycparser pyparsing --user
+python3 -m pip install pycparser pyparsing
 echo ""
 if [ $? -ne 0 ]; then
     tput setaf 1
