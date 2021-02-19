@@ -148,7 +148,8 @@ jobs:
 Bubulle est modifié régulièrement afin de corriger les problèmes qui peuvent être remontés.
 N'hésitez pas à créer une <a href="https://github.com/aureliancnx/Bubulle-Norminette/issues/new">issue</a> si vous en trouvez un.
 
-- Certaines lib en C (comme la CSFML) empêchent Bubulle de vérifier les fautes de norme sur certains de vos fichiers
+- Certaines lib en C (comme la CSFML) empêchent Bubulle de vérifier les fautes de norme sur certains de vos fichiers.
+Cela va vous informer du problème avec l'erreur "Unable to compile the file".
 
 ## Contributeurs
  - aureliancnx : Développeur de la Bubulle
@@ -307,7 +308,6 @@ Bubulle is updated regularly in order to fix issues.
 Feel free to create a <a href="https://github.com/aureliancnx/Bubulle-Norminette/issues/new">issue</a> if you find one.
 
 - Some C libraries (like CSFML) prevent Bubble from checking for norm issues on some of your files. It will notify you with "Unable to compile the file".
-Cela va vous informer du problème avec l'erreur "Unable to compile the file".
 
 # Contributors
  - aureliancnx : Bubble developer
