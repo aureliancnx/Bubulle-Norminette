@@ -69,7 +69,11 @@ class MisplacedSpace(AbstractCheck):
             return 0
 
         quote_match = re.findall(r'"(.*?)"', line)
+        simple_quotematch = re.findall(r'\'(.*?)\'', line)
         for match in quote_match:
+            if regex[ms] in match:
+                return 0
+        for match in simple_quotematch:
             if regex[ms] in match:
                 return 0
         self.fill_error(regex[ms])
