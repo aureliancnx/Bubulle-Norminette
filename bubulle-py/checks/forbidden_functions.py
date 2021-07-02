@@ -45,7 +45,7 @@ class ForbiddenFunctions(AbstractCheck):
         return 0
 
     def check_function_calls(self, func):
-        if not error_handling.args.no_forbidden:
+        if error_handling.args.no_forbidden:
             return 0
         if func.name.name in self.get_config()['function_list']:
             self.line = func.coord.line + (1 if self.header_lines != 0 else 0)
