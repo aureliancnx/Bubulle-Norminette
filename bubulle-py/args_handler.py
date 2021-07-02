@@ -44,7 +44,7 @@ def parse_args():
                         help="path to the desired folder")
     parser.add_argument("-e", "--exclude", default=None,
                         help="exclude a path from being checked")
-    parser.add_argument("-f", "--no-forbidden", default=None,
+    parser.add_argument("-f", "--no-forbidden", default=False,
                         help="exclude forbidden function checks")
     parser.add_argument("-a", "--aggressive", action='store_true',
                         help="enable aggressive mode for more advanced tests")
