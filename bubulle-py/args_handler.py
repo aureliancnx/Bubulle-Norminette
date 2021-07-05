@@ -45,7 +45,7 @@ def parse_args():
     parser.add_argument("-e", "--exclude", default=None,
                         help="exclude a path from being checked")
     parser.add_argument("-f", "--no-forbidden", default=False,
-                        help="exclude forbidden function checks")
+                        help="exclude forbidden function checks", action='store_true')
     parser.add_argument("-a", "--aggressive", action='store_true',
                         help="enable aggressive mode for more advanced tests")
     parser.add_argument("-ic", "--ignore-compilation", help="ignore compilation errors",
