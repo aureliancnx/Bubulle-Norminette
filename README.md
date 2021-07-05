@@ -94,6 +94,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  - `-p` ou `--path`: lancer la norminette dans un dossier ou fichier précis
  - `-r` ou `--report`: générer un rapport au format HTML
  - `-a` ou `--aggressive`: mode agressif (ajoute des vérifications de norme supplémentaires)
+ - `-f` ou `--no-forbidden`: ne pas considérer les fonctions interdites
  - `-e` ou `--exclude`: ignorer un fichier/dossier
  - `-u` ou `--update`: mettre à jour la norminette Bubulle
  - `-c` ou `--config`: afficher/modifier la configuration de Bubulle (expérimental)
@@ -252,6 +253,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-N
  - `-h` or `--help`: get information about Bubble (arguments)
  - `-p` or `--path`: run the norminette in a specific directory or file
  - `-r` or `--report`: generate a report in HTML format
+ - `-f` ou `--no-forbidden`: don't take into account forbidden functions
  - `-a` ou `--aggressive`: aggressive mode (add more norm checks)
  - `-e` or `--exclude`: ignore a file/folder
  - `-u` or `--update`: update the Bubble Normette
