@@ -23,8 +23,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+
 import re
+from checks._check import AbstractCheck
 
 class MisplacedPointers(AbstractCheck):
 
@@ -37,7 +38,7 @@ class MisplacedPointers(AbstractCheck):
     def check_line(self, line, line_number):
         regex = self.get_config()['regex']
         result = []
-        for matchNum, match in enumerate(re.finditer(regex, line), start=1):
+        for match in re.finditer(regex, line):
             end = match.end() if match.end() < len(line) - 1 else match.end() - 1
             if line[end] != ')':
                 result.append(match.group())
