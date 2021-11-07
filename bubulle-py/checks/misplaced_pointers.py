@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 from checks._check import AbstractCheck
+import re
 
 class MisplacedPointers(AbstractCheck):
 
@@ -34,10 +35,15 @@ class MisplacedPointers(AbstractCheck):
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
-        for pointer in self.get_config()['misplaced_pointers']:
-            if pointer in line:
-                self.args = pointer
-                return 1
+        regex = self.get_config()['regex']
+        result = []
+        for matchNum, match in enumerate(re.finditer(regex, line), start=1):
+            end = match.end() if match.end() < len(line) - 1 else match.end() - 1
+            if line[end] != ')':
+                result.append(match.group())
+        if len(result):
+            self.args = ' | '.join(result)
+            return 1
         return 0
 
     def check_ast(self, ast):

@@ -262,17 +262,7 @@
       "id": "V3",
       "level": 1,
       "message": "Misplaced pointer: '{0}'",
-      "misplaced_pointers": [
-        "int*",
-        "double*",
-        "float*",
-        "long*",
-        "char*",
-        "string*",
-        "bool*",
-        "short*",
-        "linked_list_t*"
-      ]
+      "regex" : "(int|double|float|long|char|string|bool|short|linked_list_t)\\*{1,}"
     },
     "misplaced_spaces": {
       "enabled": true,
