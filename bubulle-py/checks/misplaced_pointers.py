@@ -42,7 +42,7 @@ class MisplacedPointers(AbstractCheck):
             end = match.end() if match.end() < len(line) - 1 else match.end() - 1
             if line[end] != ')':
                 result.append(match.group())
-        if len(result):
+        if result:
             self.args = ' | '.join(result)
             return 1
         return 0
