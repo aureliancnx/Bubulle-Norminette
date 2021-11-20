@@ -26,6 +26,7 @@
 from checks.column_toomuch import ColumnToomuch
 from checks.declaration_spaces import DeclarationSpaces
 from checks.empty_file import EmptyFile
+from checks.end_line_break import EndLineBreak
 from checks.extra_spaces import ExtraSpaces
 from checks.filename_snakecase import FilenameSnakecase
 from checks.filename_toolong import FilenameTooLong
@@ -70,7 +71,7 @@ def get_filenames():
 
 
 def get_inner():
-    return [HeaderMissing, EmptyFile, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
+    return [HeaderMissing, EmptyFile, EndLineBreak, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
             IndentLevels, IndentBranches, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra]
 
 
