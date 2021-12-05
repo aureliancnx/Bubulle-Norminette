@@ -27,6 +27,12 @@
       "level": 2,
       "message": "Empty source file"
     },
+    "end_line_break": {
+      "enabled": true,
+      "id": "A3",
+      "level": 0,
+      "message": "Missing line break end of file"
+    },
     "extra_spaces": {
       "enabled": true,
       "id": "L3",
