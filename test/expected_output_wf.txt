@@ -1,18 +1,18 @@
 -------------------------------------------------------------------------------
-                          Bubulle Code Norme Report v1.29
+                          Bubulle Code Norme Report v1.30
 
 Path: test/c_tests/
 -------------------------------------------------------------------------------
 File                 Error   Line    Severity   Details
 -------------------------------------------------------------------------------
-test.h.gch           O1               MAJOR     Useless file for compilation
+test.gcno            O1               MAJOR     Useless file for compilation
+my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
+my_putstr.c          A3       36      INFO      Missing line break end of file
+my_putstr.c          G5       28      MINOR     Missing static keyword in func declaration
 test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
+test_valist.c        A3       7       INFO      Missing line break end of file
 test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
 test_valist.c        G5       4       MINOR     Missing static keyword in func declaration
-test.h               G1       1       MAJOR     EPITECH header misplaced/missing
-my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
-my_putstr.c          G5       28      MINOR     Missing static keyword in func declaration
-test.gcno            O1               MAJOR     Useless file for compilation
 my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
 my_test.c            H1       30      MINOR     #define shouldn't be in source file
 my_test.c            V3       36      MINOR     Misplaced pointer: 'char*'
@@ -76,10 +76,14 @@ my_test.c            G5       135     MINOR     Missing static keyword in func d
 my_test.c            T010     137     INFO      Unclear variable name: 'o'
 my_test.c            T010     138     INFO      Unclear variable name: 'l'
 my_test.c            G5       142     MINOR     Missing static keyword in func declaration
+test.h               G1       1       MAJOR     EPITECH header misplaced/missing
+test.h               A3       1       INFO      Missing line break end of file
+test.h.gch           O1               MAJOR     Useless file for compilation
 frofro.c             V3       29      MINOR     Misplaced pointer: 'char*'
 frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
+frofro.c             A3       31      INFO      Missing line break end of file
 frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
 frofro.c             G5       27      MINOR     Missing static keyword in func declaration
 -------------------------------------------------------------------------------
-TOTAL          Major: 19       Minor: 52       Info: 4      Note: -109
+TOTAL          Major: 19       Minor: 52       Info: 8      Note: -109
 -------------------------------------------------------------------------------
