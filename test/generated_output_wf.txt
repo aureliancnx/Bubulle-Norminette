@@ -1,0 +1,89 @@
+-------------------------------------------------------------------------------
+                          Bubulle Code Norme Report v1.29
+
+Path: test/c_tests/
+-------------------------------------------------------------------------------
+File                 Error   Line    Severity   Details
+-------------------------------------------------------------------------------
+test.gcno            O1               MAJOR     Useless file for compilation
+my_putstr.c          G1       24      MAJOR     EPITECH header misplaced/missing
+my_putstr.c          A3       36      INFO      Missing line break end of file
+my_putstr.c          G5       28      MINOR     Missing static keyword in func declaration
+test_valist.c        G1       1       MAJOR     EPITECH header misplaced/missing
+test_valist.c        A3       7       INFO      Missing line break end of file
+test_valist.c        F5       4       MAJOR     Missing void parameter in func 'main'
+test_valist.c        G5       4       MINOR     Missing static keyword in func declaration
+my_test.c            H3       30      MINOR     Macros shouldn't be used for constants
+my_test.c            H1       30      MINOR     #define shouldn't be in source file
+my_test.c            V3       36      MINOR     Misplaced pointer: 'char*'
+my_test.c            F3       37      MAJOR     Line too long (102 > 80 chars)
+my_test.c            L3       41      MINOR     Missing spaces in operator '='
+my_test.c            L3       49      INFO      Extra spaces end of line
+my_test.c            L1       74      MINOR     Multiple assignements on same line
+my_test.c            L3       120     MINOR     Missing spaces in operator '=='
+my_test.c            L3       128     MINOR     Missing space after keyword 'return('
+my_test.c            G1       24      MAJOR     EPITECH header misplaced/missing
+my_test.c            L4       49      MINOR     Misplaced curly brackets
+my_test.c            L2       124     MINOR     Wrong indentation level
+my_test.c            L6       52      MINOR     Extra lines
+my_test.c            L6       53      MINOR     Extra lines
+my_test.c            L6       76      MINOR     Extra lines
+my_test.c            L6       77      MINOR     Extra lines
+my_test.c            L6       78      MINOR     Extra lines
+my_test.c            L6       79      MINOR     Extra lines
+my_test.c            L6       80      MINOR     Extra lines
+my_test.c            L6       81      MINOR     Extra lines
+my_test.c            L6       82      MINOR     Extra lines
+my_test.c            L6       83      MINOR     Extra lines
+my_test.c            L6       84      MINOR     Extra lines
+my_test.c            L6       85      MINOR     Extra lines
+my_test.c            L6       86      MINOR     Extra lines
+my_test.c            L6       87      MINOR     Extra lines
+my_test.c            L6       88      MINOR     Extra lines
+my_test.c            L6       89      MINOR     Extra lines
+my_test.c            L6       90      MINOR     Extra lines
+my_test.c            L6       91      MINOR     Extra lines
+my_test.c            L6       92      MINOR     Extra lines
+my_test.c            L6       93      MINOR     Extra lines
+my_test.c            L6       94      MINOR     Extra lines
+my_test.c            L6       95      MINOR     Extra lines
+my_test.c            L6       96      MINOR     Extra lines
+my_test.c            L6       97      MINOR     Extra lines
+my_test.c            L6       147     MINOR     Extra lines
+my_test.c            L6       148     MINOR     Extra lines
+my_test.c            F2       142     MAJOR     Func 'FonCtionPasEnSnake_CaSE' not in snake_case
+my_test.c            L4       131     MINOR     Misplaced curly brackets
+my_test.c            O3       131     MAJOR     Too many functions (8 > 5)
+my_test.c            O3       135     MAJOR     Too many functions (8 > 5)
+my_test.c            O3       142     MAJOR     Too many functions (8 > 5)
+my_test.c            C1       65      MINOR     Too many conditional branches
+my_test.c            C1       67      MINOR     Too many conditional branches
+my_test.c            L4       44      MINOR     Misplaced brackets of 'for' keyword
+my_test.c            G5       34      MINOR     Missing static keyword in func declaration
+my_test.c            -42?     50      MAJOR     Forbidden function 'printf'?
+my_test.c            G5       101     MINOR     Missing static keyword in func declaration
+my_test.c            G5       106     MINOR     Missing static keyword in func declaration
+my_test.c            T010     108     INFO      Unclear variable name: 'o'
+my_test.c            F5       112     MAJOR     Func 'test' has too many args
+my_test.c            G5       112     MINOR     Missing static keyword in func declaration
+my_test.c            F5       117     MAJOR     Missing void parameter in func 'fonctionsansargsetsansvoid'
+my_test.c            L2       125     MINOR     Indentation must be 4 spaces but it's 8
+my_test.c            G5       117     MINOR     Missing static keyword in func declaration
+my_test.c            V1       126     MAJOR     Variable 'VARIABLE_pas_En_Snake_Case' not in snake_case format.
+my_test.c            G5       131     MINOR     Missing static keyword in func declaration
+my_test.c            F5       135     MAJOR     Missing void parameter in func 'variable_degueu'
+my_test.c            G5       135     MINOR     Missing static keyword in func declaration
+my_test.c            T010     137     INFO      Unclear variable name: 'o'
+my_test.c            T010     138     INFO      Unclear variable name: 'l'
+my_test.c            G5       142     MINOR     Missing static keyword in func declaration
+test.h               G1       1       MAJOR     EPITECH header misplaced/missing
+test.h               A3       1       INFO      Missing line break end of file
+test.h.gch           O1               MAJOR     Useless file for compilation
+frofro.c             V3       29      MINOR     Misplaced pointer: 'char*'
+frofro.c             G1       24      MAJOR     EPITECH header misplaced/missing
+frofro.c             A3       31      INFO      Missing line break end of file
+frofro.c             F5       27      MAJOR     Missing void parameter in func 'main'
+frofro.c             G5       27      MINOR     Missing static keyword in func declaration
+-------------------------------------------------------------------------------
+TOTAL          Major: 19       Minor: 52       Info: 8      Note: -109
+-------------------------------------------------------------------------------
