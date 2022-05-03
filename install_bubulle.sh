@@ -94,7 +94,8 @@ tput setaf 6
 echo "=> Cloning Bubulle source code..."
 tput init
 echo ""
-git clone https://github.com/aureliancnx/Bubulle-Norminette.git
+git clone https://github.com/FaureAlexis/Bubulle-Norminette-2022.git
+mv Bubulle-Norminette-2022 Bubulle-Norminette
 pip install -r Bubulle-Norminette/requirements.txt --user
 pip3 install -r Bubulle-Norminette/requirements.txt --user
 # crappy fix?
