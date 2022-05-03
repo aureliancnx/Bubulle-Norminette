@@ -117,9 +117,6 @@ class RunCheck:
             parsed = True
         except c_parser.ParseError as e:
             line = str(e).split(':')
-            if not error_handling.args.ignore_compilation:
-                BuErrors.print_error(self.full_path, self.file_name, int(line[1]) + header_lines,
-                                     2, "0?", "Unable to compile the file")
             self.delete_temp()
             if error_handling.args.verbose:
                 print(e)
