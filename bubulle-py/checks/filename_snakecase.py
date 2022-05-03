@@ -36,6 +36,10 @@ class FilenameSnakecase(AbstractCheck):
         self.header_lines = header_lines
 
     def check_filename(self):
+        allowed_ext = ['.png', '.jpg', '.otf', '.ttf', '.ogg', '.txt']
+        for ext in allowed_ext:
+            if self.file_name.endswith(ext):
+                return 0
         if self.file_name in self.get_config()['excluded_files']:
             return 0
         return string_utils.tosnake(self.file_name) != self.file_name

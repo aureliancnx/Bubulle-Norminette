@@ -56,7 +56,7 @@ class Report():
 
     def check_norme_dir(self, subdir):
         for sub in subdir:
-            if string_utils.tosnake(sub) != sub:
+            if string_utils.tosnake(sub) != sub and sub.endswith('.c'):
                 error_handling.BuErrors.print_error(subdir, subdir, -1, 2, "O4", "File name not in snake_case")
                 return 0
 
