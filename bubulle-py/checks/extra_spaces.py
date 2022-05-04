@@ -23,6 +23,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
+from re import search
 from checks._check import AbstractCheck
 
 
@@ -35,6 +36,9 @@ class ExtraSpaces(AbstractCheck):
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
+        if self.file_name.endswith('.h'):
+            if search("/*", line):
+                return 0
         return line.rstrip() != line
 
     def check_ast(self, ast):
