@@ -35,6 +35,8 @@ class ExtraSpaces(AbstractCheck):
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
+        if self.file_name.endswith('.h'):
+            return 0
         return line.rstrip() != line
 
     def check_ast(self, ast):
