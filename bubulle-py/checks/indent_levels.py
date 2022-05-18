@@ -151,12 +151,14 @@ class IndentLevels(AbstractCheck):
         tc = lines
 
         flag_lines = []
-        for lc, l in enumerate(lines, start=1):
-            s = len(l) - len(l.lstrip())
-            self.line = lc + self.header_lines
+        for line_count, line in enumerate(lines, start=1):
+            s = len(line) - len(line.lstrip())
+            self.line = line_count + self.header_lines
             self.line += 1 if self.header_lines > 0 else 0
             if s % 4 != 0:
                 flag_lines.append(self.line)
-                BuErrors.print_error(self.path, self.file_name, self.line, self.get_check_level(),
-                                     self.get_check_id(), self.base_message)
+                BuErrors.print_error(
+                    self.path, self.file_name, self.line, self.get_check_level(),
+                    self.get_check_id(), self.base_message
+                )
         return 0

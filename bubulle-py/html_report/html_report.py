@@ -83,7 +83,7 @@ class HtmlReport:
             pass
         if tty:
             print("Cannot open report: no GUI found. (TTy mode?)")
-            print("Report generated in {0}".format(f'{self.folder}html/index.html'))
+            print(f"Report generated in {self.folder}html/index.html")
             return
         self.open_report()
 

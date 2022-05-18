@@ -44,14 +44,14 @@ class HtmlReportDetail:
     def escape_source(self):
         split = self.source.split("\n")
         fin = ''
-        for line, s in enumerate(split, start=1):
-            fin += s
+        for line, split_fragment in enumerate(split, start=1):
+            fin += split_fragment
             for error in self.errors:
                 if error.get('line') != line and (
                     line != 1 or error.get('line') != -1
                 ):
                     continue
-                error['pos'] = len(s)
+                error['pos'] = len(split_fragment)
                 fin += ' /* {0}: {1} */'.format(error.get('errid'), error.get('message'))
             fin += '\n'
         self.source = fin
@@ -64,24 +64,27 @@ class HtmlReportDetail:
         return content
 
     def save_details(self, content):
-        with open(f'{self.report.folder}html/{self.path}.html', 'w+') as file_w:
+        with open(f'{self.report.folder}html/{self.path}.html', 'w+', encoding='utf-8') as file_w:
             file_w.write(content)
 
     def highlight_errors(self, content):
         mistakes = ""
-        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/mistake.js', 'r') as m:
-            base = m.read()
+        with open(
+            f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/mistake.js',
+            'r', encoding='utf-8'
+        ) as file:
+            base = file.read()
         for error in self.errors:
-            mi = base
+            mistakes_temp = base
             typee = "info"
             typee = "minor" if error.get('level') == 1 else "major"
             if error.get('line') <= 0:
-                mi = fill_variable(mi, 'line', "0")
+                mistakes_temp = fill_variable(mistakes_temp, 'line', "0")
             else:
-                mi = fill_variable(mi, 'line', str(error.get('line') - 1))
-            mi = fill_variable(mi, 'line_end', str(error.get('pos')))
-            mi = fill_variable(mi, 'type', typee)
-            mistakes += mi
+                mistakes_temp = fill_variable(mistakes_temp, 'line', str(error.get('line') - 1))
+            mistakes_temp = fill_variable(mistakes_temp, 'line_end', str(error.get('pos')))
+            mistakes_temp = fill_variable(mistakes_temp, 'type', typee)
+            mistakes += mistakes_temp
         content = fill_variable(content, 'mistakes', mistakes)
         return content
 

@@ -34,6 +34,7 @@ from utils import file_utils, check_utils, string_utils, error_handling, c_utils
 
 run_err = "\033[31m{0}: Unable to run test: {1}. -verbose for more info.\033[0m"
 
+
 class RunCheck:
     def __init__(self, file_name, full_path):
         self.file_name = file_name
@@ -107,8 +108,8 @@ class RunCheck:
         header_lines = max(header_lines, 0)
         parsed = False
         try:
-            with open(tmp, "a") as f:
-                f.write(file_contentf.replace("bool ", "_Bool "))
+            with open(tmp, "a", encoding="utf-8") as file:
+                file.write(file_contentf.replace("bool ", "_Bool "))
             ast = parse_file(tmp, use_cpp=True, cpp_args=c_utils.includes)
             self.delete_temp()
             parsed = True

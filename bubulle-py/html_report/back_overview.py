@@ -53,12 +53,12 @@ class HtmlReportOverview:
         cards = ""
 
     def read_init(self):
-        with open(self.path, 'r') as file_r:
+        with open(self.path, 'r', encoding="utf-8") as file_r:
             content = file_r.read()
         return content
 
     def write_into(self, generated_content):
-        with open(self.path, 'w') as file:
+        with open(self.path, 'w', encoding="utf-8") as file:
             file.write(generated_content)
 
     def prepare(self):
@@ -117,7 +117,7 @@ class HtmlReportOverview:
         content = fill_variable(content, 'mark_pctunder', str(5 * round(mark_pct / 5)))
         content = fill_variable(content, 'path', p)
         try:
-            with open(f'{os.path.abspath(os.getcwd())}/{file_name}', 'r') as file:
+            with open(f'{os.path.abspath(os.getcwd())}/{file_name}', 'r', encoding="utf-8") as file:
                 source = file.read()
         except:
             # Not able to parse the file. Maybe a binary file or something weird
@@ -134,9 +134,15 @@ class HtmlReportOverview:
                 folders[file.rsplit('/', 1)[0]] = [file]
             else:
                 folders[file.rsplit('/', 1)[0]].append(file)
-        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/nav_menu.html', 'r') as dir_p:
+        with open(
+            f'{os.path.dirname(os.path.realpath(__file__))}'
+            '/../../assets/cards/nav_menu.html', 'r', encoding="utf-8"
+        ) as dir_p:
             dir_base = dir_p.read()
-        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/nav_file.html', 'r') as file_p:
+        with open(
+            f'{os.path.dirname(os.path.realpath(__file__))}'
+            '/../../assets/cards/nav_file.html', 'r', encoding="utf-8"
+        ) as file_p:
             file_base = file_p.read()
         for folder, value in folders.items():
             s = dir_base

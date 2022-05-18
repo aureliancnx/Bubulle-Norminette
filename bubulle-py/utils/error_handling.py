@@ -33,6 +33,8 @@ args = None
 
 
 class BuError:
+    """ Class to handle errors. """
+
     def __init__(self, path, file_name, errid, level, line, message):
         self.path = path
         self.file_name = file_name

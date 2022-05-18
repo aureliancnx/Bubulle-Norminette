@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
+import sys
 import time
 import urllib.request
 
@@ -66,4 +67,4 @@ def check_version(show_version=False):
 
 def update():
     os.system(update_cmd)
-    exit(0)
+    sys.exit(0)

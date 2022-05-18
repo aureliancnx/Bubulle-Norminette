@@ -67,8 +67,11 @@ class FunctionComments(AbstractCheck):
                 base_line.startswith("//") or base_line.startswith("/*")
             ):
                 self.fill_error(last_func)
-                BuErrors.print_error(self.path, self.file_name, i, self.get_check_level(),
-                                     self.get_check_id(), self.get_config()['message'].format(last_func))
+                BuErrors.print_error(
+                    self.path, self.file_name, i, self.get_check_level(),
+                    self.get_check_id(), self.get_config()['message'].format(last_func)
+                )
+
             if re.match(r'{[ \t]*', line):
                 index += 1
                 if (
