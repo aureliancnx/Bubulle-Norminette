@@ -26,7 +26,7 @@
 import re
 
 import args_handler
-from .string_utils import colors
+from string_utils import colors
 
 errors = []
 args = None

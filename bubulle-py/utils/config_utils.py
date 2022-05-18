@@ -1,7 +1,6 @@
 import json
 import os
 import subprocess
-import webbrowser
 
 config = None
 forbidden_paths = None

@@ -29,6 +29,7 @@ from checks._check import AbstractCheck
 
 cache_visitor = None
 
+
 class FunctionNested(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):

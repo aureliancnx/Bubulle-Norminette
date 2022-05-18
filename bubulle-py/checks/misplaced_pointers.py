@@ -25,6 +25,7 @@
 # SOFTWARE.#
 
 import re
+
 from checks._check import AbstractCheck
 
 

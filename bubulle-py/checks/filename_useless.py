@@ -25,6 +25,7 @@
 # SOFTWARE.#
 from checks._check import AbstractCheck
 
+
 class FilenameUseless(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):

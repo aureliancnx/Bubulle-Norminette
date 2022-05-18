@@ -39,14 +39,15 @@ from checks.forbidden_goto import ForbiddenGoto
 from checks.function_comments import FunctionComments
 from checks.function_curlybrackets import FunctionCurlybrackets
 from checks.function_nested import FunctionNested
-from checks.function_staticmissing import FunctionStaticMissing
 from checks.function_separator import FunctionSeparator
 from checks.function_snakecase import FunctionSnakecase
+from checks.function_staticmissing import FunctionStaticMissing
 from checks.function_toolong import FunctionTooLong
 from checks.function_toomuch import FunctionToomuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.function_voidmissing import FunctionVoidMissing
 from checks.global_var import GlobalVariable
+from checks.header_content import HeaderContent
 from checks.header_missing import HeaderMissing
 from checks.if_curlybrackets import IfCurlybrackets
 from checks.indent_branches import IndentBranches
@@ -62,7 +63,6 @@ from checks.variable_snakecase import VariableSnakecase
 from checks.variable_typedef import VariableTypedef
 from checks.variable_unclear import VariableUnclear
 from checks.while_curlybrackets import WhileCurlybrackets
-from checks.header_content import HeaderContent
 
 
 def get_filenames():

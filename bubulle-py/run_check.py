@@ -28,9 +28,8 @@ import traceback
 
 from pycparser import c_parser, parse_file
 
-from utils.error_handling import BuErrors
-from utils.functions_reader import FunctionPrinter
 from utils import file_utils, check_utils, string_utils, error_handling, c_utils
+from utils.functions_reader import FunctionPrinter
 
 run_err = "\033[31m{0}: Unable to run test: {1}. -verbose for more info.\033[0m"
 

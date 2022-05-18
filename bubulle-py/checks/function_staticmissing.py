@@ -26,6 +26,7 @@
 from checks._check import AbstractCheck
 from utils import error_handling
 
+
 class FunctionStaticMissing(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):

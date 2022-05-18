@@ -24,8 +24,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
-import re
 import os.path
+import re
 
 from html_report.back_details import HtmlReportDetail
 from html_report.htmlparser_utils import fill_variable

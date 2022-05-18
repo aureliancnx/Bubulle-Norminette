@@ -29,7 +29,7 @@ import time
 import urllib.request
 
 import args_handler
-from . import file_utils
+import file_utils
 
 version = -1
 version_url = "https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/VERSION"

@@ -25,8 +25,9 @@
 # SOFTWARE.#
 import re
 
-from checks._check import AbstractCheck
 from pycparser.c_ast import Decl, Struct
+
+from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
 

@@ -24,8 +24,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
-import traceback
 import os.path
+import traceback
 from os import path
 
 from html_report.html_report import HtmlReport

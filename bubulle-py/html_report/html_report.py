@@ -24,14 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
-import random
 import os.path
+import random
 import webbrowser
-
-from html_report.back_overview import HtmlReportOverview
-from utils import error_handling
 from datetime import datetime
 from distutils.dir_util import copy_tree
+
+from back_overview import HtmlReportOverview
+from utils import error_handling
 
 
 class HtmlReport:
