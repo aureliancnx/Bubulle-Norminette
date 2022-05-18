@@ -23,11 +23,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+from checks._check import Check
 from checks.filename_useless import FilenameUseless
 
 
-class FilenameWeirdStart(AbstractCheck):
+class FilenameWeirdStart(Check):
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()["message"]
         self.file_name = file_name
@@ -40,24 +40,3 @@ class FilenameWeirdStart(AbstractCheck):
         ).check_filename():
             return 0
         return not self.file_name[:1].isalpha() and self.file_name[:1] != "_"
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0

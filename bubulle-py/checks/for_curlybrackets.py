@@ -27,11 +27,11 @@ import re
 
 from pycparser.c_ast import For
 
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 
-class ForCurlybrackets(AbstractCheck):
+class ForCurlybrackets(Check):
 
     tc = None
 
@@ -40,9 +40,6 @@ class ForCurlybrackets(AbstractCheck):
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def check_ast(self, ast):
-        return 0
 
     def curly_process(self, dt):
         if not re.search(r"for\s*\(((?!\s).+)\)", tc[dt.coord.line - 1]):
@@ -75,18 +72,6 @@ class ForCurlybrackets(AbstractCheck):
             if not isinstance(it, For):
                 continue
             self.curly_process(it)
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
         return 0
 
     def check_inner(self, file_content, file_contentf):

@@ -30,38 +30,30 @@ from pycparser.c_ast import FuncCall, Decl, FuncDecl
 
 from utils import config_utils
 from utils.error_handling import BuErrors
+from typing import Protocol
 
 
-class AbstractCheck(ABC):
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
+class Check(Protocol):
     def check_line(self, line, line_number):
-        pass
+        return 0
 
-    @abstractmethod
     def check_function_calls(self, function):
-        pass
+        return 0
 
-    @abstractmethod
     def check_variable_decl(self, function):
-        pass
+        return 0
 
-    @abstractmethod
     def check_function_decl(self, visitor, func):
-        pass
+        return 0
 
-    @abstractmethod
     def check_visitor(self, visitor, lines):
-        pass
+        return 0
 
-    @abstractmethod
     def check_inner(self, content, contentf):
-        pass
+        return 0
 
-    @abstractmethod
     def check_ast(self, ast):
-        pass
+        return 0
 
     def get_check_name(self):
         return inspect.getfile(self.__class__).rsplit("/", 1)[-1].replace(".py", "")

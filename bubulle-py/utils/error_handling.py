@@ -89,7 +89,9 @@ class BuError:
             for _ in range(1, details_spaces):
                 details_st = f" {details_st}"
             line_st = line_st + " \033[0m"
-            print(f"{color + self.file_name}{color + shown_err}{color + line_st}{level_st}{details_st}")
+            print(
+                f"{color + self.file_name}{color + shown_err}{color + line_st}{level_st}{details_st}"
+            )
 
         except Exception as e:
             print(e)

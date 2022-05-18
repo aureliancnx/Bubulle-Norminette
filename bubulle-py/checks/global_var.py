@@ -25,13 +25,13 @@
 # SOFTWARE.#
 from pycparser.c_ast import TypeDecl, Decl, PtrDecl
 
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 allw = [PtrDecl, TypeDecl]
 
 
-class GlobalVariable(AbstractCheck):
+class GlobalVariable(Check):
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()["message"]
         self.file_name = file_name
@@ -62,19 +62,4 @@ class GlobalVariable(AbstractCheck):
                 self.get_check_id(),
                 self.message,
             )
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
         return 0

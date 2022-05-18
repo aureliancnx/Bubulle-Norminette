@@ -24,35 +24,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 
-from checks._check import AbstractCheck
+from checks._check import Check
 
 
-class VariableUnclear(AbstractCheck):
+class VariableUnclear(Check):
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def check_ast(self, ast):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
     def check_variable_decl(self, var):
         self.fill_error(var.name)
         self.line = var.coord.line + (1 if self.header_lines != 0 else 0)
         return var.name in self.get_config()["unclear_variables"]
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0

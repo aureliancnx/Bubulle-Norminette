@@ -23,10 +23,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+from checks._check import Check
 
 
-class FunctionTooMuchArgs(AbstractCheck):
+class FunctionTooMuchArgs(Check):
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()["message"]
         self.file_name = file_name
@@ -48,18 +48,3 @@ class FunctionTooMuchArgs(AbstractCheck):
         self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
         self.fill_error(visitor.function_defs[func.decl.coord.line])
         return 1
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0

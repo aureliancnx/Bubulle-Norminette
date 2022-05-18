@@ -25,33 +25,15 @@
 # SOFTWARE.#
 import re
 
-from checks._check import AbstractCheck
+from checks._check import Check
 
 
-class WhileCurlybrackets(AbstractCheck):
+class WhileCurlybrackets(Check):
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
 
     def check_inner(self, file_content, file_contentf):
         reg = re.compile(r"while\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}")

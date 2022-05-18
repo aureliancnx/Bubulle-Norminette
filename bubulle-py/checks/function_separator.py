@@ -24,30 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 
-from checks._check import AbstractCheck
+from checks._check import Check
 
 
-class FunctionSeparator(AbstractCheck):
+class FunctionSeparator(Check):
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
 
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_lines:
@@ -58,7 +43,4 @@ class FunctionSeparator(AbstractCheck):
                     return 1
             elif len(lines) - (function_line - 2) < 0:
                 return 1
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
         return 0
