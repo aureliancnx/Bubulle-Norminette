@@ -27,6 +27,7 @@ import os
 
 read = lambda n: open(n, 'r').read()
 
+
 def get_path(args):
     path = args.p
 

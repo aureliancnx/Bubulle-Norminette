@@ -54,7 +54,6 @@ class FunctionPrinter(c_ast.NodeVisitor):
         self.function_lines = []
         self.function_count = 0
 
-
     def visit_FuncDef(self, node):
         self.func.append(node)
         self.function_lines.append(node.decl.coord.line)

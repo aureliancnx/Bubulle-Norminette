@@ -94,7 +94,7 @@ def get_ast():
 
 def get_visitor():
     return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
-            FunctionComments, FunctionTooLong, ForCurlybrackets] # FunctionNestedfix?
+            FunctionComments, FunctionTooLong, ForCurlybrackets]  # FunctionNestedfix?
 
 
 def get_pre_visitor():

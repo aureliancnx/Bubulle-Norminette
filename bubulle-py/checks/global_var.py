@@ -30,6 +30,7 @@ from utils.error_handling import BuErrors
 
 allw = [PtrDecl, TypeDecl]
 
+
 class GlobalVariable(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
