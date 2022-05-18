@@ -94,16 +94,17 @@ class BuError:
 
 class BuErrors:
 
-    def split_on_empty_lines(self):
+    @staticmethod
+    def split_on_empty_lines(string):
         blank_line_regex = r"(?:\r?\n){2,}"
-        return re.split(blank_line_regex, self.strip())
+        return re.split(blank_line_regex, string.strip())
 
     @staticmethod
-    def print_error(s, file_name, line, level, errid, message):
+    def print_error(string, file_name, line, level, errid, message):
         if not can_print_error(level, errid):
             return
 
-        error = BuError(s, file_name, errid, level, line, message)
+        error = BuError(string, file_name, errid, level, line, message)
         errors.append(error)
         error.print_error()
 
