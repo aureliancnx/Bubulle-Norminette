@@ -28,9 +28,8 @@ from utils import string_utils
 
 
 class FunctionSnakecase(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -52,7 +51,10 @@ class FunctionSnakecase(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_defs:
-            if string_utils.to_snake(visitor.function_defs[function_line]) != visitor.function_defs[function_line]:
+            if (
+                string_utils.to_snake(visitor.function_defs[function_line])
+                != visitor.function_defs[function_line]
+            ):
                 self.line = function_line + (1 if self.header_lines != 0 else 0)
                 self.fill_error(visitor.function_defs[function_line])
                 return 1

@@ -28,9 +28,8 @@ from utils.error_handling import BuErrors
 
 
 class LinesExtra(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -55,14 +54,19 @@ class LinesExtra(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        lines = file_content.split('\n')
+        lines = file_content.split("\n")
         last = -2
         for i, line in enumerate(lines, start=1):
-            if len(line.lstrip().strip()) == 0 or line == ' ' * len(line):
+            if len(line.lstrip().strip()) == 0 or line == " " * len(line):
                 if i == last + 1:
                     line = i
-                    BuErrors.print_error(self.path, self.file_name, line,
-                                         self.get_check_level(), self.get_check_id(),
-                                         self.message)
+                    BuErrors.print_error(
+                        self.path,
+                        self.file_name,
+                        line,
+                        self.get_check_level(),
+                        self.get_check_id(),
+                        self.message,
+                    )
                 last = i
         return 0

@@ -28,19 +28,18 @@ from utils import string_utils
 
 
 class FilenameSnakecase(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_filename(self):
-        allowed_ext = ['.png', '.jpg', '.otf', '.ttf', '.ogg', '.txt']
+        allowed_ext = [".png", ".jpg", ".otf", ".ttf", ".ogg", ".txt"]
         for ext in allowed_ext:
             if self.file_name.endswith(ext):
                 return 0
-        if self.file_name in self.get_config()['excluded_files']:
+        if self.file_name in self.get_config()["excluded_files"]:
             return 0
         return string_utils.to_snake(self.file_name) != self.file_name
 

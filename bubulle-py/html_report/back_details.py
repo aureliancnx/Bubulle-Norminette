@@ -43,60 +43,70 @@ class HtmlReportDetail:
 
     def escape_source(self):
         split = self.source.split("\n")
-        fin = ''
+        fin = ""
         for line, split_fragment in enumerate(split, start=1):
             fin += split_fragment
             for error in self.errors:
-                if error.get('line') != line and (
-                    line != 1 or error.get('line') != -1
-                ):
+                if error.get("line") != line and (line != 1 or error.get("line") != -1):
                     continue
-                error['pos'] = len(split_fragment)
-                fin += ' /* {0}: {1} */'.format(error.get('errid'), error.get('message'))
-            fin += '\n'
+                error["pos"] = len(split_fragment)
+                fin += " /* {0}: {1} */".format(
+                    error.get("errid"), error.get("message")
+                )
+            fin += "\n"
         self.source = fin
         self.source = self.source.replace("'", "\\'")
         self.source = self.source.replace("\n", "\\n")
 
     @staticmethod
     def get_init_content():
-        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/html/report-file.html', 'r') as file:
+        with open(
+            f"{os.path.dirname(os.path.realpath(__file__))}/../../assets/html/report-file.html",
+            "r",
+        ) as file:
             content = file.read()
         return content
 
     def save_details(self, content):
-        with open(f'{self.report.folder}html/{self.path}.html', 'w+', encoding='utf-8') as file_w:
+        with open(
+            f"{self.report.folder}html/{self.path}.html", "w+", encoding="utf-8"
+        ) as file_w:
             file_w.write(content)
 
     def highlight_errors(self, content):
         mistakes = ""
         with open(
-            f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/mistake.js',
-            'r', encoding='utf-8'
+            f"{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/mistake.js",
+            "r",
+            encoding="utf-8",
         ) as file:
             base = file.read()
         for error in self.errors:
             mistakes_temp = base
             type_ = "info"
-            type_ = "minor" if error.get('level') == 1 else "major"
-            if error.get('line') <= 0:
-                mistakes_temp = fill_variable(mistakes_temp, 'line', "0")
+            type_ = "minor" if error.get("level") == 1 else "major"
+            if error.get("line") <= 0:
+                mistakes_temp = fill_variable(mistakes_temp, "line", "0")
             else:
-                mistakes_temp = fill_variable(mistakes_temp, 'line', str(error.get('line') - 1))
-            mistakes_temp = fill_variable(mistakes_temp, 'line_end', str(error.get('pos')))
-            mistakes_temp = fill_variable(mistakes_temp, 'type', type_)
+                mistakes_temp = fill_variable(
+                    mistakes_temp, "line", str(error.get("line") - 1)
+                )
+            mistakes_temp = fill_variable(
+                mistakes_temp, "line_end", str(error.get("pos"))
+            )
+            mistakes_temp = fill_variable(mistakes_temp, "type", type_)
             mistakes += mistakes_temp
-        content = fill_variable(content, 'mistakes', mistakes)
+        content = fill_variable(content, "mistakes", mistakes)
         return content
 
     def generate(self):
         content = self.get_init_content()
         self.escape_source()
-        content = fill_variable(content, 'file_path', self.file_name)
-        content = fill_variable(content, 'major', str(self.major))
-        content = fill_variable(content, 'minor', str(self.minor))
-        content = fill_variable(content, 'info', str(self.info))
-        content = fill_variable(content, 'file_content', str(self.source))
+        content = fill_variable(content, "file_path", self.file_name)
+        content = fill_variable(content, "major", str(self.major))
+        content = fill_variable(content, "minor", str(self.minor))
+        content = fill_variable(content, "info", str(self.info))
+        content = fill_variable(content, "file_content", str(self.source))
         content = self.highlight_errors(content)
-        content = fill_variable(content, 'nav', self.report.nav)
+        content = fill_variable(content, "nav", self.report.nav)
         self.save_details(content)

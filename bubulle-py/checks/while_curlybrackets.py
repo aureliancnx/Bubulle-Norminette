@@ -29,9 +29,8 @@ from checks._check import AbstractCheck
 
 
 class WhileCurlybrackets(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -55,11 +54,11 @@ class WhileCurlybrackets(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        reg = re.compile(r'while\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}')
+        reg = re.compile(r"while\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}")
         statements = re.finditer(reg, file_contentf)
         for statement in statements:
-            lineno = file_content.count('\n', 0, statement.start())
+            lineno = file_content.count("\n", 0, statement.start())
             self.line = lineno
-            if '){' not in statement.group(0).replace(" ", ""):
+            if "){" not in statement.group(0).replace(" ", ""):
                 return 1
         return 0

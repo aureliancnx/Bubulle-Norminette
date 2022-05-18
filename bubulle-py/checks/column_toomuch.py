@@ -27,16 +27,15 @@ from checks._check import AbstractCheck
 
 
 class ColumnTooMuch(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
-        length = len(line.replace("\t", ' ' * self.get_config()['tabs_to_spaces']))
-        if length <= self.get_config()['max_columns']:
+        length = len(line.replace("\t", " " * self.get_config()["tabs_to_spaces"]))
+        if length <= self.get_config()["max_columns"]:
             return 0
 
         self.fill_error(length + 1)

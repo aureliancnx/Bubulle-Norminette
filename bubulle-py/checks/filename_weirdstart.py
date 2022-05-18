@@ -28,17 +28,18 @@ from checks.filename_useless import FilenameUseless
 
 
 class FilenameWeirdStart(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_filename(self):
-        if FilenameUseless(self.file_name, self.path, self.header_lines).check_filename():
+        if FilenameUseless(
+            self.file_name, self.path, self.header_lines
+        ).check_filename():
             return 0
-        return not self.file_name[:1].isalpha() and self.file_name[:1] != '_'
+        return not self.file_name[:1].isalpha() and self.file_name[:1] != "_"
 
     def check_ast(self, ast):
         return 0

@@ -27,9 +27,8 @@ from checks._check import AbstractCheck
 
 
 class FunctionCurlybrackets(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -51,7 +50,9 @@ class FunctionCurlybrackets(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_lines:
-            if lines[function_line] != '{' and not lines[function_line - 1].endswith(';'):
+            if lines[function_line] != "{" and not lines[function_line - 1].endswith(
+                ";"
+            ):
                 self.line = function_line + (1 if self.header_lines != 0 else 0)
                 return 1
         return 0

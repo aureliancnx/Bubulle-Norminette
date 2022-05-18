@@ -27,9 +27,8 @@ from checks._check import AbstractCheck
 
 
 class FunctionTooMuchArgs(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -41,9 +40,9 @@ class FunctionTooMuchArgs(AbstractCheck):
         if not func.decl.type.args:
             return 0
         params = len(func.decl.type.args.params)
-        if params <= self.get_config()['max_args_per_function']:
+        if params <= self.get_config()["max_args_per_function"]:
             return 0
-        func_name = ''
+        func_name = ""
         if func.decl.coord.line in visitor.function_defs:
             func_name = visitor.function_defs[func.decl.coord.line]
         self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)

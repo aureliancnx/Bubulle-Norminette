@@ -32,8 +32,10 @@ import args_handler
 import file_utils
 
 version = -1
-version_url = "https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/VERSION"
-update_cmd = "sudo sh -c \"$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)\""
+version_url = (
+    "https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/VERSION"
+)
+update_cmd = 'sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)"'
 
 
 def get_version_latest():
@@ -50,7 +52,7 @@ def get_version():
     if version != -1:
         return version
 
-    path = f'{os.path.dirname(os.path.realpath(__file__))}/../../VERSION'
+    path = f"{os.path.dirname(os.path.realpath(__file__))}/../../VERSION"
     version = file_utils.read_file(path)
     return version
 
@@ -60,7 +62,9 @@ def check_version(show_version=False):
     if show_version:
         print("Version: \033[36m{0}".format(get_version()))
     if get_version_latest() != get_version():
-        print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m")
+        print(
+            "\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m"
+        )
         return
     print("\033[0mBubulle is up to date. Executed in %.2fs" % time_end)
 

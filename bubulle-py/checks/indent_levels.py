@@ -39,8 +39,8 @@ class IndentLevels(AbstractCheck):
     line = 0
 
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
-        self.base_message = self.get_config()['basemessage']
+        self.message = self.get_config()["message"]
+        self.base_message = self.get_config()["basemessage"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -63,15 +63,15 @@ class IndentLevels(AbstractCheck):
             return 0
         stms = []
         stms_expr = []
-        if hasattr(node, 'iftrue') and node.iftrue is not None:
+        if hasattr(node, "iftrue") and node.iftrue is not None:
             stms.append(node.iftrue)
-            stms_expr.append('iftrue')
-        if hasattr(node, 'iffalse') and node.iffalse is not None:
+            stms_expr.append("iftrue")
+        if hasattr(node, "iffalse") and node.iffalse is not None:
             stms.append(node.iffalse)
-            stms_expr.append('iffalse')
-        if hasattr(node, 'stmt') and node.stmt is not None:
+            stms_expr.append("iffalse")
+        if hasattr(node, "stmt") and node.stmt is not None:
             stms.append(node.stmt)
-            stms_expr.append('stmt')
+            stms_expr.append("stmt")
         node_cc = node.coord.line - 1
         nodel = tc[node_cc]
         node_s = len(nodel) - len(nodel.lstrip())
@@ -93,31 +93,41 @@ class IndentLevels(AbstractCheck):
                     line_index = stm.coord.line - 1
                     line_ = tc[line_index]
                     s = len(line_) - len(line_.lstrip())
-                    line = line_index + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
+                    line = (
+                        line_index
+                        + 1
+                        + self.header_lines
+                        + (1 if self.header_lines > 0 else 0)
+                    )
                     # Handle conditional branches
 
                     ilvl_t = ilvl
-                    if (
-                        isinstance(node, If)
-                        and isinstance(last, If)
-                        and last.iffalse
-                    ):
+                    if isinstance(node, If) and isinstance(last, If) and last.iffalse:
                         if (
-                            hasattr(last.iffalse, 'iftrue')
+                            hasattr(last.iffalse, "iftrue")
                             and stm1 == last.iffalse.iftrue
                         ):
                             ilvl_t -= 1
                         elif (
-                            hasattr(last.iffalse, 'iffalse')
+                            hasattr(last.iffalse, "iffalse")
                             and stm1 == last.iffalse.iffalse
                         ):
                             ilvl_t -= 1
-                    if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
+                    if (
+                        s != ilvl_t * self.get_config()["spaces_per_level"]
+                        and line not in flag_lines
+                    ):
                         flag_lines.append(line)
                         BuErrors.print_error(
-                            self.path, self.file_name, line,
-                            self.get_check_level(), self.get_check_id(),
-                            self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s))
+                            self.path,
+                            self.file_name,
+                            line,
+                            self.get_check_level(),
+                            self.get_check_id(),
+                            self.message.format(
+                                str(ilvl_t * self.get_config()["spaces_per_level"]),
+                                str(s),
+                            ),
                         )
             except Exception:
                 pass
@@ -133,16 +143,26 @@ class IndentLevels(AbstractCheck):
             line_index = b.coord.line - 1
             line_ = tc[line_index]
             s = len(line_) - len(line_.lstrip())
-            line = line_index + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
+            line = (
+                line_index + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
+            )
 
-            if s != ilvl * self.get_config()['spaces_per_level'] and line not in flag_lines:
+            if (
+                s != ilvl * self.get_config()["spaces_per_level"]
+                and line not in flag_lines
+            ):
                 flag_lines.append(line)
                 BuErrors.print_error(
-                    self.path, self.file_name, line,
-                    self.get_check_level(), self.get_check_id(),
-                    self.message.format(str(ilvl * self.get_config()['spaces_per_level']), str(s))
+                    self.path,
+                    self.file_name,
+                    line,
+                    self.get_check_level(),
+                    self.get_check_id(),
+                    self.message.format(
+                        str(ilvl * self.get_config()["spaces_per_level"]), str(s)
+                    ),
                 )
-            self.stmt_parse(b, None, ilvl + 1, 'a')
+            self.stmt_parse(b, None, ilvl + 1, "a")
         return 0
 
     def check_variable_decl(self, var):
@@ -154,7 +174,7 @@ class IndentLevels(AbstractCheck):
     def check_inner(self, file_content, file_contentf):
         global tc
         global flag_lines
-        lines = file_contentf.split('\n')
+        lines = file_contentf.split("\n")
         tc = lines
 
         flag_lines = []
@@ -165,7 +185,11 @@ class IndentLevels(AbstractCheck):
             if segment % 4 != 0:
                 flag_lines.append(self.line)
                 BuErrors.print_error(
-                    self.path, self.file_name, self.line, self.get_check_level(),
-                    self.get_check_id(), self.base_message
+                    self.path,
+                    self.file_name,
+                    self.line,
+                    self.get_check_level(),
+                    self.get_check_id(),
+                    self.base_message,
                 )
         return 0

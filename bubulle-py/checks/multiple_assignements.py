@@ -27,20 +27,19 @@ from checks._check import AbstractCheck
 
 
 class MultipleAssignments(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
-        if ';;' in line:
+        if ";;" in line:
             return 0
         return (
-            line.count(';') > self.get_config()['max_assignements']
-            and 'for (' not in line
-            and 'for(' not in line
+            line.count(";") > self.get_config()["max_assignements"]
+            and "for (" not in line
+            and "for(" not in line
         )
 
     def check_ast(self, ast):

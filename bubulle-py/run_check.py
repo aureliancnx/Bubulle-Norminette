@@ -41,14 +41,14 @@ class RunCheck:
         self.file_content = None
 
     def is_validsource(self):
-        if self.file_name.endswith('.tmp'):
+        if self.file_name.endswith(".tmp"):
             self.delete_temp(already=True)
-        return self.file_name.endswith('.c') or self.file_name.endswith('.h')
+        return self.file_name.endswith(".c") or self.file_name.endswith(".h")
 
     def delete_temp(self, already=False):
         path = self.full_path
         if not already:
-            path = f'{path}.tmp'
+            path = f"{path}.tmp"
 
         if os.path.exists(path):
             os.remove(path)
@@ -63,7 +63,7 @@ class RunCheck:
     def get_header_lines(self):
         header_lines = 0
         header_found_end = False
-        lines_with_comments = self.file_content.split('\n')
+        lines_with_comments = self.file_content.split("\n")
         for line in lines_with_comments:
             header_lines += 1
             if line.startswith("*/"):
@@ -77,11 +77,13 @@ class RunCheck:
     # TODO: rewrite this crap
     def run(self):
         self.delete_temp()
-        tmp = f'{self.full_path}.tmp'
+        tmp = f"{self.full_path}.tmp"
 
         for clazz in check_utils.get_filenames():
             try:
-                clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=0)
+                clazz = clazz(
+                    file_name=self.file_name, path=self.full_path, header_lines=0
+                )
                 clazz.process_filename()
             except Exception as e:
                 if error_handling.args.verbose:
@@ -96,12 +98,12 @@ class RunCheck:
             return
 
         header_lines = self.get_header_lines()
-        lines_with_comments = self.file_content.split('\n')
+        lines_with_comments = self.file_content.split("\n")
         lines = ()
         parser = c_parser.CParser()
 
         file_contentf = string_utils.remove_comments(self.file_content)
-        lines = file_contentf.split('\n')
+        lines = file_contentf.split("\n")
         header_lines = len(lines_with_comments) - len(lines)
         header_lines = max(header_lines, 0)
         parsed = False
@@ -112,7 +114,7 @@ class RunCheck:
             self.delete_temp()
             parsed = True
         except c_parser.ParseError as e:
-            line = str(e).split(':')
+            line = str(e).split(":")
             self.delete_temp()
             if error_handling.args.verbose:
                 print(e)
@@ -125,7 +127,11 @@ class RunCheck:
 
             for clazz in check_utils.get_ast():
                 try:
-                    clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                    clazz = clazz(
+                        file_name=self.file_name,
+                        path=self.full_path,
+                        header_lines=header_lines,
+                    )
                     clazz.process_ast(ast)
                 except Exception as e:
                     if error_handling.args.verbose:
@@ -135,7 +141,11 @@ class RunCheck:
 
             for clazz in check_utils.get_pre_visitor():
                 try:
-                    clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                    clazz = clazz(
+                        file_name=self.file_name,
+                        path=self.full_path,
+                        header_lines=header_lines,
+                    )
                     clazz.process_visitor_check(v, lines)
                 except Exception as e:
                     if error_handling.args.verbose:
@@ -146,7 +156,11 @@ class RunCheck:
         for line_index, line in enumerate(lines, start=1):
             for clazz in check_utils.get_line():
                 try:
-                    clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                    clazz = clazz(
+                        file_name=self.file_name,
+                        path=self.full_path,
+                        header_lines=header_lines,
+                    )
                     clazz.process_line(line, line_index)
                 except Exception as e:
                     if error_handling.args.verbose:
@@ -156,7 +170,11 @@ class RunCheck:
 
         for clazz in check_utils.get_inner():
             try:
-                clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                clazz = clazz(
+                    file_name=self.file_name,
+                    path=self.full_path,
+                    header_lines=header_lines,
+                )
                 clazz.process_inner(self.file_content, file_contentf)
             except Exception as e:
                 if error_handling.args.verbose:
@@ -172,7 +190,11 @@ class RunCheck:
 
             for clazz in check_utils.get_visitor():
                 try:
-                    clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                    clazz = clazz(
+                        file_name=self.file_name,
+                        path=self.full_path,
+                        header_lines=header_lines,
+                    )
                     clazz.process_visitor_check(v, lines)
                 except Exception as e:
                     if error_handling.args.verbose:
@@ -183,7 +205,11 @@ class RunCheck:
             for func in v.func:
                 for clazz in check_utils.get_func_decl():
                     try:
-                        clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                        clazz = clazz(
+                            file_name=self.file_name,
+                            path=self.full_path,
+                            header_lines=header_lines,
+                        )
                         clazz.process_function_decl(v, func)
                     except Exception as e:
                         if error_handling.args.verbose:
@@ -194,20 +220,35 @@ class RunCheck:
                     for var in func.body.block_items:
                         for clazz in check_utils.get_func_call():
                             try:
-                                clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                                clazz = clazz(
+                                    file_name=self.file_name,
+                                    path=self.full_path,
+                                    header_lines=header_lines,
+                                )
                                 clazz.process_function_call(var)
                             except Exception as e:
                                 if error_handling.args.verbose:
                                     traceback.print_exc()
                                     print(e)
-                                print(run_err.format(self.full_path, clazz.__class__.__name__))
+                                print(
+                                    run_err.format(
+                                        self.full_path, clazz.__class__.__name__
+                                    )
+                                )
                         for clazz in check_utils.get_var_decl():
                             try:
-                                clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)
+                                clazz = clazz(
+                                    file_name=self.file_name,
+                                    path=self.full_path,
+                                    header_lines=header_lines,
+                                )
                                 clazz.process_variable_decl(var)
                             except Exception as e:
                                 if error_handling.args.verbose:
                                     traceback.print_exc()
                                     print(e)
-                                print(run_err.format(self.full_path, clazz.__class__.__name__))
-
+                                print(
+                                    run_err.format(
+                                        self.full_path, clazz.__class__.__name__
+                                    )
+                                )

@@ -32,9 +32,8 @@ cache_visitor = None
 
 
 class FunctionComments(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -60,20 +59,22 @@ class FunctionComments(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        lines_with_comments = file_content.split('\n')
+        lines_with_comments = file_content.split("\n")
         index = 0
         for i, line in enumerate(lines_with_comments, start=1):
             base_line = line.replace("\t", "").lstrip()
-            if index > 0 and (
-                base_line.startswith("//") or base_line.startswith("/*")
-            ):
+            if index > 0 and (base_line.startswith("//") or base_line.startswith("/*")):
                 self.fill_error(last_func)
                 BuErrors.print_error(
-                    self.path, self.file_name, i, self.get_check_level(),
-                    self.get_check_id(), self.get_config()['message'].format(last_func)
+                    self.path,
+                    self.file_name,
+                    i,
+                    self.get_check_level(),
+                    self.get_check_id(),
+                    self.get_config()["message"].format(last_func),
                 )
 
-            if re.match(r'{[ \t]*', line):
+            if re.match(r"{[ \t]*", line):
                 index += 1
                 if (
                     i >= 1
@@ -81,9 +82,9 @@ class FunctionComments(AbstractCheck):
                     and i - self.header_lines - 1 in cache_visitor.function_defs
                 ):
                     last_func = cache_visitor.function_defs[i - self.header_lines - 1]
-            elif re.match(r'[ \t]*}[ \t]*', line):
+            elif re.match(r"[ \t]*}[ \t]*", line):
                 index -= 1
                 if index <= 0:
                     index = 0
-                    last_func = ''
+                    last_func = ""
         return 0

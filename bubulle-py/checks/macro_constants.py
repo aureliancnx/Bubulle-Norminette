@@ -29,9 +29,8 @@ from checks._check import AbstractCheck
 
 
 class MacroConstant(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -40,7 +39,7 @@ class MacroConstant(AbstractCheck):
         return 0
 
     def check_line(self, line, line_number):
-        return re.match(self.get_config()['regex'], line)
+        return re.match(self.get_config()["regex"], line)
 
     def check_function_calls(self, func):
         return 0

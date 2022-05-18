@@ -29,15 +29,14 @@ from checks._check import AbstractCheck
 
 
 class ExtraSpaces(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
-        if self.file_name.endswith('.h') and search("/*", line):
+        if self.file_name.endswith(".h") and search("/*", line):
             return 0
         return line.rstrip() != line
 

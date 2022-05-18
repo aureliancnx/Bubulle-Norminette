@@ -67,22 +67,40 @@ from checks.while_curlybrackets import WhileCurlybrackets
 
 def get_filenames():
     return [
-        FilenameUnclear, FilenameUseless, FilenameSnakecase, FilenameTooLong,
-        FilenameWeirdStart
+        FilenameUnclear,
+        FilenameUseless,
+        FilenameSnakecase,
+        FilenameTooLong,
+        FilenameWeirdStart,
     ]
 
 
 def get_inner():
     return [
-        HeaderMissing, EmptyFile, EndLineBreak, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
-        IndentLevels, IndentBranches, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra
+        HeaderMissing,
+        EmptyFile,
+        EndLineBreak,
+        IfCurlybrackets,
+        ForCurlybrackets,
+        WhileCurlybrackets,
+        IndentLevels,
+        IndentBranches,
+        FunctionComments,
+        FunctionNested,
+        FunctionTooLong,
+        LinesExtra,
     ]
 
 
 def get_func_decl():
     return [
-        FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets,
-        HeaderContent, FunctionStaticMissing
+        FunctionTooMuchArgs,
+        FunctionVoidMissing,
+        IndentLevels,
+        IndentBranches,
+        ForCurlybrackets,
+        HeaderContent,
+        FunctionStaticMissing,
     ]
 
 
@@ -100,8 +118,13 @@ def get_ast():
 
 def get_visitor():
     return [
-        FunctionSnakecase, FunctionCurlybrackets, FunctionTooMuch, FunctionSeparator,
-        FunctionComments, FunctionTooLong, ForCurlybrackets
+        FunctionSnakecase,
+        FunctionCurlybrackets,
+        FunctionTooMuch,
+        FunctionSeparator,
+        FunctionComments,
+        FunctionTooLong,
+        ForCurlybrackets,
     ]  # Function Nested fix?
 
 
@@ -111,7 +134,15 @@ def get_pre_visitor():
 
 def get_line():
     return [
-        MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignments,
-        DeclarationSpaces, ExtraSpaces, ColumnTooMuch, MisplacedPointers, IndentTabs,
-        HeaderContent
+        MacroConstant,
+        ForbiddenGoto,
+        MisplacedSpace,
+        MissingSpace,
+        MultipleAssignments,
+        DeclarationSpaces,
+        ExtraSpaces,
+        ColumnTooMuch,
+        MisplacedPointers,
+        IndentTabs,
+        HeaderContent,
     ]

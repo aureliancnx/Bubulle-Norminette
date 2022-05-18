@@ -27,15 +27,16 @@ from checks._check import AbstractCheck
 
 
 class VariableTypedef(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_variable_decl(self, var):
-        return 'typedef' in var.storage and not var.name.endswith(self.get_config()['typedef_suffix'])
+        return "typedef" in var.storage and not var.name.endswith(
+            self.get_config()["typedef_suffix"]
+        )
 
     def check_ast(self, ast):
         return 0

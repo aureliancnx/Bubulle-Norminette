@@ -30,7 +30,14 @@ from os import path
 
 from html_report.html_report import HtmlReport
 from run_check import RunCheck
-from utils import file_utils, string_utils, c_utils, error_handling, version_utils, config_utils
+from utils import (
+    file_utils,
+    string_utils,
+    c_utils,
+    error_handling,
+    version_utils,
+    config_utils,
+)
 
 
 class Report:
@@ -39,7 +46,7 @@ class Report:
         self.check_path()
         c_utils.generate_includes(
             self.path,
-            f'{os.path.dirname(os.path.realpath(__file__))}/fake_libc_include',
+            f"{os.path.dirname(os.path.realpath(__file__))}/fake_libc_include",
         )
 
         self.generate_report()
@@ -60,28 +67,49 @@ class Report:
 
     def check_norme_dir(self, subdir):
         for sub in subdir:
-            if string_utils.to_snake(sub) != sub and sub.endswith('.c'):
-                error_handling.BuErrors.print_error(subdir, subdir, -1, 2, "O4", "File name not in snake_case")
+            if string_utils.to_snake(sub) != sub and sub.endswith(".c"):
+                error_handling.BuErrors.print_error(
+                    subdir, subdir, -1, 2, "O4", "File name not in snake_case"
+                )
                 return 0
 
     def generate_report_header(self):
         version = version_utils.get_version()
-        print("\033[0m-------------------------------------------------------------------------------")
-        print("\033[1;34;40m                          \033[93mBubulle Code Norme Report v{0}".format(version))
+        print(
+            "\033[0m-------------------------------------------------------------------------------"
+        )
+        print(
+            "\033[1;34;40m                          \033[93mBubulle Code Norme Report v{0}".format(
+                version
+            )
+        )
         print("\033[0mPath: \033[93m{0}".format(self.path))
-        print("\033[0m-------------------------------------------------------------------------------")
+        print(
+            "\033[0m-------------------------------------------------------------------------------"
+        )
         print("\033[1;34;40mFile                 Error   Line    Severity   Details")
 
-        print("\033[0m-------------------------------------------------------------------------------\033[1;34;00m")
+        print(
+            "\033[0m-------------------------------------------------------------------------------\033[1;34;00m"
+        )
 
     def generate_report_summary(self):
         # workers.wait()
         style_err = self.summary_errors()
-        print("\033[0m-------------------------------------------------------------------------------")
-        print("\033[1;34;40mTOTAL\033[0m          Major: {0}       Minor: {1}       Info: {2}      Note: {3}".
-              format(self.get_severity_col(style_err[2]), self.get_severity_col(style_err[1]),
-                     self.get_severity_col(style_err[0]), style_err[3]))
-        print("\033[0m-------------------------------------------------------------------------------")
+        print(
+            "\033[0m-------------------------------------------------------------------------------"
+        )
+        print(
+            "\033[1;34;40mTOTAL\033[0m          Major: {0}       Minor: {1}       Info: {2}      Note: {3}".format(
+                self.get_severity_col(style_err[2]),
+                self.get_severity_col(style_err[1]),
+                self.get_severity_col(style_err[0]),
+                style_err[3],
+            )
+        )
+        print(
+            "\033[0m-------------------------------------------------------------------------------"
+        )
         version_utils.check_version()
         if error_handling.args.report:
             HtmlReport(style_err)
@@ -97,7 +125,11 @@ class Report:
                 run_check = RunCheck(self.path, self.path)
                 run_check.run()
             except Exception as e:
-                print("\033[31m{0}: Unable to run all tests. -verbose for more info.\033[0m".format(self.path))
+                print(
+                    "\033[31m{0}: Unable to run all tests. -verbose for more info.\033[0m".format(
+                        self.path
+                    )
+                )
                 if error_handling.args.verbose:
                     traceback.print_exc()
                     print(e)
@@ -105,7 +137,7 @@ class Report:
 
         for pw, sub_dirs, files in os.walk(self.path):
             for name in files:
-                complete_path = f'{pw}/{name}'
+                complete_path = f"{pw}/{name}"
                 relative = (
                     complete_path.replace("//", "/")
                     .replace(f"{os.path.abspath(os.getcwd())}/", "")
@@ -119,10 +151,15 @@ class Report:
                         c = True
                 if c:
                     continue
-                if error_handling.args.exclude is not None and relative.startswith(error_handling.args.exclude):
+                if error_handling.args.exclude is not None and relative.startswith(
+                    error_handling.args.exclude
+                ):
                     continue
                 self.check_norme_dir(sub_dirs)
-                if file_utils.is_temp_file(complete_path) or complete_path in checked_paths:
+                if (
+                    file_utils.is_temp_file(complete_path)
+                    or complete_path in checked_paths
+                ):
                     continue
                 checked_paths.append(complete_path)
                 try:

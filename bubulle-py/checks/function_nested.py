@@ -31,9 +31,8 @@ cache_visitor = None
 
 
 class FunctionNested(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -61,11 +60,11 @@ class FunctionNested(AbstractCheck):
     def check_inner(self, file_content, file_contentf):
         if cache_visitor is None:
             return 0
-        lines = file_contentf.split('\n')
+        lines = file_contentf.split("\n")
         index = 0
         line_start = -1
 
-        last_func = ''
+        last_func = ""
         for i, line in enumerate(lines, start=1):
             if line in cache_visitor.function_defs:
                 last_func = cache_visitor.function_defs[line]
@@ -75,9 +74,9 @@ class FunctionNested(AbstractCheck):
                 if index > 0:
                     self.fill_error(cache_visitor.function_defs[function_line])
                     return 1
-            if '{' in line:
+            if "{" in line:
                 index += 1
-            elif re.match(r'[ \t]*}[ \t]*', line):
+            elif re.match(r"[ \t]*}[ \t]*", line):
                 index -= 1
                 index = max(index, 0)
         return 0

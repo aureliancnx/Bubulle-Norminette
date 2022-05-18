@@ -33,7 +33,7 @@ args = None
 
 
 class BuError:
-    """ Class to handle errors. """
+    """Class to handle errors."""
 
     def __init__(self, path, file_name, error_id, level, line, message):
         self.path = path
@@ -83,7 +83,7 @@ class BuError:
             details_spaces = level_space - len(line_st)
             details_spaces = max(details_spaces, 0)
             details_spaces += 6 if self.level == 0 else 5
-            color = '\033[37m' if len(errors) % 2 == 1 else '\033[0m'
+            color = "\033[37m" if len(errors) % 2 == 1 else "\033[0m"
             message = color + self.message
             details_st = message
             for _ in range(1, details_spaces):
@@ -91,7 +91,11 @@ class BuError:
             line_st = line_st + " \033[0m"
             print(
                 "{0}{1}{2}{3}{4}".format(
-                    color + self.file_name, color + shown_err, color + line_st, level_st, details_st
+                    color + self.file_name,
+                    color + shown_err,
+                    color + line_st,
+                    level_st,
+                    details_st,
                 )
             )
         except Exception as e:
@@ -99,7 +103,6 @@ class BuError:
 
 
 class BuErrors:
-
     @staticmethod
     def split_on_empty_lines(string):
         blank_line_regex = r"(?:\r?\n){2,}"

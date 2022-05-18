@@ -27,9 +27,8 @@ from checks._check import AbstractCheck
 
 
 class IndentTabs(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -38,7 +37,7 @@ class IndentTabs(AbstractCheck):
         return 0
 
     def check_line(self, line, line_number):
-        return self.get_config()['regex'] in line
+        return self.get_config()["regex"] in line
 
     def check_function_calls(self, func):
         return 0

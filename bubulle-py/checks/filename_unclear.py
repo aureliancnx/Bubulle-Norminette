@@ -27,16 +27,15 @@ from checks._check import AbstractCheck
 
 
 class FilenameUnclear(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_filename(self):
         try:
-            for name in self.get_config()['unclear_names']:
+            for name in self.get_config()["unclear_names"]:
                 if name == self.file_name:
                     return 1
         except Exception as e:

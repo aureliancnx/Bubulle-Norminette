@@ -27,18 +27,17 @@ from checks._check import AbstractCheck
 
 
 class FilenameUseless(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_filename(self):
-        for c in self.get_config()['end']:
+        for c in self.get_config()["end"]:
             if self.file_name.endswith(c):
                 return 1
-        for c in self.get_config()['presuff']:
+        for c in self.get_config()["presuff"]:
             if self.file_name.startswith(c) and self.file_name.endswith(c):
                 return 1
         return 0

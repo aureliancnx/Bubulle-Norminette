@@ -27,9 +27,8 @@ from checks._check import AbstractCheck
 
 
 class HeaderMissing(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -45,20 +44,24 @@ class HeaderMissing(AbstractCheck):
 
     def check_inner(self, content, contentf):
         self.line = 1
-        if not content.startswith(self.get_config()['header_start']):
+        if not content.startswith(self.get_config()["header_start"]):
             return 1
-        if not content.split("\n")[1].startswith(self.get_config()['header_info']):
+        if not content.split("\n")[1].startswith(self.get_config()["header_info"]):
             return 1
-        if not content.split("\n")[2].startswith(self.get_config()['header_comment_start']):
+        if not content.split("\n")[2].startswith(
+            self.get_config()["header_comment_start"]
+        ):
             return 1
-        if not content.split("\n")[3].startswith(self.get_config()['header_desc']):
+        if not content.split("\n")[3].startswith(self.get_config()["header_desc"]):
             return 1
         end = False
-        for i in range(4, len(content.split('\n'))):
-            if content.split("\n")[i] == self.get_config()['header_comment_end']:
+        for i in range(4, len(content.split("\n"))):
+            if content.split("\n")[i] == self.get_config()["header_comment_end"]:
                 end = True
                 break
-            if not content.split("\n")[i].startswith(self.get_config()['header_comment_start']):
+            if not content.split("\n")[i].startswith(
+                self.get_config()["header_comment_start"]
+            ):
                 return 1
         if not end:
             return 1

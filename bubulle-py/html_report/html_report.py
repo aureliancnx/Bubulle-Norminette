@@ -38,8 +38,8 @@ class HtmlReport:
     def __init__(self, style_err):
         self.style_err = style_err
         self.date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        self.date += '_{0}'.format(str(random.randrange(1, 99)))
-        self.folder = f'/tmp/bubulle-reports/{self.date}/'
+        self.date += "_{0}".format(str(random.randrange(1, 99)))
+        self.folder = f"/tmp/bubulle-reports/{self.date}/"
         self.files = None
         self.nav = ""
         self.classify_files()
@@ -52,21 +52,21 @@ class HtmlReport:
             err.path = err.path.replace(os.path.abspath(os.getcwd()), "")
             if err.path not in files:
                 files[err.path] = {
-                    'errors': [err.__dict__],
-                    'minor': 1 if err.level == 1 else 0,
-                    'major': 1 if err.level == 2 else 0,
-                    'info': 1 if err.level == 0 else 0
+                    "errors": [err.__dict__],
+                    "minor": 1 if err.level == 1 else 0,
+                    "major": 1 if err.level == 2 else 0,
+                    "info": 1 if err.level == 0 else 0,
                 }
             else:
-                files[err.path]['errors'].append(err.__dict__)
-                files[err.path]['minor'] += 1 if err.level == 1 else 0
-                files[err.path]['major'] += 1 if err.level == 2 else 0
-                files[err.path]['info'] += 1 if err.level == 0 else 0
+                files[err.path]["errors"].append(err.__dict__)
+                files[err.path]["minor"] += 1 if err.level == 1 else 0
+                files[err.path]["major"] += 1 if err.level == 2 else 0
+                files[err.path]["info"] += 1 if err.level == 0 else 0
         # Generate marks
         for file_name in files:
-            pts = files[file_name]['minor'] + files[file_name]['major'] * 3
-            files[file_name]['mark'] = 1 if pts > 19 else 20 - pts
-        keys = sorted(files.keys(), key=lambda name: files[name]['mark'])
+            pts = files[file_name]["minor"] + files[file_name]["major"] * 3
+            files[file_name]["mark"] = 1 if pts > 19 else 20 - pts
+        keys = sorted(files.keys(), key=lambda name: files[name]["mark"])
         self.files = {}
         for key in keys:
             self.files[key] = files[key]
@@ -77,7 +77,7 @@ class HtmlReport:
         self.prepare_overview()
         tty = False
         try:
-            if not os.environ.get('DISPLAY'):
+            if not os.environ.get("DISPLAY"):
                 tty = True
         except AttributeError:
             pass
@@ -101,4 +101,4 @@ class HtmlReport:
         HtmlReportOverview(self).prepare()
 
     def open_report(self):
-        webbrowser.open(f'{self.folder}html/index.html')
+        webbrowser.open(f"{self.folder}html/index.html")

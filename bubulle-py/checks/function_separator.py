@@ -28,9 +28,8 @@ from checks._check import AbstractCheck
 
 
 class FunctionSeparator(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -52,8 +51,10 @@ class FunctionSeparator(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_lines:
-            if lines[function_line] == '{':
-                if len(lines) - (function_line - 1) < 0 or (function_line > 2 and lines[function_line - 2] != ''):
+            if lines[function_line] == "{":
+                if len(lines) - (function_line - 1) < 0 or (
+                    function_line > 2 and lines[function_line - 2] != ""
+                ):
                     return 1
             elif len(lines) - (function_line - 2) < 0:
                 return 1

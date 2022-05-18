@@ -28,9 +28,8 @@ from utils import error_handling
 
 
 class FunctionStaticMissing(AbstractCheck):
-
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -40,14 +39,14 @@ class FunctionStaticMissing(AbstractCheck):
 
     def check_function_decl(self, visitor, func):
         if (
-            'aggressiveonly' in self.get_config()
-            and self.get_config()['aggressiveonly']
+            "aggressiveonly" in self.get_config()
+            and self.get_config()["aggressiveonly"]
             and not error_handling.args.aggressive
         ):
             return 0
         if not func.decl:
             return 0
-        if 'static' not in func.decl.storage:
+        if "static" not in func.decl.storage:
             self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
             self.fill_error(visitor.function_defs[func.decl.coord.line])
             return 1
