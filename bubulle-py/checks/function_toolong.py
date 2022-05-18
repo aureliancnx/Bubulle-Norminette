@@ -62,14 +62,12 @@ class FunctionTooLong(AbstractCheck):
 
     def check_inner(self, file_content, file_contentf):
         global v
-        last_func = ''
-        i = 0
         index = 0
         line_start = -1
         lines = file_contentf.split('\n')
 
-        for line in lines:
-            i += 1
+        last_func = ''
+        for i, line in enumerate(lines, start=1):
             if v is not None and i in v.function_defs:
                 last_func = v.function_defs[i]
 
@@ -79,7 +77,7 @@ class FunctionTooLong(AbstractCheck):
                 if index == 0:
                     line_start = i
                 index += 1
-                if i - 1 >= 0 and v is not None and i - 1 in v.function_defs:
+                if i >= 1 and v is not None and i - 1 in v.function_defs:
                     last_func = v.function_defs[i - 1]
             elif re.match(r'[ \t]*}[ \t]*', line):
                 started_newindent = 0

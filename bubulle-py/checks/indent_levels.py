@@ -95,10 +95,20 @@ class IndentLevels(AbstractCheck):
                     # Handle conditional branches
 
                     ilvl_t = ilvl
-                    if isinstance(node, If) and isinstance(last, If):
-                        if last.iffalse and hasattr(last.iffalse, 'iftrue') and stm1 == last.iffalse.iftrue:
+                    if (
+                        isinstance(node, If)
+                        and isinstance(last, If)
+                        and last.iffalse
+                    ):
+                        if (
+                            hasattr(last.iffalse, 'iftrue')
+                            and stm1 == last.iffalse.iftrue
+                        ):
                             ilvl_t -= 1
-                        elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
+                        elif (
+                            hasattr(last.iffalse, 'iffalse')
+                            and stm1 == last.iffalse.iffalse
+                        ):
                             ilvl_t -= 1
                     if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
                         flag_lines.append(line)
@@ -137,13 +147,11 @@ class IndentLevels(AbstractCheck):
     def check_inner(self, file_content, file_contentf):
         global tc
         global flag_lines
-        flag_lines = []
         lines = file_contentf.split('\n')
-        lc = 0
         tc = lines
 
-        for l in lines:
-            lc += 1
+        flag_lines = []
+        for lc, l in enumerate(lines, start=1):
             s = len(l) - len(l.lstrip())
             self.line = lc + self.header_lines
             self.line += 1 if self.header_lines > 0 else 0

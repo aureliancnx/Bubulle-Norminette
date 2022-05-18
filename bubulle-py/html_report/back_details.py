@@ -42,14 +42,14 @@ class HtmlReportDetail:
         self.generate()
 
     def escape_source(self):
-        line = 0
         split = self.source.split("\n")
         fin = ''
-        for s in split:
-            line += 1
+        for line, s in enumerate(split, start=1):
             fin += s
             for error in self.errors:
-                if error.get('line') != line and not (line == 1 and error.get('line') == -1):
+                if error.get('line') != line and (
+                    line != 1 or error.get('line') != -1
+                ):
                     continue
                 error['pos'] = len(s)
                 fin += ' /* {0}: {1} */'.format(error.get('errid'), error.get('message'))
@@ -59,34 +59,27 @@ class HtmlReportDetail:
         self.source = self.source.replace("\n", "\\n")
 
     def get_init_content(self):
-        file = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/html/report-file.html', 'r')
-        content = file.read()
-        file.close()
+        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/html/report-file.html', 'r') as file:
+            content = file.read()
         return content
 
     def save_details(self, content):
-        file_w = open(self.report.folder + 'html/' + self.path + '.html', 'w+')
-        file_w.write(content)
-        file_w.close()
+        with open(f'{self.report.folder}html/{self.path}.html', 'w+') as file_w:
+            file_w.write(content)
 
     def highlight_errors(self, content):
         mistakes = ""
-        m = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/cards/mistake.js', 'r')
-        base = m.read()
-        m.close()
+        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/mistake.js', 'r') as m:
+            base = m.read()
         for error in self.errors:
             mi = base
             typee = "info"
-            if error.get('level') == 1:
-                typee = "minor"
-            else:
-                typee = "major"
+            typee = "minor" if error.get('level') == 1 else "major"
             if error.get('line') <= 0:
                 mi = fill_variable(mi, 'line', "0")
-                mi = fill_variable(mi, 'line_end', str(error.get('pos')))
             else:
                 mi = fill_variable(mi, 'line', str(error.get('line') - 1))
-                mi = fill_variable(mi, 'line_end', str(error.get('pos')))
+            mi = fill_variable(mi, 'line_end', str(error.get('pos')))
             mi = fill_variable(mi, 'type', typee)
             mistakes += mi
         content = fill_variable(content, 'mistakes', mistakes)

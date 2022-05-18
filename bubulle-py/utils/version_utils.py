@@ -49,7 +49,7 @@ def get_version():
     if version != -1:
         return version
 
-    path = os.path.dirname(os.path.realpath(__file__)) + '/../../VERSION'
+    path = f'{os.path.dirname(os.path.realpath(__file__))}/../../VERSION'
     version = file_utils.read(path)
     return version
 

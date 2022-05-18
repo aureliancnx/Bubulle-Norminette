@@ -38,12 +38,15 @@ class FunctionStaticMissing(AbstractCheck):
         return 0
 
     def check_function_decl(self, visitor, func):
-        if 'aggressiveonly' in self.get_config():
-            if self.get_config()['aggressiveonly'] and not error_handling.args.aggressive:
-                return 0
+        if (
+            'aggressiveonly' in self.get_config()
+            and self.get_config()['aggressiveonly']
+            and not error_handling.args.aggressive
+        ):
+            return 0
         if not func.decl:
             return 0
-        if not 'static' in func.decl.storage:
+        if 'static' not in func.decl.storage:
             self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
             self.fill_error(visitor.function_defs[func.decl.coord.line])
             return 1

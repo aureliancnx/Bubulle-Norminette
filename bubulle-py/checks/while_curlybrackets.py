@@ -60,6 +60,6 @@ class WhileCurlybrackets(AbstractCheck):
         for statement in statements:
             lineno = file_content.count('\n', 0, statement.start())
             self.line = lineno
-            if not '){' in statement.group(0).replace(" ", ""):
+            if '){' not in statement.group(0).replace(" ", ""):
                 return 1
         return 0

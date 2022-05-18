@@ -86,10 +86,20 @@ class IndentBranches(AbstractCheck):
                     # Handle conditional branches
 
                     ilvl_t = ilvl
-                    if isinstance(node, If) and isinstance(last, If):
-                        if last.iffalse and hasattr(last.iffalse, 'iftrue') and stm1 == last.iffalse.iftrue:
+                    if (
+                        isinstance(node, If)
+                        and isinstance(last, If)
+                        and last.iffalse
+                    ):
+                        if (
+                            hasattr(last.iffalse, 'iftrue')
+                            and stm1 == last.iffalse.iftrue
+                        ):
                             ilvl_t -= 1
-                        elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
+                        elif (
+                            hasattr(last.iffalse, 'iffalse')
+                            and stm1 == last.iffalse.iffalse
+                        ):
                             ilvl_t -= 1
                     if ilvl_t > self.get_config()['max_branches']:
                         BuErrors.print_error(self.path, self.file_name, line,

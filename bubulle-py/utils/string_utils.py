@@ -55,10 +55,7 @@ def removeComments(string):
     regex = re.compile(pattern, re.MULTILINE | re.DOTALL)
 
     def _replacer(match):
-        if match.group(2) is not None:
-            return ""
-        else:
-            return match.group(1)
+        return "" if match.group(2) is not None else match.group(1)
     final = regex.sub(_replacer, final)
 
     final = final.replace("#pragma once", "\n")
