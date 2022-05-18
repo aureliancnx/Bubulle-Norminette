@@ -36,6 +36,8 @@ class IndentLevels(AbstractCheck):
 
     tc = None
     flag_lines = []
+    line = 0
+
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()['message']
         self.base_message = self.get_config()['basemessage']
@@ -152,10 +154,10 @@ class IndentLevels(AbstractCheck):
 
         flag_lines = []
         for line_count, line in enumerate(lines, start=1):
-            s = len(line) - len(line.lstrip())
+            segment = len(line) - len(line.lstrip())
             self.line = line_count + self.header_lines
             self.line += 1 if self.header_lines > 0 else 0
-            if s % 4 != 0:
+            if segment % 4 != 0:
                 flag_lines.append(self.line)
                 BuErrors.print_error(
                     self.path, self.file_name, self.line, self.get_check_level(),
