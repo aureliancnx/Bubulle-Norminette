@@ -39,7 +39,7 @@ class HtmlReport:
         self.style_err = style_err
         self.date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         self.date += '_{0}'.format(str(random.randrange(1, 99)))
-        self.folder = '/tmp/bubulle-reports/' + self.date + '/'
+        self.folder = f'/tmp/bubulle-reports/{self.date}/'
         self.files = None
         self.nav = ""
         self.classify_files()
@@ -50,7 +50,7 @@ class HtmlReport:
         # Generate files
         for err in error_handling.errors:
             err.path = err.path.replace(os.path.abspath(os.getcwd()), "")
-            if not err.path in files:
+            if err.path not in files:
                 files[err.path] = {
                     'errors': [err.__dict__],
                     'minor': 1 if err.level == 1 else 0,
@@ -65,10 +65,7 @@ class HtmlReport:
         # Generate marks
         for file_name in files:
             pts = files[file_name]['minor'] + files[file_name]['major'] * 3
-            if pts > 19:
-                files[file_name]['mark'] = 1
-            else:
-                files[file_name]['mark'] = 20 - pts
+            files[file_name]['mark'] = 1 if pts > 19 else 20 - pts
         keys = sorted(files.keys(), key=lambda name: files[name]['mark'])
         self.files = {}
         for key in keys:
@@ -86,7 +83,7 @@ class HtmlReport:
             pass
         if tty:
             print("Cannot open report: no GUI found. (TTy mode?)")
-            print("Report generated in {0}".format(self.folder + 'html/index.html'))
+            print("Report generated in {0}".format(f'{self.folder}html/index.html'))
             return
         self.open_report()
 
@@ -94,10 +91,13 @@ class HtmlReport:
         return content.replace("{{" + variable + "}}", value)
 
     def copy_files(self):
-        copy_tree(os.path.dirname(os.path.realpath(__file__)) + "/../../assets/", self.folder)
+        copy_tree(
+            f"{os.path.dirname(os.path.realpath(__file__))}/../../assets/",
+            self.folder,
+        )
 
     def prepare_overview(self):
         HtmlReportOverview(self).prepare()
 
     def open_report(self):
-        webbrowser.open(self.folder + 'html/index.html')
+        webbrowser.open(f'{self.folder}html/index.html')

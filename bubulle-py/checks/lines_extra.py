@@ -56,10 +56,8 @@ class LinesExtra(AbstractCheck):
 
     def check_inner(self, file_content, file_contentf):
         lines = file_content.split('\n')
-        i = 0
         last = -2
-        for l in lines:
-            i += 1
+        for i, l in enumerate(lines, start=1):
             if len(l.lstrip().strip()) == 0 or l == ' ' * len(l):
                 if i == last + 1:
                     line = i

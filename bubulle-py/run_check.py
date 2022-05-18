@@ -48,7 +48,7 @@ class RunCheck:
     def delete_temp(self, already=False):
         path = self.full_path
         if not already:
-            path = path + '.tmp'
+            path = f'{path}.tmp'
         try:
             os.remove(path)
         except:
@@ -78,7 +78,7 @@ class RunCheck:
     # TODO: rewrite this crap
     def run(self):
         self.delete_temp()
-        tmp = self.full_path + '.tmp'
+        tmp = f'{self.full_path}.tmp'
 
         for clazz in check_utils.get_filenames():
             try:
@@ -104,14 +104,11 @@ class RunCheck:
         file_contentf = string_utils.removeComments(self.file_content)
         lines = file_contentf.split('\n')
         header_lines = len(lines_with_comments) - len(lines)
-        if header_lines < 0:
-            header_lines = 0
-
+        header_lines = max(header_lines, 0)
         parsed = False
         try:
-            f = open(tmp, "a")
-            f.write(file_contentf.replace("bool ", "_Bool "))
-            f.close()
+            with open(tmp, "a") as f:
+                f.write(file_contentf.replace("bool ", "_Bool "))
             ast = parse_file(tmp, use_cpp=True, cpp_args=c_utils.includes)
             self.delete_temp()
             parsed = True
@@ -147,9 +144,7 @@ class RunCheck:
                         print(e)
                     print(run_err.format(self.full_path, clazz.__class__.__name__))
 
-        line_index = 0
-        for line in lines:
-            line_index += 1
+        for line_index, line in enumerate(lines, start=1):
             for clazz in check_utils.get_line():
                 try:
                     clazz = clazz(file_name=self.file_name, path=self.full_path, header_lines=header_lines)

@@ -12,23 +12,22 @@ def open_config_file():
     print("\033[0;31mWARNING: This is experimental. A mistake can lead Bubulle to not work properly.\033[0;0m")
     # Linux cases
     if 'EDITOR' in os.environ:
-        os.system('%s %s' % (os.getenv('EDITOR'), get_config_path()))
+        os.system(f"{os.getenv('EDITOR')} {get_config_path()}")
     else:
         # macOS case
         subprocess.call(["open", get_config_path()])
 
 
 def get_config_path():
-    return os.path.dirname(os.path.realpath(__file__)) + '/../../config.json'
+    return f'{os.path.dirname(os.path.realpath(__file__))}/../../config.json'
 
 
 def load_config():
     global config
     try:
-        file = open(get_config_path(), 'r')
-        content = file.read()
-        config = json.loads(content)
-        file.close()
+        with open(get_config_path(), 'r') as file:
+            content = file.read()
+            config = json.loads(content)
         load_sub()
     except Exception as ex:
         print(ex)

@@ -47,10 +47,7 @@ class GlobalVariable(AbstractCheck):
                 continue
             if not hasattr(p, 'type') or 'const' in p.quals:
                 continue
-            btype = False
-            for altype in allw:
-                if isinstance(p.type, altype):
-                    btype = True
+            btype = any(isinstance(p.type, altype) for altype in allw)
             if not btype:
                 continue
             if not hasattr(p, 'coord'):

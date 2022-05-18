@@ -37,7 +37,11 @@ class Report():
     def __init__(self, path):
         self.path = path
         self.check_path()
-        c_utils.generate_includes(self.path, os.path.dirname(os.path.realpath(__file__)) + '/fake_libc_include')
+        c_utils.generate_includes(
+            self.path,
+            f'{os.path.dirname(os.path.realpath(__file__))}/fake_libc_include',
+        )
+
         self.generate_report()
 
     def check_path(self):
@@ -101,10 +105,14 @@ class Report():
 
         for pw, subdirs, files in os.walk(self.path):
             for name in files:
-                complete_path = pw + '/' + name
-                relative = complete_path.replace("//", "/")\
-                        .replace(os.path.abspath(os.getcwd()) + "/", "")\
-                        .replace(os.path.abspath(os.getcwd()), "").replace(self.path, "")
+                complete_path = f'{pw}/{name}'
+                relative = (
+                    complete_path.replace("//", "/")
+                    .replace(f"{os.path.abspath(os.getcwd())}/", "")
+                    .replace(os.path.abspath(os.getcwd()), "")
+                    .replace(self.path, "")
+                )
+
                 c = False
                 for excluded_path in config_utils.forbidden_paths:
                     if relative.startswith(excluded_path):

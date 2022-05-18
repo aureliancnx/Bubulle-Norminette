@@ -61,13 +61,11 @@ class FunctionNested(AbstractCheck):
         if cache_visitor is None:
             return 0
         lines = file_contentf.split('\n')
-        last_func = ''
-        i = 0
         index = 0
         line_start = -1
 
-        for line in lines:
-            i += 1
+        last_func = ''
+        for i, line in enumerate(lines, start=1):
             if line in cache_visitor.function_defs:
                 last_func = cache_visitor.function_defs[line]
             for function_line in cache_visitor.function_lines:
@@ -80,6 +78,5 @@ class FunctionNested(AbstractCheck):
                 index += 1
             elif re.match(r'[ \t]*}[ \t]*', line):
                 index -= 1
-                if index <= 0:
-                    index = 0
+                index = max(index, 0)
         return 0

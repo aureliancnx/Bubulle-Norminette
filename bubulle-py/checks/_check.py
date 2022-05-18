@@ -133,7 +133,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_variable_decl(var):
             return 0
-        line = -1 if not hasattr(self, 'line') else self.line
+        line = self.line if hasattr(self, 'line') else -1
         if not hasattr(self, 'args'):
             self.err("", line, self.message)
             return 1
@@ -145,7 +145,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_ast(ast):
             return 0
-        line = -1 if not hasattr(self, 'line') else self.line
+        line = self.line if hasattr(self, 'line') else -1
         if not hasattr(self, 'args'):
             self.err("", line, self.message)
             return 1
@@ -168,9 +168,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_inner(content, contentf):
             return 0
-        line_n = -1
-        if hasattr(self, 'line'):
-            line_n = self.line
+        line_n = self.line if hasattr(self, 'line') else -1
         if not hasattr(self, 'args'):
             self.err("", line_n, self.message)
             return 1

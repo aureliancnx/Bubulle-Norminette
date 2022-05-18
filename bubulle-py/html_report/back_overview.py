@@ -38,26 +38,28 @@ class HtmlReportOverview:
 
     def __init__(self, report):
         self.report = report
-        self.path = report.folder + 'html/index.html'
+        self.path = f'{report.folder}html/index.html'
         self.prepare()
 
     def init_card(self):
         global card_data
         global cards
-        file = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/cards/overview_card.html', 'r')
+        file = open(
+            f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/overview_card.html',
+            'r',
+        )
+
         card_data = file.read()
         cards = ""
 
     def read_init(self):
-        file_r = open(self.path, 'r')
-        content = file_r.read()
-        file_r.close()
+        with open(self.path, 'r') as file_r:
+            content = file_r.read()
         return content
 
     def write_into(self, generated_content):
-        file = open(self.path, 'w')
-        file.write(generated_content)
-        file.close()
+        with open(self.path, 'w') as file:
+            file.write(generated_content)
 
     def prepare(self):
         self.init_card()
@@ -115,9 +117,8 @@ class HtmlReportOverview:
         content = fill_variable(content, 'mark_pctunder', str(5 * round(mark_pct / 5)))
         content = fill_variable(content, 'path', p)
         try:
-            file = open(os.path.abspath(os.getcwd()) + '/' + file_name, 'r')
-            source = file.read()
-            file.close()
+            with open(f'{os.path.abspath(os.getcwd())}/{file_name}', 'r') as file:
+                source = file.read()
         except:
             # Not able to parse the file. Maybe a binary file or something weird
             # happened. If so, please open an issue. (permissions?)
@@ -129,21 +130,19 @@ class HtmlReportOverview:
         nav = ""
         folders = {}
         for file in self.report.files:
-            if not file.rsplit('/', 1)[0] in folders:
+            if file.rsplit('/', 1)[0] not in folders:
                 folders[file.rsplit('/', 1)[0]] = [file]
             else:
                 folders[file.rsplit('/', 1)[0]].append(file)
-        dir_p = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/cards/nav_menu.html', 'r')
-        dir_base = dir_p.read()
-        dir_p.close()
-        file_p = open(os.path.dirname(os.path.realpath(__file__)) + '/../../assets/cards/nav_file.html', 'r')
-        file_base = file_p.read()
-        file_p.close()
-        for folder in folders:
+        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/nav_menu.html', 'r') as dir_p:
+            dir_base = dir_p.read()
+        with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/cards/nav_file.html', 'r') as file_p:
+            file_base = file_p.read()
+        for folder, value in folders.items():
             s = dir_base
             s = fill_variable(s, 'directory', '/' if len(folder) < 1 else folder)
             ss = ""
-            for file in folders[folder]:
+            for file in value:
                 s2 = file_base
                 s2 = fill_variable(s2, 'path', re.sub('[^a-zA-Z0-9 \n]', '_', file) + '.html')
                 s2 = fill_variable(s2, 'path_raw', file)

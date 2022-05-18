@@ -37,7 +37,11 @@ class MultipleAssignements(AbstractCheck):
     def check_line(self, line, line_number):
         if ';;' in line:
             return 0
-        return line.count(';') > self.get_config()['max_assignements'] and not ('for (' in line or 'for(' in line)
+        return (
+            line.count(';') > self.get_config()['max_assignements']
+            and 'for (' not in line
+            and 'for(' not in line
+        )
 
     def check_ast(self, ast):
         return 0

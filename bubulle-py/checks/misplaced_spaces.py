@@ -80,10 +80,14 @@ class MisplacedSpace(AbstractCheck):
         return 1
 
     def check_line(self, line, line_number):
-        for misplaced_space in regex:
-            if self.handle_quote_match(line, misplaced_space):
-                return 1
-        return 0
+        return next(
+            (
+                1
+                for misplaced_space in regex
+                if self.handle_quote_match(line, misplaced_space)
+            ),
+            0,
+        )
 
     def check_ast(self, ast):
         return 0

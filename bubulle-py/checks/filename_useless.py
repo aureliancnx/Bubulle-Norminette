@@ -37,10 +37,14 @@ class FilenameUseless(AbstractCheck):
         for c in self.get_config()['end']:
             if self.file_name.endswith((c)):
                 return 1
-        for c in self.get_config()['presuff']:
-            if self.file_name.startswith((c)) and self.file_name.endswith((c)):
-                return 1
-        return 0
+        return next(
+            (
+                1
+                for c in self.get_config()['presuff']
+                if self.file_name.startswith((c)) and self.file_name.endswith((c))
+            ),
+            0,
+        )
 
     def check_ast(self, ast):
         return 0
