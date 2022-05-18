@@ -103,4 +103,3 @@ class HtmlReportDetail:
         content = self.highlight_errors(content)
         content = fill_variable(content, 'nav', self.report.nav)
         self.save_details(content)
-

@@ -31,6 +31,7 @@ from utils.error_handling import BuErrors
 
 sub_stmt = [For, If, Switch, While]
 
+
 class IndentLevels(AbstractCheck):
 
     tc = None

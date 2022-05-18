@@ -30,6 +30,7 @@ from utils.error_handling import BuErrors
 
 v = None
 
+
 class FunctionTooLong(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):

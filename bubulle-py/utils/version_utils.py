@@ -34,6 +34,7 @@ version = -1
 version_url = "https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/VERSION"
 update_cmd = "sudo sh -c \"$(curl -fsSL https://raw.githubusercontent.com/aureliancnx/Bubulle-Norminette/master/install_bubulle.sh)\""
 
+
 def get_version_latest():
     try:
         w = urllib.request.urlopen(version_url, timeout=1)
@@ -52,6 +53,7 @@ def get_version():
     version = file_utils.read(path)
     return version
 
+
 def check_version(show_version=False):
     time_end = time.time() - args_handler.time_start
     if show_version:
@@ -60,6 +62,7 @@ def check_version(show_version=False):
         print("\033[91mBubulle is out to date. Please update by typing the following command: bubulle -u\033[0m")
         return
     print("\033[0mBubulle is up to date. Executed in %.2fs" % time_end)
+
 
 def update():
     os.system(update_cmd)

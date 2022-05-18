@@ -31,6 +31,7 @@ from .string_utils import colors
 errors = []
 args = None
 
+
 class BuError():
     def __init__(self, path, file_name, errid, level, line, message):
         self.path = path
@@ -90,6 +91,7 @@ class BuError():
             print("{0}{1}{2}{3}{4}".format(color + self.file_name, color + shown_err, color + line_st, level_st, details_st))
         except Exception as e:
             print(e)
+
 
 class BuErrors:
 
