@@ -80,14 +80,10 @@ class MisplacedSpace(AbstractCheck):
         return 1
 
     def check_line(self, line, line_number):
-        return next(
-            (
-                1
-                for misplaced_space in regex
-                if self.handle_quote_match(line, misplaced_space)
-            ),
-            0,
-        )
+        for c in self.get_config()['presuff']:
+            if self.file_name.startswith((c)) and self.file_name.endswith((c)):
+                return 1
+        return 0
 
     def check_ast(self, ast):
         return 0
