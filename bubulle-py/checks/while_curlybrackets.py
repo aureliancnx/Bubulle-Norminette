@@ -55,7 +55,7 @@ class WhileCurlybrackets(AbstractCheck):
         return 0
 
     def check_inner(self, file_content, file_contentf):
-        reg = re.compile('while\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}')
+        reg = re.compile(r'while\s*\(((?!\s*\{).+)\)\s*\{(.|\s)*?\}')
         statements = re.finditer(reg, file_contentf)
         for statement in statements:
             lineno = file_content.count('\n', 0, statement.start())

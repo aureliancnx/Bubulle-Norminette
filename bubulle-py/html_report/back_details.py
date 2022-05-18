@@ -58,7 +58,8 @@ class HtmlReportDetail:
         self.source = self.source.replace("'", "\\'")
         self.source = self.source.replace("\n", "\\n")
 
-    def get_init_content(self):
+    @staticmethod
+    def get_init_content():
         with open(f'{os.path.dirname(os.path.realpath(__file__))}/../../assets/html/report-file.html', 'r') as file:
             content = file.read()
         return content
@@ -76,14 +77,14 @@ class HtmlReportDetail:
             base = file.read()
         for error in self.errors:
             mistakes_temp = base
-            typee = "info"
-            typee = "minor" if error.get('level') == 1 else "major"
+            type_ = "info"
+            type_ = "minor" if error.get('level') == 1 else "major"
             if error.get('line') <= 0:
                 mistakes_temp = fill_variable(mistakes_temp, 'line', "0")
             else:
                 mistakes_temp = fill_variable(mistakes_temp, 'line', str(error.get('line') - 1))
             mistakes_temp = fill_variable(mistakes_temp, 'line_end', str(error.get('pos')))
-            mistakes_temp = fill_variable(mistakes_temp, 'type', typee)
+            mistakes_temp = fill_variable(mistakes_temp, 'type', type_)
             mistakes += mistakes_temp
         content = fill_variable(content, 'mistakes', mistakes)
         return content

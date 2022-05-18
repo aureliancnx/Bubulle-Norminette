@@ -37,7 +37,7 @@ class FilenameWeirdStart(AbstractCheck):
 
     def check_filename(self):
         if FilenameUseless(self.file_name, self.path, self.header_lines).check_filename():
-           return 0
+            return 0
         return not self.file_name[:1].isalpha() and self.file_name[:1] != '_'
 
     def check_ast(self, ast):

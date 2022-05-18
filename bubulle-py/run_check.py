@@ -49,19 +49,18 @@ class RunCheck:
         path = self.full_path
         if not already:
             path = f'{path}.tmp'
-        try:
+
+        if os.path.exists(path):
             os.remove(path)
-        except:
-            pass
 
     def read_content(self):
         try:
-            self.file_content = file_utils.read(self.full_path)
+            self.file_content = file_utils.read_file(self.full_path)
             return 1
-        except:
+        except OSError:
             return 0
 
-    def get_headerlines(self):
+    def get_header_lines(self):
         header_lines = 0
         header_found_end = False
         lines_with_comments = self.file_content.split('\n')
@@ -96,12 +95,12 @@ class RunCheck:
         if not self.read_content():
             return
 
-        header_lines = self.get_headerlines()
+        header_lines = self.get_header_lines()
         lines_with_comments = self.file_content.split('\n')
         lines = ()
         parser = c_parser.CParser()
 
-        file_contentf = string_utils.removeComments(self.file_content)
+        file_contentf = string_utils.remove_comments(self.file_content)
         lines = file_contentf.split('\n')
         header_lines = len(lines_with_comments) - len(lines)
         header_lines = max(header_lines, 0)

@@ -60,7 +60,7 @@ class Report:
 
     def check_norme_dir(self, subdir):
         for sub in subdir:
-            if string_utils.tosnake(sub) != sub and sub.endswith('.c'):
+            if string_utils.to_snake(sub) != sub and sub.endswith('.c'):
                 error_handling.BuErrors.print_error(subdir, subdir, -1, 2, "O4", "File name not in snake_case")
                 return 0
 
@@ -94,8 +94,8 @@ class Report:
         checked_paths = []
         if path.isfile(self.path):
             try:
-                runcheck = RunCheck(self.path, self.path)
-                runcheck.run()
+                run_check = RunCheck(self.path, self.path)
+                run_check.run()
             except Exception as e:
                 print("\033[31m{0}: Unable to run all tests. -verbose for more info.\033[0m".format(self.path))
                 if error_handling.args.verbose:
@@ -103,7 +103,7 @@ class Report:
                     print(e)
                 return
 
-        for pw, subdirs, files in os.walk(self.path):
+        for pw, sub_dirs, files in os.walk(self.path):
             for name in files:
                 complete_path = f'{pw}/{name}'
                 relative = (
@@ -119,15 +119,15 @@ class Report:
                         c = True
                 if c:
                     continue
-                if error_handling.args.exclude is not None and relative.startswith((error_handling.args.exclude)):
+                if error_handling.args.exclude is not None and relative.startswith(error_handling.args.exclude):
                     continue
-                self.check_norme_dir(subdirs)
-                if file_utils.is_tempfile(complete_path) or complete_path in checked_paths:
+                self.check_norme_dir(sub_dirs)
+                if file_utils.is_temp_file(complete_path) or complete_path in checked_paths:
                     continue
                 checked_paths.append(complete_path)
                 try:
-                    runcheck = RunCheck(name, complete_path)
-                    runcheck.run()
+                    run_check = RunCheck(name, complete_path)
+                    run_check.run()
                 except Exception as e:
                     traceback.print_exc()
                     print(e)

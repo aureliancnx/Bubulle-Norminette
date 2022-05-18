@@ -23,7 +23,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks.column_toomuch import ColumnToomuch
+from checks.column_toomuch import ColumnTooMuch
 from checks.declaration_spaces import DeclarationSpaces
 from checks.empty_file import EmptyFile
 from checks.end_line_break import EndLineBreak
@@ -43,7 +43,7 @@ from checks.function_separator import FunctionSeparator
 from checks.function_snakecase import FunctionSnakecase
 from checks.function_staticmissing import FunctionStaticMissing
 from checks.function_toolong import FunctionTooLong
-from checks.function_toomuch import FunctionToomuch
+from checks.function_toomuch import FunctionTooMuch
 from checks.function_toomuchargs import FunctionTooMuchArgs
 from checks.function_voidmissing import FunctionVoidMissing
 from checks.global_var import GlobalVariable
@@ -58,7 +58,7 @@ from checks.macro_constants import MacroConstant
 from checks.misplaced_pointers import MisplacedPointers
 from checks.misplaced_spaces import MisplacedSpace
 from checks.missing_spaces import MissingSpace
-from checks.multiple_assignements import MultipleAssignements
+from checks.multiple_assignements import MultipleAssignments
 from checks.variable_snakecase import VariableSnakecase
 from checks.variable_typedef import VariableTypedef
 from checks.variable_unclear import VariableUnclear
@@ -66,18 +66,24 @@ from checks.while_curlybrackets import WhileCurlybrackets
 
 
 def get_filenames():
-    return [FilenameUnclear, FilenameUseless, FilenameSnakecase, FilenameTooLong,
-            FilenameWeirdStart]
+    return [
+        FilenameUnclear, FilenameUseless, FilenameSnakecase, FilenameTooLong,
+        FilenameWeirdStart
+    ]
 
 
 def get_inner():
-    return [HeaderMissing, EmptyFile, EndLineBreak, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
-            IndentLevels, IndentBranches, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra]
+    return [
+        HeaderMissing, EmptyFile, EndLineBreak, IfCurlybrackets, ForCurlybrackets, WhileCurlybrackets,
+        IndentLevels, IndentBranches, FunctionComments, FunctionNested, FunctionTooLong, LinesExtra
+    ]
 
 
 def get_func_decl():
-    return [FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets,
-            HeaderContent, FunctionStaticMissing]
+    return [
+        FunctionTooMuchArgs, FunctionVoidMissing, IndentLevels, IndentBranches, ForCurlybrackets,
+        HeaderContent, FunctionStaticMissing
+    ]
 
 
 def get_func_call():
@@ -93,8 +99,10 @@ def get_ast():
 
 
 def get_visitor():
-    return [FunctionSnakecase, FunctionCurlybrackets, FunctionToomuch, FunctionSeparator,
-            FunctionComments, FunctionTooLong, ForCurlybrackets]  # FunctionNestedfix?
+    return [
+        FunctionSnakecase, FunctionCurlybrackets, FunctionTooMuch, FunctionSeparator,
+        FunctionComments, FunctionTooLong, ForCurlybrackets
+    ]  # Function Nested fix?
 
 
 def get_pre_visitor():
@@ -102,6 +110,8 @@ def get_pre_visitor():
 
 
 def get_line():
-    return [MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignements,
-            DeclarationSpaces, ExtraSpaces, ColumnToomuch, MisplacedPointers, IndentTabs,
-            HeaderContent]
+    return [
+        MacroConstant, ForbiddenGoto, MisplacedSpace, MissingSpace, MultipleAssignments,
+        DeclarationSpaces, ExtraSpaces, ColumnTooMuch, MisplacedPointers, IndentTabs,
+        HeaderContent
+    ]

@@ -28,7 +28,7 @@ import re
 import pyparsing
 
 
-class colors:
+class Colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
@@ -39,11 +39,12 @@ class colors:
     UNDERLINE = '\033[4m'
 
 
-def tosnake(name):
-      name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
-      return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
+def to_snake(name):
+    name = re.sub(r'(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name).lower()
 
-def removeComments(string):
+
+def remove_comments(string):
     split = string.split('\n')
     final = ''
     b = 0
@@ -56,12 +57,14 @@ def removeComments(string):
 
     def _replacer(match):
         return "" if match.group(2) is not None else match.group(1)
+
     final = regex.sub(_replacer, final)
 
     final = final.replace("#pragma once", "\n")
     final = pyparsing.nestedExpr("/*", "*/").suppress().transformString(final)
     return final
 
-    def split_on_empty_lines(s):
-        blank_line_regex = r"(?:\r?\n){2,}"
-        return re.split(blank_line_regex, s.strip())
+
+def split_on_empty_lines(s):
+    blank_line_regex = r"(?:\r?\n){2,}"
+    return re.split(blank_line_regex, s.strip())

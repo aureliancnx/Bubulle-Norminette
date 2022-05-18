@@ -26,7 +26,7 @@
 from checks._check import AbstractCheck
 
 
-class MultipleAssignements(AbstractCheck):
+class MultipleAssignments(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()['message']

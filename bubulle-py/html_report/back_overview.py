@@ -41,7 +41,8 @@ class HtmlReportOverview:
         self.path = f'{report.folder}html/index.html'
         self.prepare()
 
-    def init_card(self):
+    @staticmethod
+    def init_card():
         global card_data
         global cards
         file = open(
@@ -83,14 +84,16 @@ class HtmlReportOverview:
         content = fill_variable(content, 'chart_color', chart_color)
         return content
 
-    def get_severity(self, d):
+    @staticmethod
+    def get_severity(d):
         if d >= 3:
             return "danger"
         if d > 0:
             return "warning"
         return "success"
 
-    def get_severity_pct(self, pct):
+    @staticmethod
+    def get_severity_pct(pct):
         if pct >= 100:
             return "success"
         if pct >= 60:
@@ -119,7 +122,7 @@ class HtmlReportOverview:
         try:
             with open(f'{os.path.abspath(os.getcwd())}/{file_name}', 'r', encoding="utf-8") as file:
                 source = file.read()
-        except:
+        except Exception:
             # Not able to parse the file. Maybe a binary file or something weird
             # happened. If so, please open an issue. (permissions?)
             source = ""
@@ -134,16 +137,19 @@ class HtmlReportOverview:
                 folders[file.rsplit('/', 1)[0]] = [file]
             else:
                 folders[file.rsplit('/', 1)[0]].append(file)
+
         with open(
             f'{os.path.dirname(os.path.realpath(__file__))}'
             '/../../assets/cards/nav_menu.html', 'r', encoding="utf-8"
         ) as dir_p:
             dir_base = dir_p.read()
+
         with open(
             f'{os.path.dirname(os.path.realpath(__file__))}'
             '/../../assets/cards/nav_file.html', 'r', encoding="utf-8"
         ) as file_p:
             file_base = file_p.read()
+
         for folder, value in folders.items():
             s = dir_base
             s = fill_variable(s, 'directory', '/' if len(folder) < 1 else folder)
@@ -159,9 +165,16 @@ class HtmlReportOverview:
 
     def prepare_list(self, content):
         global cards
+
         for file in self.report.files:
-            self.make_card(file, self.report.files[file]['major'],
-                           self.report.files[file]['minor'], self.report.files[file]['info'],
-                           self.report.files[file]['mark'], self.report.files[file]['errors'])
+            self.make_card(
+                file,
+                self.report.files[file]['major'],
+                self.report.files[file]['minor'],
+                self.report.files[file]['info'],
+                self.report.files[file]['mark'],
+                self.report.files[file]['errors']
+            )
+
         content = fill_variable(content, 'file_list', cards)
         return content

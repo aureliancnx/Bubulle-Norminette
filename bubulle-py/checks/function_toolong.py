@@ -71,16 +71,16 @@ class FunctionTooLong(AbstractCheck):
             if v is not None and i in v.function_defs:
                 last_func = v.function_defs[i]
 
-            started_newindent = 0
+            started_new_indent = 0
             if '{' in line:
-                started_newindent = 1
+                started_new_indent = 1
                 if index == 0:
                     line_start = i
                 index += 1
                 if i >= 1 and v is not None and i - 1 in v.function_defs:
                     last_func = v.function_defs[i - 1]
             elif re.match(r'[ \t]*}[ \t]*', line):
-                started_newindent = 0
+                started_new_indent = 0
                 index -= 1
                 if index <= 0:
                     index = 0
@@ -91,4 +91,4 @@ class FunctionTooLong(AbstractCheck):
                     line_start = -1
                     last_func = ''
             else:
-                started_newindent = 0
+                started_new_indent = 0

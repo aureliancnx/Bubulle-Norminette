@@ -50,5 +50,6 @@ def load_forbidden_paths():
             forbidden_paths.append(r)
         if '' in forbidden_paths:
             forbidden_paths.remove("")
+
     except Exception as e:
         print(e)

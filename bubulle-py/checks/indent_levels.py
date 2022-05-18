@@ -75,11 +75,11 @@ class IndentLevels(AbstractCheck):
         node_cc = node.coord.line - 1
         nodel = tc[node_cc]
         node_s = len(nodel) - len(nodel.lstrip())
-        #if node_s != (ilvl) * t_mul and node_cc + 1 not in flag_lines:
-        #    flag_lines.append(node_cc + 1)
-        #    BuErrors.print_error(self.path, self.file_name, node_cc + 1 + self.header_lines,
-        #                         self.get_check_level(), self.get_check_id(),
-        #                         'a' + self.message.format(str((ilvl) * t_mul), str(node_s)))
+        # if node_s != (ilvl) * t_mul and node_cc + 1 not in flag_lines:
+        #     flag_lines.append(node_cc + 1)
+        #     BuErrors.print_error(self.path, self.file_name, node_cc + 1 + self.header_lines,
+        #                          self.get_check_level(), self.get_check_id(),
+        #                          'a' + self.message.format(str((ilvl) * t_mul), str(node_s)))
         pos = -1
         for stm1 in stms:
             pos += 1
@@ -90,10 +90,10 @@ class IndentLevels(AbstractCheck):
                     ilvl_n = ilvl
                     if self.stmt_parse(stm, node, ilvl + 1, stms_expr[pos]):
                         continue
-                    li = stm.coord.line - 1
-                    l = tc[li]
-                    s = len(l) - len(l.lstrip())
-                    line = li + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
+                    line_index = stm.coord.line - 1
+                    line_ = tc[line_index]
+                    s = len(line_) - len(line_.lstrip())
+                    line = line_index + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
                     # Handle conditional branches
 
                     ilvl_t = ilvl
@@ -114,10 +114,12 @@ class IndentLevels(AbstractCheck):
                             ilvl_t -= 1
                     if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
                         flag_lines.append(line)
-                        BuErrors.print_error(self.path, self.file_name, line,
-                                             self.get_check_level(), self.get_check_id(),
-                                             self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)))
-            except:
+                        BuErrors.print_error(
+                            self.path, self.file_name, line,
+                            self.get_check_level(), self.get_check_id(),
+                            self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s))
+                        )
+            except Exception:
                 pass
         return 1
 
@@ -128,15 +130,18 @@ class IndentLevels(AbstractCheck):
             return 0
         ilvl = 1
         for b in func.body.block_items:
-            li = b.coord.line - 1
-            l = tc[li]
-            s = len(l) - len(l.lstrip())
-            line = li + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
+            line_index = b.coord.line - 1
+            line_ = tc[line_index]
+            s = len(line_) - len(line_.lstrip())
+            line = line_index + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
+
             if s != ilvl * self.get_config()['spaces_per_level'] and line not in flag_lines:
                 flag_lines.append(line)
-                BuErrors.print_error(self.path, self.file_name, line,
-                                     self.get_check_level(), self.get_check_id(),
-                                     self.message.format(str(ilvl * self.get_config()['spaces_per_level']), str(s)))
+                BuErrors.print_error(
+                    self.path, self.file_name, line,
+                    self.get_check_level(), self.get_check_id(),
+                    self.message.format(str(ilvl * self.get_config()['spaces_per_level']), str(s))
+                )
             self.stmt_parse(b, None, ilvl + 1, 'a')
         return 0
 

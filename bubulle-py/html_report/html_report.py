@@ -87,7 +87,8 @@ class HtmlReport:
             return
         self.open_report()
 
-    def fill_variable(self, content, variable, value):
+    @staticmethod
+    def fill_variable(content, variable, value):
         return content.replace("{{" + variable + "}}", value)
 
     def copy_files(self):

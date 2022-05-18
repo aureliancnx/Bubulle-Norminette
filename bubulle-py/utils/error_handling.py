@@ -26,7 +26,7 @@
 import re
 
 import args_handler
-from string_utils import colors
+from string_utils import Colors
 
 errors = []
 args = None
@@ -35,10 +35,10 @@ args = None
 class BuError:
     """ Class to handle errors. """
 
-    def __init__(self, path, file_name, errid, level, line, message):
+    def __init__(self, path, file_name, error_id, level, line, message):
         self.path = path
         self.file_name = file_name
-        self.errid = errid
+        self.error_id = error_id
         self.level = level
         self.line = line
         self.message = message
@@ -61,8 +61,8 @@ class BuError:
             shown_err = ""
             for _ in range(1, err_spaces):
                 shown_err = f"{shown_err} "
-            shown_err = shown_err + str(self.errid)
-            line_spaces = 9 - len(self.errid)
+            shown_err = shown_err + str(self.error_id)
+            line_spaces = 9 - len(self.error_id)
             if self.line != -1:
                 line_st = line_st + highlight + str(self.line)
             level_spaces = 7 - len(str(self.line))
@@ -72,11 +72,11 @@ class BuError:
                 line_st += "   "
 
             if self.level == 0:
-                level_st = level_st + "\33[44m INFO " + colors.ENDC
+                level_st = level_st + "\33[44m INFO " + Colors.ENDC
             elif self.level == 1:
-                level_st = level_st + "\33[0;30;43m MINOR " + colors.ENDC
+                level_st = level_st + "\33[0;30;43m MINOR " + Colors.ENDC
             else:
-                level_st = level_st + "\x1b[0;30;41m MAJOR " + colors.ENDC
+                level_st = level_st + "\x1b[0;30;41m MAJOR " + Colors.ENDC
             for _ in range(1, line_spaces):
                 line_st = f" {line_st}"
             level_space = 8 if self.level == 0 else 7
@@ -89,7 +89,11 @@ class BuError:
             for _ in range(1, details_spaces):
                 details_st = f" {details_st}"
             line_st = line_st + " \033[0m"
-            print("{0}{1}{2}{3}{4}".format(color + self.file_name, color + shown_err, color + line_st, level_st, details_st))
+            print(
+                "{0}{1}{2}{3}{4}".format(
+                    color + self.file_name, color + shown_err, color + line_st, level_st, details_st
+                )
+            )
         except Exception as e:
             print(e)
 

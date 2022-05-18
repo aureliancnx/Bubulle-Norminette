@@ -55,7 +55,9 @@ class GlobalVariable(AbstractCheck):
                 continue
             line = p.coord.line + self.header_lines
             line += 1 if self.header_lines > 0 else 0
-            BuErrors.print_error(self.path, self.file_name, line, self.get_check_level(), self.get_check_id(), self.message)
+            BuErrors.print_error(
+                self.path, self.file_name, line, self.get_check_level(), self.get_check_id(), self.message
+            )
         return 0
 
     def check_line(self, line, line_number):

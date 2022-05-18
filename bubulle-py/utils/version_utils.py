@@ -51,7 +51,7 @@ def get_version():
         return version
 
     path = f'{os.path.dirname(os.path.realpath(__file__))}/../../VERSION'
-    version = file_utils.read(path)
+    version = file_utils.read_file(path)
     return version
 
 

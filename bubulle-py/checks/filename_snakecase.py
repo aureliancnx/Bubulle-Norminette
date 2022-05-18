@@ -42,7 +42,7 @@ class FilenameSnakecase(AbstractCheck):
                 return 0
         if self.file_name in self.get_config()['excluded_files']:
             return 0
-        return string_utils.tosnake(self.file_name) != self.file_name
+        return string_utils.to_snake(self.file_name) != self.file_name
 
     def check_ast(self, ast):
         return 0

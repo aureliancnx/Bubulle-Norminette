@@ -79,10 +79,11 @@ class IndentBranches(AbstractCheck):
                 for stm in stm1:
                     if self.stmt_parse(stm, node, ilvl + 1, stms_expr[pos]):
                         continue
-                    li = stm.coord.line - 1
-                    l = tc[li]
-                    s = len(l) - len(l.lstrip())
-                    line = li + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
+
+                    line_index = stm.coord.line - 1
+                    line_ = tc[line_index]
+                    s = len(line_) - len(line_.lstrip())
+                    line = line_index + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
                     # Handle conditional branches
 
                     ilvl_t = ilvl
@@ -105,7 +106,7 @@ class IndentBranches(AbstractCheck):
                         BuErrors.print_error(self.path, self.file_name, line,
                                              self.get_check_level(), self.get_check_id(),
                                              self.message)
-            except:
+            except Exception:
                 pass
         return 1
 

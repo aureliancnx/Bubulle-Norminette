@@ -27,7 +27,7 @@ from checks._check import AbstractCheck
 from utils.error_handling import BuErrors
 
 
-class FunctionToomuch(AbstractCheck):
+class FunctionTooMuch(AbstractCheck):
 
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()['message']

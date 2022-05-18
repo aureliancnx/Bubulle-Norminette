@@ -34,6 +34,7 @@ from utils.error_handling import BuErrors
 class ForCurlybrackets(AbstractCheck):
 
     tc = None
+
     def __init__(self, file_name, path, header_lines):
         self.message = self.get_config()['message']
         self.file_name = file_name

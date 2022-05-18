@@ -52,7 +52,7 @@ class FunctionSnakecase(AbstractCheck):
 
     def check_visitor(self, visitor, lines):
         for function_line in visitor.function_defs:
-            if string_utils.tosnake(visitor.function_defs[function_line]) != visitor.function_defs[function_line]:
+            if string_utils.to_snake(visitor.function_defs[function_line]) != visitor.function_defs[function_line]:
                 self.line = function_line + (1 if self.header_lines != 0 else 0)
                 self.fill_error(visitor.function_defs[function_line])
                 return 1
