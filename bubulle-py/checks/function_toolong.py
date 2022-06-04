@@ -25,34 +25,19 @@
 # SOFTWARE.#
 import re
 
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 v = None
 
-class FunctionTooLong(AbstractCheck):
 
+class FunctionTooLong(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
         self.v = None
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
 
     def check_visitor(self, visitor, lines):
         global v
@@ -61,35 +46,44 @@ class FunctionTooLong(AbstractCheck):
 
     def check_inner(self, file_content, file_contentf):
         global v
-        last_func = ''
-        i = 0
         index = 0
         line_start = -1
-        lines = file_contentf.split('\n')
+        lines = file_contentf.split("\n")
 
-        for line in lines:
-            i += 1
+        last_func = ""
+        for i, line in enumerate(lines, start=1):
             if v is not None and i in v.function_defs:
                 last_func = v.function_defs[i]
 
-            started_newindent = 0
-            if '{' in line:
-                started_newindent = 1
+            started_new_indent = 0
+            if "{" in line:
+                started_new_indent = 1
                 if index == 0:
                     line_start = i
                 index += 1
-                if i - 1 >= 0 and v is not None and i - 1 in v.function_defs:
+                if i >= 1 and v is not None and i - 1 in v.function_defs:
                     last_func = v.function_defs[i - 1]
-            elif re.match(r'[ \t]*}[ \t]*', line):
-                started_newindent = 0
+            elif re.match(r"[ \t]*}[ \t]*", line):
+                started_new_indent = 0
                 index -= 1
                 if index <= 0:
                     index = 0
-                    if line_start > 0 and i - line_start - 2 > self.get_config()['max_lines_per_function']:
-                        BuErrors.print_error(self.path, self.file_name, line_start + self.header_lines,
-                                             self.get_check_level(), self.get_check_id(),
-                                             self.get_config()['message'].format(last_func, (i - line_start - 2)))
+                    if (
+                        line_start > 0
+                        and i - line_start - 2
+                        > self.get_config()["max_lines_per_function"]
+                    ):
+                        BuErrors.print_error(
+                            self.path,
+                            self.file_name,
+                            line_start + self.header_lines,
+                            self.get_check_level(),
+                            self.get_check_id(),
+                            self.get_config()["message"].format(
+                                last_func, (i - line_start - 2)
+                            ),
+                        )
                     line_start = -1
-                    last_func = ''
+                    last_func = ""
             else:
-                started_newindent = 0
+                started_new_indent = 0

@@ -1,1 +1,8 @@
+# IDE Configuration Folder
+.idea
+.vs
+
+# Python Environment
 __pycache__/
+*.py[cod]
+venv

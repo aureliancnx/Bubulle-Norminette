@@ -24,22 +24,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
 import os
-import random
 import os.path
+import random
 import webbrowser
-
-from html_report.back_overview import HtmlReportOverview
-from utils import error_handling
 from datetime import datetime
 from distutils.dir_util import copy_tree
+
+from back_overview import HtmlReportOverview
+from utils import error_handling
 
 
 class HtmlReport:
     def __init__(self, style_err):
         self.style_err = style_err
         self.date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        self.date += '_{0}'.format(str(random.randrange(1, 99)))
-        self.folder = '/tmp/bubulle-reports/' + self.date + '/'
+        self.date += "_{0}".format(str(random.randrange(1, 99)))
+        self.folder = f"/tmp/bubulle-reports/{self.date}/"
         self.files = None
         self.nav = ""
         self.classify_files()
@@ -50,26 +50,23 @@ class HtmlReport:
         # Generate files
         for err in error_handling.errors:
             err.path = err.path.replace(os.path.abspath(os.getcwd()), "")
-            if not err.path in files:
+            if err.path not in files:
                 files[err.path] = {
-                    'errors': [err.__dict__],
-                    'minor': 1 if err.level == 1 else 0,
-                    'major': 1 if err.level == 2 else 0,
-                    'info': 1 if err.level == 0 else 0
+                    "errors": [err.__dict__],
+                    "minor": 1 if err.level == 1 else 0,
+                    "major": 1 if err.level == 2 else 0,
+                    "info": 1 if err.level == 0 else 0,
                 }
             else:
-                files[err.path]['errors'].append(err.__dict__)
-                files[err.path]['minor'] += 1 if err.level == 1 else 0
-                files[err.path]['major'] += 1 if err.level == 2 else 0
-                files[err.path]['info'] += 1 if err.level == 0 else 0
+                files[err.path]["errors"].append(err.__dict__)
+                files[err.path]["minor"] += 1 if err.level == 1 else 0
+                files[err.path]["major"] += 1 if err.level == 2 else 0
+                files[err.path]["info"] += 1 if err.level == 0 else 0
         # Generate marks
         for file_name in files:
-            pts = files[file_name]['minor'] + files[file_name]['major'] * 3
-            if pts > 19:
-                files[file_name]['mark'] = 1
-            else:
-                files[file_name]['mark'] = 20 - pts
-        keys = sorted(files.keys(), key=lambda name: files[name]['mark'])
+            pts = files[file_name]["minor"] + files[file_name]["major"] * 3
+            files[file_name]["mark"] = 1 if pts > 19 else 20 - pts
+        keys = sorted(files.keys(), key=lambda name: files[name]["mark"])
         self.files = {}
         for key in keys:
             self.files[key] = files[key]
@@ -80,24 +77,28 @@ class HtmlReport:
         self.prepare_overview()
         tty = False
         try:
-            if not os.environ.get('DISPLAY'):
+            if not os.environ.get("DISPLAY"):
                 tty = True
         except AttributeError:
             pass
         if tty:
             print("Cannot open report: no GUI found. (TTy mode?)")
-            print("Report generated in {0}".format(self.folder + 'html/index.html'))
+            print(f"Report generated in {self.folder}html/index.html")
             return
         self.open_report()
 
-    def fill_variable(self, content, variable, value):
+    @staticmethod
+    def fill_variable(content, variable, value):
         return content.replace("{{" + variable + "}}", value)
 
     def copy_files(self):
-        copy_tree(os.path.dirname(os.path.realpath(__file__)) + "/../../assets/", self.folder)
+        copy_tree(
+            f"{os.path.dirname(os.path.realpath(__file__))}/../../assets/",
+            self.folder,
+        )
 
     def prepare_overview(self):
         HtmlReportOverview(self).prepare()
 
     def open_report(self):
-        webbrowser.open(self.folder + 'html/index.html')
+        webbrowser.open(f"{self.folder}html/index.html")

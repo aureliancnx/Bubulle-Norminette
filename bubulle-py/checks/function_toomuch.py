@@ -23,36 +23,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 
-class FunctionToomuch(AbstractCheck):
-
+class FunctionTooMuch(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
     def check_visitor(self, visitor, lines):
         self.fill_error(visitor.function_count)
-        if visitor.function_count <= self.get_config()['max_functions_per_file']:
+        if visitor.function_count <= self.get_config()["max_functions_per_file"]:
             return 0
         i = 0
         for func in visitor.function_defs:
@@ -60,9 +44,12 @@ class FunctionToomuch(AbstractCheck):
             if i <= 5:
                 continue
             line = func + self.header_lines + (1 if self.header_lines != 0 else 0)
-            BuErrors.print_error(self.path, self.file_name, line, self.get_check_level(),
-                                 self.get_check_id(), self.message.format(visitor.function_count))
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
+            BuErrors.print_error(
+                self.path,
+                self.file_name,
+                line,
+                self.get_check_level(),
+                self.get_check_id(),
+                self.message.format(visitor.function_count),
+            )
         return 0

@@ -25,21 +25,23 @@
 # SOFTWARE.#
 import os
 
-read = lambda n: open(n, 'r').read()
+
+def read_file(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
+
 
 def get_path(args):
     path = args.p
 
-    if path == '.':
+    if path == ".":
         path = os.getcwd()
     return path
 
 
-def is_tempfile(path):
+def is_temp_file(path):
     if path.endswith(".tmp"):
-        try:
+        if os.path.isfile(path):
             os.remove(path)
-        except:
-            pass
         return 1
     return 0

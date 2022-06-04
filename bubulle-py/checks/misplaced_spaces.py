@@ -25,41 +25,40 @@
 # SOFTWARE.#
 import re
 
-from checks._check import AbstractCheck
+from checks._check import Check
 
 # TODO: put this in config file
 regex = {
-    '([^\t&|=^><+\-*%\/! ]=[^=]|[^&|=^><+\-*%\/!]=[^= \n])': '=',
-    '([^\t ]==|==[^ \n])': '==',
-    '([^\t ]!=|!=[^ \n])': '!=',
-    '([^\t <]<=|[^<]<=[^ \n])': '<=',
-    '([^\t >]>=|[^>]>=[^ \n])': '>=',
-    '([^\t ]&&|&&[^ \n])': '&&',
-    '([^\t ]\|\||\|\|[^ \n])': '||',
-    '([^\t ]\+=|\+=[^ \n])': '+=',
-    '([^\t ]-=|-=[^ \n])': '-=',
-    '([^\t ]\*=|\*=[^ \n])': '*=',
-    '([^\t ]\/=|\/=[^ \n])': '/=',
-    '([^\t ]%=|%=[^ \n])': '%=',
-    '([^\t ]&=|&=[^ \n])': '&=',
-    '([^\t ]\^=|\^=[^ \n])': '^=',
-    '([^\t ]\|=|\|=[^ \n])': '|=',
-    '([^\t ]\^|\^[^ =\n])': '^',
-    '([^\t ]>>[^=]|>>[^ =\n])': '>>',
-    '([^\t ]<<[^=]|<<[^ =\n])': '<<',
-    '([^\t ]>>=|>>=[^ \n])': '>>=',
-    '([^\t ]<<=|<<=[^ \n])': '<<=',
-    '([^!]! )': '!',
-    '([^a-zA-Z0-9]sizeof )': 'sizeof',
-    #'([^a-zA-Z)\]]\+\+[^(\[*a-zA-Z])': '++',
-    #'([^a-zA-Z)\]]--[^\[(*a-zA-Z])': '--'
+    r"([^\t&|=^><+\-*%\/! ]=[^=]|[^&|=^><+\-*%\/!]=[^= \n])": "=",
+    r"([^\t ]==|==[^ \n])": "==",
+    r"([^\t ]!=|!=[^ \n])": "!=",
+    r"([^\t <]<=|[^<]<=[^ \n])": "<=",
+    r"([^\t >]>=|[^>]>=[^ \n])": ">=",
+    r"([^\t ]&&|&&[^ \n])": "&&",
+    r"([^\t ]\|\||\|\|[^ \n])": "||",
+    r"([^\t ]\+=|\+=[^ \n])": "+=",
+    r"([^\t ]-=|-=[^ \n])": "-=",
+    r"([^\t ]\*=|\*=[^ \n])": "*=",
+    r"([^\t ]\/=|\/=[^ \n])": "/=",
+    r"([^\t ]%=|%=[^ \n])": "%=",
+    r"([^\t ]&=|&=[^ \n])": "&=",
+    r"([^\t ]\^=|\^=[^ \n])": "^=",
+    r"([^\t ]\|=|\|=[^ \n])": "|=",
+    r"([^\t ]\^|\^[^ =\n])": "^",
+    r"([^\t ]>>[^=]|>>[^ =\n])": ">>",
+    r"([^\t ]<<[^=]|<<[^ =\n])": "<<",
+    r"([^\t ]>>=|>>=[^ \n])": ">>=",
+    r"([^\t ]<<=|<<=[^ \n])": "<<=",
+    r"([^!]! )": "!",
+    r"([^a-zA-Z0-9]sizeof )": "sizeof",
+    # r'([^a-zA-Z)\]]\+\+[^(\[*a-zA-Z])': '++',
+    # r'([^a-zA-Z)\]]--[^\[(*a-zA-Z])': '--'
 }
 
 
-class MisplacedSpace(AbstractCheck):
-
+class MisplacedSpace(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -69,11 +68,11 @@ class MisplacedSpace(AbstractCheck):
             return 0
 
         quote_match = re.findall(r'"(.*?)"', line)
-        simple_quotematch = re.findall(r'\'(.*?)\'', line)
+        simple_quote_match = re.findall(r"\'(.*?)\'", line)
         for match in quote_match:
             if regex[ms] in match:
                 return 0
-        for match in simple_quotematch:
+        for match in simple_quote_match:
             if regex[ms] in match:
                 return 0
         self.fill_error(regex[ms])
@@ -83,22 +82,4 @@ class MisplacedSpace(AbstractCheck):
         for misplaced_space in regex:
             if self.handle_quote_match(line, misplaced_space):
                 return 1
-        return 0
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
         return 0

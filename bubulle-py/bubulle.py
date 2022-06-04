@@ -32,7 +32,7 @@ from utils.config_utils import load_config
 
 args = None
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     set_time_start(time.time())
     args = parse_args()
     handle_args(args)

@@ -25,15 +25,15 @@
 # SOFTWARE.#
 import re
 
-from checks._check import AbstractCheck
 from pycparser.c_ast import Decl, Struct
+
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 
-class HeaderContent(AbstractCheck):
-
+class HeaderContent(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -45,40 +45,33 @@ class HeaderContent(AbstractCheck):
         # Check for structures in source file
         if not self.is_header_file():
             for dcl in ast:
-                if not isinstance(dcl, Decl) or not hasattr(dcl, 'type'):
+                if not isinstance(dcl, Decl) or not hasattr(dcl, "type"):
                     continue
                 if not isinstance(dcl.type, Struct):
                     continue
-                self.message = self.get_config()['source_struct']
-                BuErrors.print_error(self.path, self.file_name, -1, self.get_check_level(),
-                                     self.get_check_id(), self.message)
-        return 0
-
-    def check_filename(self):
+                self.message = self.get_config()["source_struct"]
+                BuErrors.print_error(
+                    self.path,
+                    self.file_name,
+                    -1,
+                    self.get_check_level(),
+                    self.get_check_id(),
+                    self.message,
+                )
         return 0
 
     def check_line(self, line, line_number):
         # If a #define is present in the source file
-        if not self.is_header_file() and re.match(self.get_config()['macro_regex'], line):
-            self.message = self.get_config()['source_define']
+        if not self.is_header_file() and re.match(
+            self.get_config()["macro_regex"], line
+        ):
+            self.message = self.get_config()["source_define"]
             return 1
-
-    def check_inner(self, content, contentf):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
 
     def check_function_decl(self, visitor, func):
         # Check function declaration in header file
         if self.is_header_file():
             self.line = func.decl.coord.line + (1 if self.header_lines != 0 else 0)
-            self.message = self.get_config()['header_func_dcl']
+            self.message = self.get_config()["header_func_dcl"]
             return 1
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
         return 0

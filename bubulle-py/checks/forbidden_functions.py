@@ -23,41 +23,22 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils import error_handling
 
 
-class ForbiddenFunctions(AbstractCheck):
-
+class ForbiddenFunctions(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
     def check_function_calls(self, func):
         if error_handling.args.no_forbidden:
             return 0
-        if func.name.name in self.get_config()['function_list']:
+        if func.name.name in self.get_config()["function_list"]:
             self.line = func.coord.line + (1 if self.header_lines != 0 else 0)
             self.fill_error(func.name.name)
             return 1
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
         return 0

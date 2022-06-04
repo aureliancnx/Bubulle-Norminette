@@ -25,15 +25,15 @@
 # SOFTWARE.#
 from pycparser.c_ast import TypeDecl, Decl, PtrDecl
 
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 allw = [PtrDecl, TypeDecl]
 
-class GlobalVariable(AbstractCheck):
 
+class GlobalVariable(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
@@ -43,34 +43,23 @@ class GlobalVariable(AbstractCheck):
 
     def check_ast(self, ast):
         for p in ast:
-            if not isinstance(p, Decl) or not hasattr(p, 'quals'):
+            if not isinstance(p, Decl) or not hasattr(p, "quals"):
                 continue
-            if not hasattr(p, 'type') or 'const' in p.quals:
+            if not hasattr(p, "type") or "const" in p.quals:
                 continue
-            btype = False
-            for altype in allw:
-                if isinstance(p.type, altype):
-                    btype = True
+            btype = any(isinstance(p.type, altype) for altype in allw)
             if not btype:
                 continue
-            if not hasattr(p, 'coord'):
+            if not hasattr(p, "coord"):
                 continue
             line = p.coord.line + self.header_lines
             line += 1 if self.header_lines > 0 else 0
-            BuErrors.print_error(self.path, self.file_name, line, self.get_check_level(), self.get_check_id(), self.message)
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
+            BuErrors.print_error(
+                self.path,
+                self.file_name,
+                line,
+                self.get_check_level(),
+                self.get_check_id(),
+                self.message,
+            )
         return 0

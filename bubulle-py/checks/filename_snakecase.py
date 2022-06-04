@@ -23,44 +23,22 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
+from checks._check import Check
 from utils import string_utils
-from checks._check import AbstractCheck
 
 
-class FilenameSnakecase(AbstractCheck):
-
+class FilenameSnakecase(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_filename(self):
-        allowed_ext = ['.png', '.jpg', '.otf', '.ttf', '.ogg', '.txt']
+        allowed_ext = [".png", ".jpg", ".otf", ".ttf", ".ogg", ".txt"]
         for ext in allowed_ext:
             if self.file_name.endswith(ext):
                 return 0
-        if self.file_name in self.get_config()['excluded_files']:
+        if self.file_name in self.get_config()["excluded_files"]:
             return 0
-        return string_utils.tosnake(self.file_name) != self.file_name
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0
+        return string_utils.to_snake(self.file_name) != self.file_name

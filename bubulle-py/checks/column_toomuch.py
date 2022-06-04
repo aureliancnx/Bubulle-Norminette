@@ -23,39 +23,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+from checks._check import Check
 
 
-class ColumnToomuch(AbstractCheck):
-
+class ColumnTooMuch(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
-        length = len(line.replace("\t", ' ' * self.get_config()['tabs_to_spaces']))
-        if length <= self.get_config()['max_columns']:
+        length = len(line.replace("\t", " " * self.get_config()["tabs_to_spaces"]))
+        if length <= self.get_config()["max_columns"]:
             return 0
 
         self.fill_error(length + 1)
         return 1
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0

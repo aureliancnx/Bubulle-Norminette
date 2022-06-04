@@ -28,15 +28,15 @@ import ast
 from pycparser import c_ast
 
 
-def extract_funcDef(node, defList):
+def extract_func_def(node, def_list):
     if node is None:
         return
 
     for item in [item[1] for item in node.children()]:
         if isinstance(item, ast.FuncDef):
-            defList.append(item)
+            def_list.append(item)
         else:
-            extract_funcDef(item, defList)
+            extract_func_def(item, def_list)
 
 
 # Print functions
@@ -54,8 +54,7 @@ class FunctionPrinter(c_ast.NodeVisitor):
         self.function_lines = []
         self.function_count = 0
 
-
-    def visit_FuncDef(self, node):
+    def visit_func_def(self, node):
         self.func.append(node)
         self.function_lines.append(node.decl.coord.line)
         self.function_count = self.function_count + 1

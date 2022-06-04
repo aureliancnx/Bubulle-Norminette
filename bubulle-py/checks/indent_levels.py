@@ -26,30 +26,24 @@
 
 from pycparser.c_ast import For, If, Switch, While
 
-from checks._check import AbstractCheck
+from checks._check import Check
 from utils.error_handling import BuErrors
 
 sub_stmt = [For, If, Switch, While]
 
-class IndentLevels(AbstractCheck):
+
+class IndentLevels(Check):
 
     tc = None
     flag_lines = []
+    line = 0
+
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
-        self.base_message = self.get_config()['basemessage']
+        self.message = self.get_config()["message"]
+        self.base_message = self.get_config()["basemessage"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
 
     def stmt_parse(self, node, last, ilvl, last_expr):
         stmb = 0
@@ -60,23 +54,23 @@ class IndentLevels(AbstractCheck):
             return 0
         stms = []
         stms_expr = []
-        if hasattr(node, 'iftrue') and node.iftrue is not None:
+        if hasattr(node, "iftrue") and node.iftrue is not None:
             stms.append(node.iftrue)
-            stms_expr.append('iftrue')
-        if hasattr(node, 'iffalse') and node.iffalse is not None:
+            stms_expr.append("iftrue")
+        if hasattr(node, "iffalse") and node.iffalse is not None:
             stms.append(node.iffalse)
-            stms_expr.append('iffalse')
-        if hasattr(node, 'stmt') and node.stmt is not None:
+            stms_expr.append("iffalse")
+        if hasattr(node, "stmt") and node.stmt is not None:
             stms.append(node.stmt)
-            stms_expr.append('stmt')
+            stms_expr.append("stmt")
         node_cc = node.coord.line - 1
         nodel = tc[node_cc]
         node_s = len(nodel) - len(nodel.lstrip())
-        #if node_s != (ilvl) * t_mul and node_cc + 1 not in flag_lines:
-        #    flag_lines.append(node_cc + 1)
-        #    BuErrors.print_error(self.path, self.file_name, node_cc + 1 + self.header_lines,
-        #                         self.get_check_level(), self.get_check_id(),
-        #                         'a' + self.message.format(str((ilvl) * t_mul), str(node_s)))
+        # if node_s != (ilvl) * t_mul and node_cc + 1 not in flag_lines:
+        #     flag_lines.append(node_cc + 1)
+        #     BuErrors.print_error(self.path, self.file_name, node_cc + 1 + self.header_lines,
+        #                          self.get_check_level(), self.get_check_id(),
+        #                          'a' + self.message.format(str((ilvl) * t_mul), str(node_s)))
         pos = -1
         for stm1 in stms:
             pos += 1
@@ -87,24 +81,46 @@ class IndentLevels(AbstractCheck):
                     ilvl_n = ilvl
                     if self.stmt_parse(stm, node, ilvl + 1, stms_expr[pos]):
                         continue
-                    li = stm.coord.line - 1
-                    l = tc[li]
-                    s = len(l) - len(l.lstrip())
-                    line = li + 1 + self.header_lines + (1 if self.header_lines > 0 else 0)
+                    line_index = stm.coord.line - 1
+                    line_ = tc[line_index]
+                    s = len(line_) - len(line_.lstrip())
+                    line = (
+                        line_index
+                        + 1
+                        + self.header_lines
+                        + (1 if self.header_lines > 0 else 0)
+                    )
                     # Handle conditional branches
 
                     ilvl_t = ilvl
-                    if isinstance(node, If) and isinstance(last, If):
-                        if last.iffalse and hasattr(last.iffalse, 'iftrue') and stm1 == last.iffalse.iftrue:
+                    if isinstance(node, If) and isinstance(last, If) and last.iffalse:
+                        if (
+                            hasattr(last.iffalse, "iftrue")
+                            and stm1 == last.iffalse.iftrue
+                        ):
                             ilvl_t -= 1
-                        elif last.iffalse and hasattr(last.iffalse, 'iffalse') and stm1 == last.iffalse.iffalse:
+                        elif (
+                            hasattr(last.iffalse, "iffalse")
+                            and stm1 == last.iffalse.iffalse
+                        ):
                             ilvl_t -= 1
-                    if s != ilvl_t * self.get_config()['spaces_per_level'] and line not in flag_lines:
+                    if (
+                        s != ilvl_t * self.get_config()["spaces_per_level"]
+                        and line not in flag_lines
+                    ):
                         flag_lines.append(line)
-                        BuErrors.print_error(self.path, self.file_name, line,
-                                             self.get_check_level(), self.get_check_id(),
-                                             self.message.format(str(ilvl_t * self.get_config()['spaces_per_level']), str(s)))
-            except:
+                        BuErrors.print_error(
+                            self.path,
+                            self.file_name,
+                            line,
+                            self.get_check_level(),
+                            self.get_check_id(),
+                            self.message.format(
+                                str(ilvl_t * self.get_config()["spaces_per_level"]),
+                                str(s),
+                            ),
+                        )
+            except Exception:
                 pass
         return 1
 
@@ -115,39 +131,50 @@ class IndentLevels(AbstractCheck):
             return 0
         ilvl = 1
         for b in func.body.block_items:
-            li = b.coord.line - 1
-            l = tc[li]
-            s = len(l) - len(l.lstrip())
-            line = li + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
-            if s != ilvl * self.get_config()['spaces_per_level'] and line not in flag_lines:
+            line_index = b.coord.line - 1
+            line_ = tc[line_index]
+            s = len(line_) - len(line_.lstrip())
+            line = (
+                line_index + 1 + self.header_lines + 1 if self.header_lines > 1 else 0
+            )
+
+            if (
+                s != ilvl * self.get_config()["spaces_per_level"]
+                and line not in flag_lines
+            ):
                 flag_lines.append(line)
-                BuErrors.print_error(self.path, self.file_name, line,
-                                     self.get_check_level(), self.get_check_id(),
-                                     self.message.format(str(ilvl * self.get_config()['spaces_per_level']), str(s)))
-            self.stmt_parse(b, None, ilvl + 1, 'a')
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
+                BuErrors.print_error(
+                    self.path,
+                    self.file_name,
+                    line,
+                    self.get_check_level(),
+                    self.get_check_id(),
+                    self.message.format(
+                        str(ilvl * self.get_config()["spaces_per_level"]), str(s)
+                    ),
+                )
+            self.stmt_parse(b, None, ilvl + 1, "a")
         return 0
 
     def check_inner(self, file_content, file_contentf):
         global tc
         global flag_lines
-        flag_lines = []
-        lines = file_contentf.split('\n')
-        lc = 0
+        lines = file_contentf.split("\n")
         tc = lines
 
-        for l in lines:
-            lc += 1
-            s = len(l) - len(l.lstrip())
-            self.line = lc + self.header_lines
+        flag_lines = []
+        for line_count, line in enumerate(lines, start=1):
+            segment = len(line) - len(line.lstrip())
+            self.line = line_count + self.header_lines
             self.line += 1 if self.header_lines > 0 else 0
-            if s % 4 != 0:
+            if segment % 4 != 0:
                 flag_lines.append(self.line)
-                BuErrors.print_error(self.path, self.file_name, self.line, self.get_check_level(),
-                                     self.get_check_id(), self.base_message)
+                BuErrors.print_error(
+                    self.path,
+                    self.file_name,
+                    self.line,
+                    self.get_check_level(),
+                    self.get_check_id(),
+                    self.base_message,
+                )
         return 0

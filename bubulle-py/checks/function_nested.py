@@ -25,32 +25,17 @@
 # SOFTWARE.#
 import re
 
-from checks._check import AbstractCheck
+from checks._check import Check
 
 cache_visitor = None
 
-class FunctionNested(AbstractCheck):
 
+class FunctionNested(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_line(self, line, line_number):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
 
     def check_visitor(self, visitor, lines):
         global cache_visitor
@@ -60,14 +45,12 @@ class FunctionNested(AbstractCheck):
     def check_inner(self, file_content, file_contentf):
         if cache_visitor is None:
             return 0
-        lines = file_contentf.split('\n')
-        last_func = ''
-        i = 0
+        lines = file_contentf.split("\n")
         index = 0
         line_start = -1
 
-        for line in lines:
-            i += 1
+        last_func = ""
+        for i, line in enumerate(lines, start=1):
             if line in cache_visitor.function_defs:
                 last_func = cache_visitor.function_defs[line]
             for function_line in cache_visitor.function_lines:
@@ -76,10 +59,9 @@ class FunctionNested(AbstractCheck):
                 if index > 0:
                     self.fill_error(cache_visitor.function_defs[function_line])
                     return 1
-            if '{' in line:
+            if "{" in line:
                 index += 1
-            elif re.match(r'[ \t]*}[ \t]*', line):
+            elif re.match(r"[ \t]*}[ \t]*", line):
                 index -= 1
-                if index <= 0:
-                    index = 0
+                index = max(index, 0)
         return 0

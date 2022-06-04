@@ -30,47 +30,39 @@ from pycparser.c_ast import FuncCall, Decl, FuncDecl
 
 from utils import config_utils
 from utils.error_handling import BuErrors
+from typing import Protocol
 
 
-class AbstractCheck(ABC):
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
+class Check(Protocol):
     def check_line(self, line, line_number):
-        pass
+        return 0
 
-    @abstractmethod
     def check_function_calls(self, function):
-        pass
+        return 0
 
-    @abstractmethod
     def check_variable_decl(self, function):
-        pass
+        return 0
 
-    @abstractmethod
     def check_function_decl(self, visitor, func):
-        pass
+        return 0
 
-    @abstractmethod
     def check_visitor(self, visitor, lines):
-        pass
+        return 0
 
-    @abstractmethod
     def check_inner(self, content, contentf):
-        pass
+        return 0
 
-    @abstractmethod
     def check_ast(self, ast):
-        pass
+        return 0
 
     def get_check_name(self):
-        return inspect.getfile(self.__class__).rsplit('/', 1)[-1].replace(".py", "")
+        return inspect.getfile(self.__class__).rsplit("/", 1)[-1].replace(".py", "")
 
     def get_config(self):
-        return config_utils.config['checks'][self.get_check_name()]
+        return config_utils.config["checks"][self.get_check_name()]
 
     def is_enabled(self):
-        return self.get_config()['enabled']
+        return self.get_config()["enabled"]
 
     def fill_error(self, args):
         self.args = args
@@ -87,12 +79,12 @@ class AbstractCheck(ABC):
             return 0
         if type(func) is not FuncCall:
             return 0
-        if not hasattr(func, 'name'):
+        if not hasattr(func, "name"):
             return 0
         if not self.check_function_calls(func):
             return 0
-        line = self.line if hasattr(self, 'line') else -1
-        if not hasattr(self, 'args'):
+        line = self.line if hasattr(self, "line") else -1
+        if not hasattr(self, "args"):
             self.err("", line, self.message)
             return 1
         self.err("", line, self.message.format(self.args))
@@ -105,8 +97,8 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_function_decl(visitor, func):
             return 0
-        line = self.line if hasattr(self, 'line') else -1
-        if not hasattr(self, 'args'):
+        line = self.line if hasattr(self, "line") else -1
+        if not hasattr(self, "args"):
             self.err("", line, self.message)
             return 1
         self.err("", line, self.message.format(self.args))
@@ -117,8 +109,8 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_visitor(visitor, lines):
             return 0
-        line = self.line if hasattr(self, 'line') else -1
-        if not hasattr(self, 'args'):
+        line = self.line if hasattr(self, "line") else -1
+        if not hasattr(self, "args"):
             self.err("", line, self.message)
             return 1
         self.err("", line, self.message.format(self.args))
@@ -129,12 +121,12 @@ class AbstractCheck(ABC):
             return 0
         if type(var) is not Decl:
             return 0
-        if not hasattr(var, 'name'):
+        if not hasattr(var, "name"):
             return 0
         if not self.check_variable_decl(var):
             return 0
-        line = -1 if not hasattr(self, 'line') else self.line
-        if not hasattr(self, 'args'):
+        line = self.line if hasattr(self, "line") else -1
+        if not hasattr(self, "args"):
             self.err("", line, self.message)
             return 1
         self.err("", line, self.message.format(self.args))
@@ -145,8 +137,8 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_ast(ast):
             return 0
-        line = -1 if not hasattr(self, 'line') else self.line
-        if not hasattr(self, 'args'):
+        line = self.line if hasattr(self, "line") else -1
+        if not hasattr(self, "args"):
             self.err("", line, self.message)
             return 1
         self.err("", line, self.message.format(self.args))
@@ -157,7 +149,7 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_line(line, line_number):
             return 0
-        if not hasattr(self, 'args'):
+        if not hasattr(self, "args"):
             self.err(line, line_number + 1, self.message)
             return 1
         self.err(line, line_number + 1, self.message.format(self.args))
@@ -168,10 +160,8 @@ class AbstractCheck(ABC):
             return 0
         if not self.check_inner(content, contentf):
             return 0
-        line_n = -1
-        if hasattr(self, 'line'):
-            line_n = self.line
-        if not hasattr(self, 'args'):
+        line_n = self.line if hasattr(self, "line") else -1
+        if not hasattr(self, "args"):
             self.err("", line_n, self.message)
             return 1
         self.err("", line_n, self.message.format(self.args))
@@ -182,11 +172,17 @@ class AbstractCheck(ABC):
             return 0
         if line_number != -1:
             line_number += self.header_lines
-        BuErrors.print_error(self.path, self.file_name, line_number, self.get_check_level(),
-                             self.get_check_id(), text)
+        BuErrors.print_error(
+            self.path,
+            self.file_name,
+            line_number,
+            self.get_check_level(),
+            self.get_check_id(),
+            text,
+        )
 
     def get_check_id(self):
-        return self.get_config()['id']
+        return self.get_config()["id"]
 
     def get_check_level(self):
-        return self.get_config()['level']
+        return self.get_config()["level"]

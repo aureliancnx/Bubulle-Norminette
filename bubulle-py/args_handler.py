@@ -40,41 +40,65 @@ def set_time_start(time):
 def parse_args():
     # Parse args
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--p", default=".",
-                        help="path to the desired folder")
-    parser.add_argument("-e", "--exclude", default=None,
-                        help="exclude a path from being checked")
-    parser.add_argument("-f", "--no-forbidden", default=False,
-                        help="exclude forbidden function checks", action='store_true')
-    parser.add_argument("-a", "--aggressive", action='store_true',
-                        help="enable aggressive mode for more advanced tests")
-    parser.add_argument("-ic", "--ignore-compilation", help="ignore compilation errors",
-                        action='store_true')
-    parser.add_argument("-r", "--report", help="generate and open a report",
-                        action='store_true')
-    parser.add_argument("-c", "--config", help="edit the configuration of Bubulle (experimental)",
-                        action='store_true')
-    parser.add_argument("-i", "--ignore", help="ignore specific tests. (e.g: -i l2,f5)",
-                        default="")
-    parser.add_argument("-ii", "--ignore-info", help="ignore all info tests",
-                        action='store_true')
-    parser.add_argument("-imin", "--ignore-minor", help="ignore all minor tests",
-                        action='store_true')
-    parser.add_argument("-imaj", "--ignore-major", help="ignore all major tests",
-                        action='store_true')
-    parser.add_argument("-v", "--version", help="version information",
-                        action='store_true')
-    parser.add_argument("-verbose", "--verbose", help="verbose information",
-                        action='store_true')
-    parser.add_argument("-u", "--update", action='store_true')
+    parser.add_argument("-p", "--p", default=".", help="path to the desired folder")
+    parser.add_argument(
+        "-e", "--exclude", default=None, help="exclude a path from being checked"
+    )
+    parser.add_argument(
+        "-f",
+        "--no-forbidden",
+        default=False,
+        help="exclude forbidden function checks",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-a",
+        "--aggressive",
+        action="store_true",
+        help="enable aggressive mode for more advanced tests",
+    )
+    parser.add_argument(
+        "-ic",
+        "--ignore-compilation",
+        help="ignore compilation errors",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-r", "--report", help="generate and open a report", action="store_true"
+    )
+    parser.add_argument(
+        "-c",
+        "--config",
+        help="edit the configuration of Bubulle (experimental)",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-i", "--ignore", help="ignore specific tests. (e.g: -i l2,f5)", default=""
+    )
+    parser.add_argument(
+        "-ii", "--ignore-info", help="ignore all info tests", action="store_true"
+    )
+    parser.add_argument(
+        "-imin", "--ignore-minor", help="ignore all minor tests", action="store_true"
+    )
+    parser.add_argument(
+        "-imaj", "--ignore-major", help="ignore all major tests", action="store_true"
+    )
+    parser.add_argument(
+        "-v", "--version", help="version information", action="store_true"
+    )
+    parser.add_argument(
+        "-verbose", "--verbose", help="verbose information", action="store_true"
+    )
+    parser.add_argument("-u", "--update", action="store_true")
     return parser.parse_args()
 
 
 def handle_ignored_tests(args):
     global ignored_tests
-    if args.ignore == '':
+    if args.ignore == "":
         return
-    ignored_tests = args.ignore.split(',')
+    ignored_tests = args.ignore.split(",")
     ignored_tests = [x.lower() for x in ignored_tests]
 
 

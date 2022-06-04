@@ -23,36 +23,21 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.#
-from checks._check import AbstractCheck
+from checks._check import Check
 
 
-class MultipleAssignements(AbstractCheck):
-
+class MultipleAssignments(Check):
     def __init__(self, file_name, path, header_lines):
-        self.message = self.get_config()['message']
+        self.message = self.get_config()["message"]
         self.file_name = file_name
         self.path = path
         self.header_lines = header_lines
 
     def check_line(self, line, line_number):
-        if ';;' in line:
+        if ";;" in line:
             return 0
-        return line.count(';') > self.get_config()['max_assignements'] and not ('for (' in line or 'for(' in line)
-
-    def check_ast(self, ast):
-        return 0
-
-    def check_function_calls(self, func):
-        return 0
-
-    def check_function_decl(self, visitor, func):
-        return 0
-
-    def check_variable_decl(self, var):
-        return 0
-
-    def check_visitor(self, visitor, lines):
-        return 0
-
-    def check_inner(self, file_content, file_contentf):
-        return 0
+        return (
+            line.count(";") > self.get_config()["max_assignements"]
+            and "for (" not in line
+            and "for(" not in line
+        )
