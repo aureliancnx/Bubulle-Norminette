@@ -30,7 +30,7 @@ import webbrowser
 from datetime import datetime
 from distutils.dir_util import copy_tree
 
-from back_overview import HtmlReportOverview
+from .back_overview import HtmlReportOverview
 from utils import error_handling
 
 

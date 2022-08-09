@@ -29,7 +29,7 @@ import time
 import urllib.request
 
 import args_handler
-import file_utils
+from . import file_utils
 
 version = -1
 version_url = (
